@@ -1,0 +1,52 @@
+/* Footer Component Styles */
+
+.footer {
+  background-color: #E9E9E7;
+  padding: 3rem 1.5rem;
+  border-top: 1px solid rgba(26, 26, 26, 0.1);
+}
+
+@media (min-width: 768px) {
+  .footer {
+    padding: 3rem 3rem;
+  }
+}
+
+.footer-container {
+  max-width: 80rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .footer-container {
+    flex-direction: row;
+  }
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-logo-text {
+  font-weight: bold;
+  color: #1A1A1A;
+  font-size: 1.25rem;
+  letter-spacing: -0.05em;
+}
+
+.footer-logo-dot {
+  color: #2864C6;
+}
+
+.footer-copyright {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  font-weight: 500;
+}

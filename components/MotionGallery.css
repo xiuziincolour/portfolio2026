@@ -1,0 +1,137 @@
+/* MotionGallery Component Styles */
+
+.motion-gallery-section {
+  padding: 6rem 1.5rem;
+  background-color: #111;
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .motion-gallery-section {
+    padding: 6rem 3rem;
+  }
+}
+
+.motion-gallery-container {
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.motion-gallery-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 4rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #1f2937;
+}
+
+@media (min-width: 768px) {
+  .motion-gallery-header {
+    flex-direction: row;
+  }
+}
+
+.motion-gallery-title {
+  font-size: 2.25rem;
+  font-weight: bold;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 768px) {
+  .motion-gallery-title {
+    font-size: 3rem;
+  }
+}
+
+.motion-gallery-badge {
+  color: #6b7280;
+  font-weight: 500;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+  .motion-gallery-badge {
+    margin-top: 0;
+  }
+}
+
+.motion-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .motion-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.motion-gallery-item {
+  position: relative;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background-color: #111827;
+  aspect-ratio: 16 / 9;
+}
+
+.motion-gallery-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+  transition: opacity 0.5s ease;
+}
+
+.motion-gallery-item:hover .motion-gallery-image {
+  opacity: 1;
+}
+
+.motion-gallery-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.motion-gallery-play-button {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.motion-gallery-item:hover .motion-gallery-play-button {
+  transform: scale(1.1);
+}
+
+.motion-gallery-play-icon {
+  fill: white;
+  color: white;
+  margin-left: 0.25rem;
+}
+
+.motion-gallery-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+}
+
+.motion-gallery-item-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+}

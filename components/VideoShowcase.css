@@ -1,0 +1,142 @@
+/* VideoShowcase Component Styles */
+
+.video-showcase-section {
+  padding: 6rem 1.5rem;
+  background-color: black;
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .video-showcase-section {
+    padding: 6rem 3rem;
+  }
+}
+
+.video-showcase-container {
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.video-showcase-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .video-showcase-header {
+    flex-direction: row;
+  }
+}
+
+.video-showcase-title {
+  font-size: 2.25rem;
+  font-weight: bold;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 768px) {
+  .video-showcase-title {
+    font-size: 3rem;
+  }
+}
+
+.video-showcase-badge {
+  color: #6b7280;
+  font-weight: 500;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+  .video-showcase-badge {
+    margin-top: 0;
+  }
+}
+
+.video-showcase-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+}
+
+.video-showcase-item {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+}
+
+.video-showcase-video-wrapper {
+  position: relative;
+  aspect-ratio: 21 / 9;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background-color: #111827;
+}
+
+.video-showcase-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+  transition: opacity 0.7s ease;
+}
+
+.video-showcase-item:hover .video-showcase-thumbnail {
+  opacity: 0.9;
+}
+
+.video-showcase-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.video-showcase-subtitle {
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: all 0.5s ease;
+}
+
+.video-showcase-item:hover .video-showcase-subtitle {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.video-showcase-item-title {
+  font-size: 1.875rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .video-showcase-item-title {
+    font-size: 3rem;
+  }
+}
+
+.video-showcase-play-icon {
+  color: white;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.video-showcase-item:hover .video-showcase-play-icon {
+  opacity: 1;
+  transform: scale(1.1);
+}
