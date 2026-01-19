@@ -104,7 +104,7 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
       {/* Hero Image Section - Image Only */}
       <header className="w-full h-[85vh] relative">
         <img 
-          src="/img/linko_header.jpg" 
+          src="/img/linko/linko_header.jpg" 
           alt="Linko Hero" 
           className="w-full h-full object-cover"
         />
@@ -371,7 +371,7 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
                        </div>
                     </div>
                     <img 
-                       src="/img/linko_styleguide.jpg" 
+                       src="/img/linko/linko_styleguide.jpg" 
                        alt="Linko Style Guide" 
                        className="w-full shadow-2xl rounded-lg"
                     />

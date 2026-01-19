@@ -17,7 +17,7 @@ export const UNIFIED_WORKS: WorkItem[] = [
     subtitle: 'Redefining the Live Music Social Experience',
     category: 'UI/UX',
     type: 'image',
-    image: '/img/linko_header.jpg',
+    image: '/img/linko/linko_header.jpg',
   },
   {
     id: 'w2',
