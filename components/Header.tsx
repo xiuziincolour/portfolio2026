@@ -34,7 +34,7 @@ const Header: React.FC = () => {
           <motion.a 
             layout 
             href="#" 
-            className={`flex items-center transition-all shrink-0 ${isScrolled ? 'h-6' : 'h-8'}`}
+            className={`flex items-center transition-all shrink-0 ${isScrolled ? 'h-10' : 'h-12'}`}
           >
             <img 
               src="/img/xiuzi_logo.png" 
@@ -94,7 +94,7 @@ const Header: React.FC = () => {
                <img 
                  src="/img/xiuzi_logo.png" 
                  alt="Xiuzi Logo" 
-                 className="h-8 w-auto"
+                 className="h-12 w-auto"
                />
                <button 
                 onClick={() => setMobileMenuOpen(false)}

@@ -50,7 +50,7 @@ const App: React.FC = () => {
           <img 
             src="/img/xiuzi_logo.png" 
             alt="Xiuzi Logo" 
-            className="h-8 w-auto animate-pulse"
+            className="h-16 w-auto animate-pulse"
           />
         </div>
       </div>

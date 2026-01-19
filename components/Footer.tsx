@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
            <img 
              src="/img/xiuzi_logo.png" 
              alt="Xiuzi Logo" 
-             className="h-6 w-auto"
+             className="h-10 w-auto"
            />
         </motion.div>
         <motion.p 
