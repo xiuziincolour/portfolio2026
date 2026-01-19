@@ -17,7 +17,11 @@ const Footer: React.FC = () => {
           viewport={{ once: false }}
           transition={{ duration: shouldAnimate ? 0.6 : 0 }}
         >
-           <span className="font-bold text-brand-text text-xl tracking-tighter">KAIROS<span className="text-brand-blue">.</span></span>
+           <img 
+             src="/img/xiuzi_logo.png" 
+             alt="Xiuzi Logo" 
+             className="h-6 w-auto"
+           />
         </motion.div>
         <motion.p 
           className="text-gray-400 text-sm font-medium"

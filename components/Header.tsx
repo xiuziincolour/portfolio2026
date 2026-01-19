@@ -34,9 +34,13 @@ const Header: React.FC = () => {
           <motion.a 
             layout 
             href="#" 
-            className={`font-bold tracking-tighter text-brand-text flex items-center gap-1 transition-all shrink-0 ${isScrolled ? 'text-xl' : 'text-2xl'}`}
+            className={`flex items-center transition-all shrink-0 ${isScrolled ? 'h-6' : 'h-8'}`}
           >
-            KAIROS<span className="text-brand-blue">.</span>
+            <img 
+              src="/img/xiuzi_logo.png" 
+              alt="Xiuzi Logo" 
+              className="h-full w-auto"
+            />
           </motion.a>
 
           {/* Desktop Nav */}
@@ -87,7 +91,11 @@ const Header: React.FC = () => {
             className="fixed inset-0 z-[60] bg-brand-bg flex flex-col p-6 md:p-12 overflow-y-auto"
           >
             <div className="flex justify-between items-center mb-12 shrink-0">
-               <span className="text-2xl font-bold tracking-tighter text-brand-text">KAIROS<span className="text-brand-blue">.</span></span>
+               <img 
+                 src="/img/xiuzi_logo.png" 
+                 alt="Xiuzi Logo" 
+                 className="h-8 w-auto"
+               />
                <button 
                 onClick={() => setMobileMenuOpen(false)}
                 className="p-3 bg-white rounded-full hover:bg-gray-100 hover:text-brand-orange transition-colors shadow-sm"

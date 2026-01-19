@@ -47,7 +47,11 @@ const App: React.FC = () => {
       <div className="fixed inset-0 bg-brand-bg flex items-center justify-center z-[100]">
         <div className="flex flex-col items-center gap-4">
           <div className="w-12 h-12 border-4 border-brand-blue border-t-transparent rounded-full animate-spin"></div>
-          <span className="text-brand-text font-bold tracking-widest text-sm animate-pulse">KAIROS</span>
+          <img 
+            src="/img/xiuzi_logo.png" 
+            alt="Xiuzi Logo" 
+            className="h-8 w-auto animate-pulse"
+          />
         </div>
       </div>
     );
