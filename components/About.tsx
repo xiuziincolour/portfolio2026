@@ -21,7 +21,7 @@ const About: React.FC = () => {
             >
                <img 
                   src="https://picsum.photos/800/1200?random=99" 
-                  alt="Kairos Profile" 
+                  alt="Xiuzi Profile" 
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" 
                 />
             </motion.div>
@@ -62,7 +62,7 @@ const About: React.FC = () => {
                    transition={{ duration: shouldAnimate ? 0.6 : 0, delay: shouldAnimate ? 0.2 : 0 }}
                  >
                    <p>
-                     Hi, I'm Kairos. I believe that good design is invisible. It should work so smoothly you don't notice it until you realize how effortless the experience was.
+                     Hi, I'm Xiuzi. I believe that good design is invisible. It should work so smoothly you don't notice it until you realize how effortless the experience was.
                    </p>
                    <p>
                      With over 6 years of experience, I specialize in stripping away the non-essential to reveal the core purpose. My approach is <strong>"Digital-first"</strong>: creating confident, scalable systems that adapt to human needs.

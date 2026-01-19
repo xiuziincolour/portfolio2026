@@ -10,7 +10,7 @@ const Contact: React.FC = () => {
   const shouldAnimate = scrollDirection === 'down' || scrollDirection === null;
 
   const handleCopy = () => {
-    navigator.clipboard.writeText('hello@kairos.design');
+    navigator.clipboard.writeText('hello@xiuzi.design');
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -80,7 +80,7 @@ const Contact: React.FC = () => {
                 className="group relative inline-flex items-center gap-3 sm:gap-4 text-3xl sm:text-4xl md:text-6xl font-bold text-brand-blue hover:text-brand-orange transition-all duration-300 pb-2 border-b-2 border-brand-blue/20 hover:border-brand-orange/50"
              >
                 <Mail className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12" />
-                <span className="tracking-tight">hello@kairos.design</span>
+                <span className="tracking-tight">hello@xiuzi.design</span>
                 
                 <span className="absolute -right-8 sm:-right-12 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-gray-400 bg-white p-2 rounded-full shadow-sm hidden sm:block">
                     <Copy size={20} />

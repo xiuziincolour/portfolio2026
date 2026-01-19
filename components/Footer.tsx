@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
           viewport={{ once: false }}
           transition={{ duration: shouldAnimate ? 0.6 : 0 }}
         >
-          © {new Date().getFullYear()} Kairos Design. All rights reserved.
+          © {new Date().getFullYear()} Xiuzi Design. All rights reserved.
         </motion.p>
       </div>
     </footer>
