@@ -269,14 +269,12 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
               <div className="space-y-16">
                  <div>
                     <h3 className="text-2xl font-bold mb-6">User Persona</h3>
-                    <div className="bg-gray-50 p-8 rounded-lg">
-                       <h4 className="text-2xl font-bold mb-4">Meet Alex</h4>
-                       <p className="text-gray-600 mb-6">A young professional recently moved to Vancouver</p>
-                       <ul className="space-y-3 text-gray-600">
-                          <li className="flex gap-3"><span className="text-brand-blue">—</span> Feels isolated and wants to build connections through shared interests</li>
-                          <li className="flex gap-3"><span className="text-brand-blue">—</span> Prioritizes safety and "shared vibes"</li>
-                          <li className="flex gap-3"><span className="text-brand-blue">—</span> Loves live music but lacks a friend group to attend shows with</li>
-                       </ul>
+                    <div className="mb-8">
+                       <img 
+                          src="/img/linko/linko_UserPersonas.jpg" 
+                          alt="Linko User Personas" 
+                          className="w-full shadow-2xl rounded-lg"
+                       />
                     </div>
                  </div>
                  
@@ -300,22 +298,19 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
                  
                  <div>
                     <h3 className="text-2xl font-bold mb-6">Visual Research</h3>
+                    <div className="mb-6">
+                       <img 
+                          src="/img/linko/linko_moodboard.jpg" 
+                          alt="Linko Moodboard" 
+                          className="w-full shadow-2xl rounded-lg"
+                       />
+                    </div>
                     <p className="text-lg text-gray-600 leading-relaxed">
                       A mood board was curated to capture the high-energy, immersive atmosphere of concerts using light, crowds, and vibrant colors.
                     </p>
                  </div>
               </div>
             </section>
-
-             {/* Full Width Image Break */}
-             <div className="w-full -mx-6 md:-mx-0">
-                <img 
-                   src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2670&auto=format&fit=crop" 
-                   alt="Concert Experience" 
-                   className="w-full h-[50vh] object-cover grayscale md:rounded-sm"
-                />
-                <p className="text-xs text-gray-400 mt-4 text-right">Live Music Community Experience</p>
-             </div>
 
             {/* 04. Process */}
             <section id="process" className="scroll-mt-32">
@@ -328,6 +323,13 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
                     <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                       The app is organized into four primary flows to ensure a seamless experience:
                     </p>
+                    <div className="mb-8">
+                       <img 
+                          src="/img/linko/linko_Userflow.jpg" 
+                          alt="Linko User Flow" 
+                          className="w-full shadow-2xl rounded-lg"
+                       />
+                    </div>
                     <div className="grid md:grid-cols-2 gap-8">
                        <div className="bg-gray-50 p-6 rounded-lg">
                           <h4 className="text-lg font-semibold text-brand-text mb-3">Flow 1: Onboarding</h4>
@@ -379,6 +381,13 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
                  
                  <div>
                     <h3 className="text-2xl font-bold mb-6">Wireframing & Prototyping</h3>
+                    <div className="mb-8">
+                       <img 
+                          src="/img/linko/linko_low-fi.jpg" 
+                          alt="Linko Low-Fi Wireframes" 
+                          className="w-full shadow-2xl rounded-lg"
+                       />
+                    </div>
                     <div className="grid md:grid-cols-2 gap-8">
                        <div>
                           <h4 className="text-lg font-semibold text-brand-text mb-3">Wireframing (Lo-Fi)</h4>
@@ -401,6 +410,14 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
             <section id="visuals" className="scroll-mt-32">
                <span className="text-brand-blue font-mono text-sm mb-6 block">05 / Visuals</span>
                <h2 className="text-4xl md:text-5xl font-bold mb-16">High-Fidelity Design & Features</h2>
+               
+               <div className="mb-16">
+                  <img 
+                     src="/img/linko/linko_high-fi.jpg" 
+                     alt="Linko High-Fi Prototypes" 
+                     className="w-full shadow-2xl rounded-lg"
+                  />
+               </div>
                
                <div className="space-y-24">
                   {/* Feature 1 */}
@@ -465,15 +482,15 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
 
                <div className="border-t border-gray-300 pt-16">
                   <h2 className="text-4xl md:text-5xl font-bold mb-12">Conclusion & Reflections</h2>
-                  <div className="grid md:grid-cols-2 gap-16">
+                  <div className="space-y-12">
                      <div>
-                        <h3 className="text-2xl font-bold mb-6">Project Outcome</h3>
+                        <h3 className="text-2xl font-bold mb-4">Project Outcome</h3>
                         <p className="text-lg text-gray-600 leading-relaxed">
                            Linko successfully bridges the gap between digital matching and physical event attendance, creating a safer way for fans to connect.
                         </p>
                      </div>
-                     <div className="bg-gray-100 p-8 md:p-12">
-                        <h3 className="text-2xl font-bold mb-6">Key Learning</h3>
+                     <div>
+                        <h3 className="text-2xl font-bold mb-4">Key Learning</h3>
                         <p className="text-lg text-gray-600 leading-relaxed">
                            This project highlighted the importance of "human-centric" design—balancing a fun, high-energy aesthetic with the serious functional requirements of user safety and privacy.
                         </p>
