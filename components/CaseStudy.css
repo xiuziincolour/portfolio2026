@@ -54,7 +54,7 @@
 
 .case-study-hero {
   width: 100%;
-  height: 85vh;
+  height: 65vh;
   position: relative;
 }
 
@@ -67,39 +67,34 @@
 .case-study-main {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 6rem 1.5rem;
+  padding: 6rem 2rem;
 }
 
 @media (min-width: 768px) {
   .case-study-main {
-    padding: 8rem 3rem;
+    padding: 8rem 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .case-study-main {
+    padding: 8rem 5rem;
   }
 }
 
 .case-study-layout {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 5rem;
   position: relative;
 }
 
-@media (min-width: 1024px) {
-  .case-study-layout {
-    flex-direction: row;
-    gap: 5rem;
-  }
-}
-
 .case-study-sidebar {
-  display: none;
+  display: block;
   width: 20%;
+  min-width: 200px;
   position: relative;
-}
-
-@media (min-width: 1024px) {
-  .case-study-sidebar {
-    display: block;
-  }
+  flex-shrink: 0;
 }
 
 .case-study-sidebar-sticky {
@@ -174,13 +169,8 @@
 }
 
 .case-study-content {
-  width: 100%;
-}
-
-@media (min-width: 1024px) {
-  .case-study-content {
-    width: 80%;
-  }
+  flex: 1;
+  min-width: 0;
 }
 
 .case-study-content > * + * {

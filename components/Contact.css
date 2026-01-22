@@ -76,14 +76,11 @@
   font-size: 1.875rem;
   font-weight: bold;
   color: #2864C6;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid rgba(40, 100, 198, 0.2);
   transition: all 0.3s ease;
 }
 
 .contact-email-button:hover {
   color: #F39C34;
-  border-bottom-color: rgba(243, 156, 52, 0.5);
 }
 
 @media (min-width: 640px) {

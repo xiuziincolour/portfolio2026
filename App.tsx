@@ -7,9 +7,10 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CaseStudy from './components/CaseStudy';
+import Projects from './components/Projects';
 import './App.css';
 
-type ViewState = 'home' | 'case-study';
+type ViewState = 'home' | 'case-study' | 'projects';
 
 const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -42,11 +43,16 @@ const App: React.FC = () => {
     }, 100);
   };
 
+  const handleOpenProjects = () => {
+    setCurrentView('projects');
+    window.scrollTo(0, 0);
+  };
+
   if (loading) {
     return (
-      <div className="fixed inset-0 bg-brand-bg flex items-center justify-center z-[100]">
+      <div className="app-loading-container">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 border-4 border-brand-blue border-t-transparent rounded-full animate-spin"></div>
+          <div className="app-loading-spinner"></div>
           <img 
             src="/img/xiuzi_logo.png" 
             alt="Xiuzi Logo" 
@@ -58,7 +64,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-brand-bg text-brand-text selection:bg-brand-blue selection:text-white relative">
+    <div className="app-container">
       
       {/* 
         Conditional Rendering: 
@@ -69,7 +75,7 @@ const App: React.FC = () => {
 
       {currentView === 'home' && (
         <>
-          <Header />
+          <Header onNavigateToProjects={handleOpenProjects} />
           <main>
             <Hero />
             {/* Pass the handler to WorkGrid */}
@@ -83,6 +89,10 @@ const App: React.FC = () => {
 
       {currentView === 'case-study' && (
         <CaseStudy onBack={handleBackToHome} />
+      )}
+
+      {currentView === 'projects' && (
+        <Projects onBack={handleBackToHome} onOpenProject={handleOpenProject} />
       )}
       
     </div>

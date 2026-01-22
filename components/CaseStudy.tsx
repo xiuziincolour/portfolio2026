@@ -102,36 +102,35 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
       </div>
 
       {/* Hero Image Section - Image Only */}
-      <header className="w-full h-[85vh] relative">
+      <header className="case-study-hero">
         <img 
           src="/img/linko/linko_header.jpg" 
           alt="Linko Hero" 
-          className="w-full h-full object-cover"
+          className="case-study-hero-image"
         />
       </header>
 
       {/* Main Content Layout */}
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-24 md:py-32">
-        <div className="flex flex-col lg:flex-row gap-20 relative">
+      <div className="case-study-main">
+        <div className="case-study-layout">
           
           {/* Left Column: Sticky Timeline & Index */}
-          <aside className="hidden lg:block w-1/5 relative">
-            <div className="sticky top-32">
-              <span className="text-xs font-bold uppercase tracking-widest text-brand-blue mb-8 block">Index</span>
+          <aside className="case-study-sidebar flex-shrink-0">
+            <div className="case-study-sidebar-sticky">
+              <span className="case-study-index-label">Index</span>
               
-              <div className="relative pl-6">
+              <div className="case-study-timeline">
                 {/* Continuous Gray Track Line */}
-                <div className="absolute left-0 top-0 bottom-0 w-[1px] bg-gray-200" />
+                <div className="case-study-timeline-track" />
 
-                <ul className="space-y-6">
+                <ul className="case-study-timeline-list">
                   {SECTIONS.map((section) => (
-                    <li key={section.id} className="relative">
+                    <li key={section.id} className="case-study-timeline-item">
                       {/* Active Indicator (Blue Segment) */}
-                      {/* This creates the "Progress Bar" effect sliding next to the items */}
                       {activeSection === section.id && (
                         <motion.div
                           layoutId="active-indicator"
-                          className="absolute -left-[25px] top-0 bottom-0 w-[3px] bg-brand-blue" // Aligned over the 1px track
+                          className="case-study-timeline-indicator"
                           transition={{ 
                             type: "spring", 
                             stiffness: 400, 
@@ -144,10 +143,8 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
                       <a 
                         href={`#${section.id}`} 
                         onClick={(e) => handleScrollToSection(e, section.id)}
-                        className={`block text-sm font-medium transition-all duration-200 ${
-                          activeSection === section.id 
-                            ? 'text-brand-blue translate-x-2' // Active: Blue & Shifted Right (No Bold to avoid jank)
-                            : 'text-gray-400 hover:text-brand-text'
+                        className={`case-study-timeline-link ${
+                          activeSection === section.id ? 'active' : ''
                         }`}
                       >
                         {section.title}
@@ -160,7 +157,7 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
           </aside>
 
           {/* Right Column: Content */}
-          <main className="w-full lg:w-4/5 space-y-40">
+          <main className="case-study-content flex-1 space-y-40">
             
             {/* Title Block */}
             <motion.div 

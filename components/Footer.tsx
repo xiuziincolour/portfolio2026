@@ -8,10 +8,10 @@ const Footer: React.FC = () => {
   const shouldAnimate = scrollDirection === 'down' || scrollDirection === null;
 
   return (
-    <footer className="bg-brand-bg py-12 px-6 md:px-12 border-t border-brand-text/10">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+    <footer className="footer bg-brand-bg py-12 px-6 md:px-12 border-t border-brand-text/10">
+      <div className="footer-container max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
         <motion.div 
-          className="flex items-center gap-2"
+          className="footer-logo"
           initial={{ opacity: 0, x: -20 }}
           whileInView={shouldAnimate ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
           viewport={{ once: false }}
@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
            />
         </motion.div>
         <motion.p 
-          className="text-gray-400 text-sm font-medium"
+          className="footer-copyright"
           initial={{ opacity: 0, x: 20 }}
           whileInView={shouldAnimate ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
           viewport={{ once: false }}

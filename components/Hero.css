@@ -69,7 +69,7 @@
 
 .hero-description-wrapper {
   display: flex;
-  flex-col: column;
+  flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
   gap: 2rem;

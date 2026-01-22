@@ -3,9 +3,7 @@ import { Project, GraphicItem, MotionItem, VideoItem, WorkItem } from './types';
 
 export const NAV_LINKS = [
   { name: 'Projects', href: '#work' },
-  { name: 'Graphic Design', href: '#work' },
-  { name: 'Motion', href: '#work' },
-  { name: 'Video', href: '#work' },
+  { name: 'Videos', href: '#work' },
   { name: 'About', href: '#about' },
 ];
 
