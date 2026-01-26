@@ -13,7 +13,7 @@ const Hero: React.FC = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="hero-content"
         >
-          <div className="flex flex-col gap-2">
+          <div className="hero-title-wrapper">
             <motion.span 
               className="hero-badge"
               initial={{ opacity: 0, y: 20 }}
@@ -28,7 +28,7 @@ const Hero: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
             >
-              Crafting Digital <br />
+              <span className="hero-title-main">Crafting Digital</span> <br />
               <motion.span 
                 className="hero-title-gray"
                 initial={{ opacity: 0 }}
@@ -49,15 +49,21 @@ const Hero: React.FC = () => {
              <p className="hero-description">
                I help startups build confident, scalable, and user-centric products that stand out in a crowded market.
              </p>
-
-             <a href="#projects" className="hero-scroll-link group">
-                Scroll for work 
-                <span className="hero-scroll-icon-wrapper">
-                  <ArrowDown size={14} className="hero-scroll-icon" />
-                </span>
-             </a>
           </motion.div>
         </motion.div>
+
+        <motion.a 
+          href="#work" 
+          className="hero-scroll-link group"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+        >
+          Scroll for work 
+          <span className="hero-scroll-icon-wrapper">
+            <ArrowDown size={14} className="hero-scroll-icon" />
+          </span>
+        </motion.a>
       </div>
     </section>
   );

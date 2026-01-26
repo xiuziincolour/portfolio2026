@@ -86,17 +86,17 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
   };
 
   return (
-    <div className="bg-brand-bg min-h-screen w-full relative z-40 text-brand-text">
+    <div className="case-study-container">
       
       {/* Navigation - Minimal & Fixed */}
-      <div className="fixed top-0 left-0 right-0 z-50 p-6 pointer-events-none">
-        <div className="max-w-[1400px] mx-auto">
+      <div className="case-study-nav">
+        <div className="case-study-nav-wrapper">
           <button 
             onClick={onBack}
-            className="pointer-events-auto group flex items-center gap-3 bg-brand-bg/80 backdrop-blur-md px-5 py-2.5 rounded-full text-brand-text font-medium hover:bg-black hover:text-white transition-colors border border-black/5"
+            className="case-study-back-button"
           >
-            <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
-            <span className="text-sm">Back</span>
+            <ArrowLeft size={16} className="case-study-back-icon" />
+            <span>Back</span>
           </button>
         </div>
       </div>
@@ -115,7 +115,7 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
         <div className="case-study-layout">
           
           {/* Left Column: Sticky Timeline & Index */}
-          <aside className="case-study-sidebar flex-shrink-0">
+          <aside className="case-study-sidebar">
             <div className="case-study-sidebar-sticky">
               <span className="case-study-index-label">Index</span>
               
@@ -157,69 +157,69 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
           </aside>
 
           {/* Right Column: Content */}
-          <main className="case-study-content flex-1 space-y-40">
+          <main className="case-study-content">
             
             {/* Title Block */}
             <motion.div 
                initial={{ opacity: 0, y: 30 }}
                whileInView={{ opacity: 1, y: 0 }}
                viewport={{ once: true }}
-               className="border-b border-gray-300 pb-20"
+               className="case-study-title-block"
             >
-                <div className="flex flex-col gap-2 mb-8">
-                   <span className="text-brand-blue font-bold tracking-widest uppercase text-sm">Product Design</span>
-                   <h1 className="text-6xl md:text-8xl font-bold tracking-tighter leading-[0.9] -ml-1">
+                <div className="case-study-title-header">
+                   <span className="case-study-title-badge">Product Design</span>
+                   <h1 className="case-study-title">
                      Linko:<br/>Redefining the<br/>Live Music Social<br/>Experience
                    </h1>
                 </div>
                 
-                <div className="flex flex-col md:flex-row justify-between items-start gap-12 mt-16">
-                   <p className="text-2xl md:text-3xl font-light leading-tight text-gray-800 max-w-2xl">
+                <div className="case-study-title-info">
+                   <p className="case-study-title-description">
                      A social platform designed to connect music lovers, turning solo concert-going into a shared community experience.
                    </p>
                    
-                   <div className="grid grid-cols-2 gap-x-12 gap-y-8 min-w-[300px]">
+                   <div className="case-study-title-meta">
                       <div>
-                        <span className="block text-xs font-bold uppercase text-gray-400 tracking-widest mb-1">Role</span>
-                        <span className="block text-base font-medium">UI/UX Designer</span>
+                        <span className="case-study-meta-label">Role</span>
+                        <span className="case-study-meta-value">UI/UX Designer, Frontend Developer</span>
                       </div>
                       <div>
-                        <span className="block text-xs font-bold uppercase text-gray-400 tracking-widest mb-1">Category</span>
-                        <span className="block text-base font-medium">Social Platform</span>
+                        <span className="case-study-meta-label">Category</span>
+                        <span className="case-study-meta-value">Social Platform</span>
                       </div>
                       <div>
-                        <span className="block text-xs font-bold uppercase text-gray-400 tracking-widest mb-1">Focus</span>
-                        <span className="block text-base font-medium">Community & Safety</span>
+                        <span className="case-study-meta-label">Focus</span>
+                        <span className="case-study-meta-value">Community & Safety</span>
                       </div>
                       <div>
-                        <span className="block text-xs font-bold uppercase text-gray-400 tracking-widest mb-1">Platform</span>
-                        <span className="block text-base font-medium">Mobile App</span>
+                        <span className="case-study-meta-label">Platform</span>
+                        <span className="case-study-meta-value">Mobile App</span>
                       </div>
                    </div>
                 </div>
             </motion.div>
 
             {/* 01. Overview */}
-            <section id="overview" className="scroll-mt-32">
-              <span className="text-brand-blue font-mono text-sm mb-6 block">01 / Overview</span>
-              <h2 className="text-4xl md:text-5xl font-bold mb-12">Project Overview</h2>
+            <section id="overview" className="case-study-section">
+              <span className="case-study-section-label">01 / Overview</span>
+              <h2 className="case-study-section-title">Project Overview</h2>
               
-              <div className="space-y-8 text-lg text-gray-600 leading-relaxed font-light">
-                 <div>
-                    <h3 className="text-xl font-semibold text-brand-text mb-3">Background</h3>
-                    <p>
+              <div className="case-study-section-content">
+                 <div className="case-study-text-block">
+                    <h3 className="case-study-text-title">Background</h3>
+                    <p className="case-study-text-paragraph">
                       Linko is a social platform designed to connect music lovers, turning solo concert-going into a shared community experience. It addresses the common struggle of finding others who share a passion for live music.
                     </p>
                  </div>
-                 <div>
-                    <h3 className="text-xl font-semibold text-brand-text mb-3">Role</h3>
-                    <p>
-                      <strong className="text-brand-text font-medium">UI/UX Designer</strong> — Responsible for the complete design process from research to high-fidelity prototypes.
+                 <div className="case-study-text-block">
+                    <h3 className="case-study-text-title">Role</h3>
+                    <p className="case-study-text-paragraph">
+                      <strong>UI/UX Designer</strong> — Responsible for the complete design process from research to high-fidelity prototypes.
                     </p>
                  </div>
-                 <div>
-                    <h3 className="text-xl font-semibold text-brand-text mb-3">Key Challenge</h3>
-                    <p>
+                 <div className="case-study-text-block">
+                    <h3 className="case-study-text-title">Key Challenge</h3>
+                    <p className="case-study-text-paragraph">
                       Creating a safe, low-pressure environment for users to build lasting memories through music while ensuring user safety and privacy in a social networking context.
                     </p>
                  </div>
@@ -227,27 +227,27 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
             </section>
 
             {/* 02. Problem */}
-            <section id="problem" className="scroll-mt-32">
-              <span className="text-brand-blue font-mono text-sm mb-6 block">02 / Problem</span>
-              <div className="space-y-12">
+            <section id="problem" className="case-study-section">
+              <span className="case-study-section-label">02 / Problem</span>
+              <div className="case-study-problem-wrapper">
                  <div>
-                    <h2 className="text-4xl md:text-5xl font-bold mb-8">Problem Statement</h2>
-                    <div className="space-y-6 text-lg text-gray-600 leading-relaxed font-light">
-                       <div>
-                          <h3 className="text-xl font-semibold text-brand-text mb-3">The Gap</h3>
-                          <p>
+                    <h2 className="case-study-section-title">Problem Statement</h2>
+                    <div className="case-study-problem-content">
+                       <div className="case-study-text-block">
+                          <h3 className="case-study-text-title">The Gap</h3>
+                          <p className="case-study-text-paragraph">
                             Many fans love live music but lack a dedicated friend group to attend shows with, leading to feelings of isolation.
                           </p>
                        </div>
-                       <div>
-                          <h3 className="text-xl font-semibold text-brand-text mb-3">Goal</h3>
-                          <p>
+                       <div className="case-study-text-block">
+                          <h3 className="case-study-text-title">Goal</h3>
+                          <p className="case-study-text-paragraph">
                             To bring people together through shared passion, creating connections and building communities around every concert.
                           </p>
                        </div>
-                       <div>
-                          <h3 className="text-xl font-semibold text-brand-text mb-3">Core Pain Points</h3>
-                          <ul className="list-disc list-inside space-y-2">
+                       <div className="case-study-text-block">
+                          <h3 className="case-study-text-title">Core Pain Points</h3>
+                          <ul className="case-study-list">
                              <li>Difficulty finding people with matching music tastes</li>
                              <li>Safety concerns when meeting strangers at events</li>
                              <li>Lack of a dedicated platform for concert-goers to connect</li>
@@ -259,50 +259,50 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
             </section>
 
             {/* 03. Research */}
-            <section id="research" className="scroll-mt-32">
-              <span className="text-brand-blue font-mono text-sm mb-6 block">03 / Research</span>
-              <h2 className="text-4xl md:text-5xl font-bold mb-12">User Research & Analysis</h2>
+            <section id="research" className="case-study-section">
+              <span className="case-study-section-label">03 / Research</span>
+              <h2 className="case-study-section-title">User Research & Analysis</h2>
               
-              <div className="space-y-16">
+              <div className="case-study-research-wrapper">
                  <div>
-                    <h3 className="text-2xl font-bold mb-6">User Persona</h3>
-                    <div className="mb-8">
+                    <h3 className="case-study-research-title">User Persona</h3>
+                    <div className="case-study-image-full-width">
                        <img 
                           src="/img/linko/linko_UserPersonas.jpg" 
                           alt="Linko User Personas" 
-                          className="w-full shadow-2xl rounded-lg"
+                          className="case-study-image"
                        />
                     </div>
                  </div>
                  
                  <div>
-                    <h3 className="text-2xl font-bold mb-6">Target Audience</h3>
-                    <div className="grid md:grid-cols-3 gap-8">
+                    <h3 className="case-study-research-title">Target Audience</h3>
+                    <div className="case-study-grid-3">
                        <div>
-                          <h4 className="text-lg font-semibold text-brand-text mb-3">Demographics</h4>
-                          <p className="text-gray-600">Young adults (18-40), including students and young professionals</p>
+                          <h4 className="case-study-grid-title">Demographics</h4>
+                          <p className="case-study-grid-text">Young adults (18-40), including students and young professionals</p>
                        </div>
                        <div>
-                          <h4 className="text-lg font-semibold text-brand-text mb-3">Geography</h4>
-                          <p className="text-gray-600">North America, specifically Canada and the US</p>
+                          <h4 className="case-study-grid-title">Geography</h4>
+                          <p className="case-study-grid-text">North America, specifically Canada and the US</p>
                        </div>
                        <div>
-                          <h4 className="text-lg font-semibold text-brand-text mb-3">Behavior</h4>
-                          <p className="text-gray-600">Lovers of live music who hate going to events alone and prioritize safety</p>
+                          <h4 className="case-study-grid-title">Behavior</h4>
+                          <p className="case-study-grid-text">Lovers of live music who hate going to events alone and prioritize safety</p>
                        </div>
                     </div>
                  </div>
                  
                  <div>
-                    <h3 className="text-2xl font-bold mb-6">Visual Research</h3>
-                    <div className="mb-6">
+                    <h3 className="case-study-research-title">Visual Research</h3>
+                    <div className="case-study-image-full-width">
                        <img 
                           src="/img/linko/linko_moodboard.jpg" 
                           alt="Linko Moodboard" 
-                          className="w-full shadow-2xl rounded-lg"
+                          className="case-study-image"
                        />
                     </div>
-                    <p className="text-lg text-gray-600 leading-relaxed">
+                    <p className="case-study-text-paragraph">
                       A mood board was curated to capture the high-energy, immersive atmosphere of concerts using light, crowds, and vibrant colors.
                     </p>
                  </div>
@@ -310,91 +310,93 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
             </section>
 
             {/* 04. Process */}
-            <section id="process" className="scroll-mt-32">
-              <span className="text-brand-blue font-mono text-sm mb-6 block">04 / Process</span>
-              <h2 className="text-4xl md:text-5xl font-bold mb-12">The Design Process</h2>
+            <section id="process" className="case-study-section">
+              <span className="case-study-section-label">04 / Process</span>
+              <h2 className="case-study-section-title">The Design Process</h2>
               
-              <div className="space-y-16">
+              <div className="case-study-process-wrapper">
                  <div>
-                    <h3 className="text-2xl font-bold mb-6">Information Architecture & User Flow</h3>
-                    <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                    <h3 className="case-study-research-title">Information Architecture & User Flow</h3>
+                    <p className="case-study-text-paragraph">
                       The app is organized into four primary flows to ensure a seamless experience:
                     </p>
-                    <div className="mb-8">
+                    <div className="case-study-image-full-width">
                        <img 
                           src="/img/linko/linko_Userflow.jpg" 
                           alt="Linko User Flow" 
-                          className="w-full shadow-2xl rounded-lg"
+                          className="case-study-image"
                        />
                     </div>
-                    <div className="grid md:grid-cols-2 gap-8">
-                       <div className="bg-gray-50 p-6 rounded-lg">
-                          <h4 className="text-lg font-semibold text-brand-text mb-3">Flow 1: Onboarding</h4>
-                          <p className="text-gray-600">Guided sign-up involving questionnaires to establish the user's "vibe"</p>
+                    <div className="case-study-grid-2">
+                       <div className="case-study-flow-card">
+                          <h4 className="case-study-flow-title">Flow 1: Onboarding</h4>
+                          <p className="case-study-flow-description">Guided sign-up involving questionnaires to establish the user's "vibe"</p>
                        </div>
-                       <div className="bg-gray-50 p-6 rounded-lg">
-                          <h4 className="text-lg font-semibold text-brand-text mb-3">Flow 2: Matching</h4>
-                          <p className="text-gray-600">An algorithmic process to suggest potential concert buddies</p>
+                       <div className="case-study-flow-card">
+                          <h4 className="case-study-flow-title">Flow 2: Matching</h4>
+                          <p className="case-study-flow-description">An algorithmic process to suggest potential concert buddies</p>
                        </div>
-                       <div className="bg-gray-50 p-6 rounded-lg">
-                          <h4 className="text-lg font-semibold text-brand-text mb-3">Flow 3: Explore/Chat</h4>
-                          <p className="text-gray-600">A space to browse upcoming concerts and join dedicated group chats</p>
+                       <div className="case-study-flow-card">
+                          <h4 className="case-study-flow-title">Flow 3: Explore/Chat</h4>
+                          <p className="case-study-flow-description">A space to browse upcoming concerts and join dedicated group chats</p>
                        </div>
-                       <div className="bg-gray-50 p-6 rounded-lg">
-                          <h4 className="text-lg font-semibold text-brand-text mb-3">Flow 4: Profile</h4>
-                          <p className="text-gray-600">A personalized "concert calling card" showcasing favorite genres and artists</p>
+                       <div className="case-study-flow-card">
+                          <h4 className="case-study-flow-title">Flow 4: Profile</h4>
+                          <p className="case-study-flow-description">A personalized "concert calling card" showcasing favorite genres and artists</p>
                        </div>
                     </div>
                  </div>
                  
                  <div>
-                    <h3 className="text-2xl font-bold mb-6">Style Guide</h3>
-                    <div className="space-y-8 text-lg text-gray-600 leading-relaxed mb-8">
-                       <div>
-                          <h4 className="text-xl font-semibold text-brand-text mb-3">Color Palette</h4>
-                          <p>
+                    <h3 className="case-study-research-title">Style Guide</h3>
+                    <div className="case-study-style-guide-text">
+                       <div className="case-study-text-block">
+                          <h4 className="case-study-text-title">Color Palette</h4>
+                          <p className="case-study-text-paragraph">
                             In LINKO's interface design, this color palette reflects a strong and consistent brand identity. The Dream Violet tone creates a trustworthy yet imaginative social space. The Neon Lime accents encourage user interaction, while the Coral Pulse buttons clearly guide user actions. The dark background ensures content remains in focus, delivering an immersive and visually clear user experience.
                           </p>
                        </div>
-                       <div>
-                          <h4 className="text-xl font-semibold text-brand-text mb-3">Logo</h4>
-                          <p>
+                       <div className="case-study-text-block">
+                          <h4 className="case-study-text-title">Logo</h4>
+                          <p className="case-study-text-paragraph">
                             The Linko logo is a visual fusion of a vinyl record and a chat bubble, symbolizing the connection between music lovers and meaningful conversations. It represents our mission — helping people find companions to enjoy live music experiences together.
                           </p>
                        </div>
-                       <div>
-                          <h4 className="text-xl font-semibold text-brand-text mb-3">Typography</h4>
-                          <p>
+                       <div className="case-study-text-block">
+                          <h4 className="case-study-text-title">Typography</h4>
+                          <p className="case-study-text-paragraph">
                             Our app features two distinct fonts: Lexend and Ruffly Bold. Lexend, a modern sans-serif typeface, is used for general text to ensure readability and accessibility across all content. Its clean and well-spaced design makes it easy for users to read comfortably. For emphasis, we incorporate Ruffly Bold, a bold and expressive typeface, in key elements such as the logo and usernames. This adds personality and visual contrast, helping important details stand out. By combining Lexend's clarity with Ruffly Bold's impact, our typography creates a balanced, engaging, and user-friendly experience while maintaining a strong brand identity.
                           </p>
                        </div>
                     </div>
-                    <img 
-                       src="/img/linko/linko_styleguide.jpg" 
-                       alt="Linko Style Guide" 
-                       className="w-full shadow-2xl rounded-lg"
-                    />
+                    <div className="case-study-image-full-width">
+                       <img 
+                          src="/img/linko/linko_styleguide.jpg" 
+                          alt="Linko Style Guide" 
+                          className="case-study-image"
+                       />
+                    </div>
                  </div>
                  
                  <div>
-                    <h3 className="text-2xl font-bold mb-6">Wireframing & Prototyping</h3>
-                    <div className="mb-8">
+                    <h3 className="case-study-research-title">Wireframing & Prototyping</h3>
+                    <div className="case-study-image-full-width">
                        <img 
                           src="/img/linko/linko_low-fi.jpg" 
                           alt="Linko Low-Fi Wireframes" 
-                          className="w-full shadow-2xl rounded-lg"
+                          className="case-study-image"
                        />
                     </div>
-                    <div className="grid md:grid-cols-2 gap-8">
+                    <div className="case-study-grid-2">
                        <div>
-                          <h4 className="text-lg font-semibold text-brand-text mb-3">Wireframing (Lo-Fi)</h4>
-                          <p className="text-gray-600 leading-relaxed">
+                          <h4 className="case-study-text-title">Wireframing (Lo-Fi)</h4>
+                          <p className="case-study-text-paragraph">
                             Initial sketches focused on the "Matching Page" and "Explore" layouts to finalize the user journey before visual styling.
                           </p>
                        </div>
                        <div>
-                          <h4 className="text-lg font-semibold text-brand-text mb-3">Prototyping (Hi-Fi)</h4>
-                          <p className="text-gray-600 leading-relaxed">
+                          <h4 className="case-study-text-title">Prototyping (Hi-Fi)</h4>
+                          <p className="case-study-text-paragraph">
                             Finalized with polished UI elements, interactive components, and consistent branding.
                           </p>
                        </div>
@@ -404,91 +406,85 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
             </section>
 
             {/* 05. Visuals */}
-            <section id="visuals" className="scroll-mt-32">
-               <span className="text-brand-blue font-mono text-sm mb-6 block">05 / Visuals</span>
-               <h2 className="text-4xl md:text-5xl font-bold mb-16">High-Fidelity Design & Features</h2>
+            <section id="visuals" className="case-study-section">
+               <span className="case-study-section-label">05 / Visuals</span>
+               <h2 className="case-study-section-title case-study-section-title-spaced">High-Fidelity Design & Features</h2>
                
-               <div className="mb-16">
+               <div className="case-study-image-full-width case-study-image-spaced">
                   <img 
                      src="/img/linko/linko_high-fi.jpg" 
                      alt="Linko High-Fi Prototypes" 
-                     className="w-full shadow-2xl rounded-lg"
+                     className="case-study-image"
                   />
                </div>
                
-               <div className="space-y-24">
+               <div className="case-study-visuals-content">
                   {/* Feature 1 */}
-                  <div>
-                     <div className="flex flex-col md:flex-row gap-8 mb-8">
-                        <h3 className="text-2xl font-bold md:w-1/3">Musical Matching</h3>
-                        <p className="text-gray-600 md:w-2/3 leading-relaxed">
-                           Users can see potential matches with overlapping tastes, like "Swifties" or fans heading to a specific Drake or The Weeknd show.
-                        </p>
-                     </div>
+                  <div className="case-study-feature-block">
+                     <h3 className="case-study-feature-title">Musical Matching</h3>
+                     <p className="case-study-feature-description">
+                        Users can see potential matches with overlapping tastes, like "Swifties" or fans heading to a specific Drake or The Weeknd show.
+                     </p>
                   </div>
 
                   {/* Feature 2 */}
-                  <div>
-                     <div className="flex flex-col md:flex-row gap-8 mb-8">
-                        <h3 className="text-2xl font-bold md:w-1/3">Concert Channels</h3>
-                        <p className="text-gray-600 md:w-2/3 leading-relaxed">
-                           Instead of going alone, users join a "Channel" for a specific concert to chat and meet their future "concert crew".
-                        </p>
-                     </div>
+                  <div className="case-study-feature-block">
+                     <h3 className="case-study-feature-title">Concert Channels</h3>
+                     <p className="case-study-feature-description">
+                        Instead of going alone, users join a "Channel" for a specific concert to chat and meet their future "concert crew".
+                     </p>
                   </div>
 
                   {/* Feature 3 */}
-                  <div>
-                     <div className="flex flex-col md:flex-row gap-8 mb-8">
-                        <h3 className="text-2xl font-bold md:w-1/3">Community Safety</h3>
-                        <p className="text-gray-600 md:w-2/3 leading-relaxed">
-                           Clear community rules prohibit ticket sales and harassment, ensuring a respectful and enjoyable environment for everyone.
-                        </p>
-                     </div>
+                  <div className="case-study-feature-block">
+                     <h3 className="case-study-feature-title">Community Safety</h3>
+                     <p className="case-study-feature-description">
+                        Clear community rules prohibit ticket sales and harassment, ensuring a respectful and enjoyable environment for everyone.
+                     </p>
                   </div>
                </div>
             </section>
 
             {/* 06. Outcome */}
-            <section id="outcome" className="scroll-mt-32 pb-24 border-t border-gray-300 pt-24">
-               <span className="text-brand-blue font-mono text-sm mb-6 block">06 / Outcome</span>
-               <h2 className="text-4xl md:text-5xl font-bold mb-12">Testing & Accessibility</h2>
+            <section id="outcome" className="case-study-section case-study-outcome-section">
+               <span className="case-study-section-label">06 / Outcome</span>
+               <h2 className="case-study-section-title">Testing & Accessibility</h2>
                
-               <div className="space-y-12 mb-16">
-                  <div>
-                     <h3 className="text-2xl font-bold mb-6">User Control</h3>
-                     <p className="text-lg text-gray-600 leading-relaxed">
+               <div className="case-study-outcome-content">
+                  <div className="case-study-text-block">
+                     <h3 className="case-study-text-title">User Control</h3>
+                     <p className="case-study-text-paragraph">
                         Integrated "Show/Hide Toggles" during onboarding so users can decide exactly what info is public.
                      </p>
                   </div>
                   
-                  <div>
-                     <h3 className="text-2xl font-bold mb-6">Accessibility Features</h3>
-                     <p className="text-lg text-gray-600 leading-relaxed mb-4">
+                  <div className="case-study-text-block">
+                     <h3 className="case-study-text-title">Accessibility Features</h3>
+                     <p className="case-study-text-paragraph">
                         The app includes a "Color Blind Mode" and easy switching between Dark and Light modes to accommodate different visual needs.
                      </p>
                   </div>
                   
-                  <div>
-                     <h3 className="text-2xl font-bold mb-6">Navigation</h3>
-                     <p className="text-lg text-gray-600 leading-relaxed">
+                  <div className="case-study-text-block">
+                     <h3 className="case-study-text-title">Navigation</h3>
+                     <p className="case-study-text-paragraph">
                         Intuitive "Progress Bars" and simple navigation buttons help users understand where they are in the onboarding process.
                      </p>
                   </div>
                </div>
 
-               <div className="border-t border-gray-300 pt-16">
-                  <h2 className="text-4xl md:text-5xl font-bold mb-12">Conclusion & Reflections</h2>
-                  <div className="space-y-12">
-                     <div>
-                        <h3 className="text-2xl font-bold mb-4">Project Outcome</h3>
-                        <p className="text-lg text-gray-600 leading-relaxed">
+               <div className="case-study-conclusion">
+                  <h2 className="case-study-section-title">Conclusion & Reflections</h2>
+                  <div className="case-study-conclusion-content">
+                     <div className="case-study-text-block">
+                        <h3 className="case-study-conclusion-subtitle">Project Outcome</h3>
+                        <p className="case-study-text-paragraph">
                            Linko successfully bridges the gap between digital matching and physical event attendance, creating a safer way for fans to connect.
                         </p>
                      </div>
-                     <div>
-                        <h3 className="text-2xl font-bold mb-4">Key Learning</h3>
-                        <p className="text-lg text-gray-600 leading-relaxed">
+                     <div className="case-study-text-block">
+                        <h3 className="case-study-conclusion-subtitle">Key Learning</h3>
+                        <p className="case-study-text-paragraph">
                            This project highlighted the importance of "human-centric" design—balancing a fun, high-energy aesthetic with the serious functional requirements of user safety and privacy.
                         </p>
                      </div>

@@ -19,13 +19,11 @@ export const UNIFIED_WORKS: WorkItem[] = [
   },
   {
     id: 'w2',
-    title: 'Airbnb Payments',
-    subtitle: 'Experience Design Internship',
+    title: 'Jargon',
+    subtitle: 'Redefining the User Experience Design',
     category: 'UI/UX',
-    type: 'solid-color',
-    bgColor: '#FF5A5F', // Airbnb Red/Coral
-    image: 'https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_B%C3%A9lo.svg', // Placeholder white logo
-    textColor: 'white'
+    type: 'image',
+    image: '/img/jargon/Jargon-cover.png',
   },
   {
     id: 'w3',

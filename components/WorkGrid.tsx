@@ -16,22 +16,6 @@ const WorkGrid: React.FC<WorkGridProps> = ({ onOpenProject }) => {
   return (
     <section id="work" className="work-grid-section">
       <div className="work-grid-container">
-        {/* Section Header with Animation */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-50px" }}
-          transition={{ duration: 0.6 }}
-          className="work-grid-header"
-        >
-          <h2 className="work-grid-title">
-            Selected Work
-          </h2>
-          <p className="work-grid-subtitle">
-            Explore my latest projects
-          </p>
-        </motion.div>
-        
         <div className="work-grid-items">
           {UNIFIED_WORKS.map((work, index) => (
             <motion.div

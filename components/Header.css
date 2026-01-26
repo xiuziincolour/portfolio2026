@@ -28,10 +28,10 @@
 .header-nav-wrapper.scrolled {
   width: 80%;
   max-width: 1000px;
-  background-color: rgba(233, 233, 231, 0.8);
+  background-color: rgba(246, 249, 224, 0.8);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(215, 88, 111, 0.05);
+  box-shadow: 0 8px 30px rgba(215, 88, 111, 0.04);
   border-radius: 9999px;
   padding: 0.75rem 1.5rem;
 }
@@ -59,7 +59,7 @@
 }
 
 .header-logo-link.scrolled .header-logo-image {
-  height: 2rem; /* 32px - smaller for scrolled state */
+  height: var(--spacing-12); /* 48px - same as unscrolled */
 }
 
 .header-logo-link:not(.scrolled) .header-logo-image {
@@ -112,7 +112,7 @@
 }
 
 .header-nav-links.scrolled .header-nav-link {
-  font-size: 0.75rem;
+  font-size: 0.875rem; /* Same as unscrolled */
 }
 
 .header-nav-link:hover {
@@ -127,16 +127,17 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: #1A1A1A;
+  background-color: #D7586F;
   color: white;
   border-radius: 9999px;
   font-weight: 500;
   transition: background-color 0.3s ease;
   flex-shrink: 0;
+  font-family: 'JMH Typewriter Dry', 'Graphik LC Web', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .header-cta-button:hover {
-  background-color: #2864C6;
+  background-color: var(--brand-blue);
 }
 
 .header-cta-icon {
@@ -150,7 +151,7 @@
 
 .header-cta-button.scrolled {
   padding: 0.5rem 1.25rem;
-  font-size: 0.75rem;
+  font-size: 0.875rem; /* Same as unscrolled */
 }
 
 .header-cta-button:not(.scrolled) {
@@ -180,7 +181,7 @@
   position: fixed;
   inset: 0;
   z-index: 60;
-  background-color: #E9E9E7;
+  background-color: var(--brand-bg);
   display: flex;
   flex-direction: column;
   padding: 1.5rem;
@@ -211,12 +212,12 @@
   background-color: white;
   border-radius: 9999px;
   transition: all 0.3s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(215, 88, 111, 0.1);
 }
 
 .header-mobile-menu-close:hover {
   background-color: #f3f4f6;
-  color: #F39C34;
+  color: var(--brand-orange);
 }
 
 .header-mobile-nav {
@@ -241,7 +242,7 @@
 }
 
 .header-mobile-nav-link:hover {
-  color: #2864C6;
+  color: var(--brand-blue);
   transform: translateX(1rem);
 }
 
@@ -267,7 +268,7 @@
   gap: 0.75rem;
   font-size: 1.25rem;
   font-weight: 500;
-  color: #2864C6;
+  color: var(--brand-blue);
   transition: all 0.3s ease;
 }
 
@@ -311,7 +312,7 @@
 }
 
 .header-mobile-social-link:hover {
-  color: #2864C6;
+  color: var(--brand-blue);
 }
 
 .header-mobile-location {

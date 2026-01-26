@@ -1,14 +1,20 @@
 /* About Component Styles */
 
 .about-section {
-  padding: 6rem 1.5rem;
-  background-color: #E9E9E7;
+  padding: 6rem 2rem;
+  background-color: var(--brand-bg);
   color: #1A1A1A;
 }
 
 @media (min-width: 768px) {
   .about-section {
-    padding: 6rem 3rem;
+    padding: 6rem 6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-section {
+    padding: 6rem 8rem;
   }
 }
 
@@ -33,28 +39,48 @@
 
 .about-image-wrapper {
   width: 100%;
-  aspect-ratio: 3 / 4;
-  border-radius: 0.5rem;
-  overflow: hidden;
-  background-color: #f3f4f6;
+  position: relative;
 }
 
 @media (min-width: 768px) {
   .about-image-wrapper {
-    width: 41.666667%;
+    width: 35%;
   }
 }
 
 .about-image {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(100%);
-  transition: filter 0.7s ease;
+  height: auto;
+  display: block;
 }
 
-.about-image-wrapper:hover .about-image {
-  filter: grayscale(0%);
+.about-image-button {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(120, 102, 178, 0.9);
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.about-image-wrapper:hover .about-image-button {
+  opacity: 1;
+}
+
+.about-image-button:hover {
+  background-color: #7866B2;
+  transform: translateX(-50%) translateY(-0.25rem);
 }
 
 .about-text-wrapper {
@@ -63,12 +89,12 @@
 
 @media (min-width: 768px) {
   .about-text-wrapper {
-    width: 58.333333%;
+    width: 60%;
   }
 }
 
 .about-badge {
-  color: #2864C6;
+  color: #D7586F;
   font-weight: bold;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -78,15 +104,17 @@
 }
 
 .about-title {
-  font-size: 1.875rem;
+  font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 2rem;
   line-height: 1.25;
+  color: #D7586F;
+  font-family: 'JMH Typewriter Dry', 'Graphik LC Web', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 @media (min-width: 768px) {
   .about-title {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 }
 
@@ -95,10 +123,9 @@
   color: #6b7280;
   line-height: 1.75;
   font-weight: 300;
-}
-
-.about-description p + p {
-  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .about-stats {

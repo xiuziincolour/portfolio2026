@@ -1,10 +1,43 @@
 /* Global Styles - Replacing Tailwind CSS */
 
+/* JMH Typewriter Dry Font */
+@font-face {
+  font-family: 'JMH Typewriter Dry';
+  src: url('/font/jmh_typewriter_dry/JMH Typewriter dry.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JMH Typewriter Dry';
+  src: url('/font/jmh_typewriter_dry/JMH Typewriter dry-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JMH Typewriter Dry';
+  src: url('/font/jmh_typewriter_dry/JMH Typewriter dry-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JMH Typewriter Dry';
+  src: url('/font/jmh_typewriter_dry/JMH Typewriter dry-Thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Brand Colors */
-  --brand-bg: #E9E9E7;
-  --brand-blue: #2864C6;
-  --brand-orange: #F39C34;
+  --brand-bg: #F6F9E0;
+  --brand-blue: #7866B2;
+  --brand-orange: #D7586F;
   --brand-text: #1A1A1A;
   --brand-gray: #888888;
   
@@ -59,7 +92,7 @@ html {
 body {
   background-color: var(--brand-bg);
   color: var(--brand-text);
-  font-family: 'Inter', sans-serif;
+  font-family: 'Graphik LC Web', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   overflow-x: hidden;
   line-height: 1.5;
 }
@@ -463,7 +496,7 @@ a:visited {
 .text-brand-blue { color: var(--brand-blue); }
 .text-brand-orange { color: var(--brand-orange); }
 .text-white { color: white; }
-.text-black { color: black; }
+.text-black { color: #D7586F; }
 
 .text-gray-400 { color: var(--gray-400); }
 .text-gray-500 { color: var(--gray-500); }
@@ -473,7 +506,7 @@ a:visited {
 .bg-brand-bg { background-color: var(--brand-bg); }
 .bg-brand-blue { background-color: var(--brand-blue); }
 .bg-white { background-color: white; }
-.bg-black { background-color: black; }
+.bg-black { background-color: #D7586F; }
 .bg-gray-50 { background-color: var(--gray-50); }
 .bg-gray-100 { background-color: var(--gray-100); }
 .bg-gray-200 { background-color: var(--gray-200); }
@@ -483,7 +516,7 @@ a:visited {
 .border-brand-blue { border-color: var(--brand-blue); }
 .border-gray-200 { border-color: var(--gray-200); }
 .border-gray-300 { border-color: var(--gray-300); }
-.border-black { border-color: black; }
+.border-black { border-color: #D7586F; }
 .border-white { border-color: white; }
 .border-transparent { border-color: transparent; }
 
@@ -502,10 +535,10 @@ a:visited {
 .rounded-full { border-radius: 9999px; }
 
 /* Shadow Utilities */
-.shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
-.shadow-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
-.shadow-xl { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
-.shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
+.shadow-sm { box-shadow: 0 1px 2px 0 rgba(215, 88, 111, 0.05); }
+.shadow-md { box-shadow: 0 4px 6px -1px rgba(215, 88, 111, 0.1), 0 2px 4px -1px rgba(215, 88, 111, 0.06); }
+.shadow-xl { box-shadow: 0 20px 25px -5px rgba(215, 88, 111, 0.1), 0 10px 10px -5px rgba(215, 88, 111, 0.04); }
+.shadow-2xl { box-shadow: 0 25px 50px -12px rgba(215, 88, 111, 0.25); }
 
 /* Overflow */
 .overflow-hidden { overflow: hidden; }
@@ -538,12 +571,12 @@ a:visited {
 
 /* Hover States */
 .hover\:bg-gray-100:hover { background-color: var(--gray-100); }
-.hover\:bg-black:hover { background-color: black; }
+.hover\:bg-black:hover { background-color: #D7586F; }
 .hover\:text-brand-blue:hover { color: var(--brand-blue); }
 .hover\:text-brand-orange:hover { color: var(--brand-orange); }
 .hover\:text-white:hover { color: white; }
 .hover\:scale-110:hover { transform: scale(1.1); }
-.hover\:shadow-md:hover { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
+.hover\:shadow-md:hover { box-shadow: 0 4px 6px -1px rgba(215, 88, 111, 0.1), 0 2px 4px -1px rgba(215, 88, 111, 0.06); }
 .hover\:grayscale-0:hover { filter: grayscale(0); }
 
 /* Group Hover */
@@ -694,15 +727,15 @@ a:visited {
 .origin-bottom-left { transform-origin: bottom left; }
 
 /* Background Opacity */
-.bg-brand-bg\/80 { background-color: rgba(233, 233, 231, 0.8); }
+.bg-brand-bg\/80 { background-color: rgba(246, 249, 224, 0.8); }
 .bg-brand-blue\/90 { background-color: rgba(40, 100, 198, 0.9); }
-.bg-black\/60 { background-color: rgba(0, 0, 0, 0.6); }
+.bg-black\/60 { background-color: rgba(215, 88, 111, 0.6); }
 .bg-white\/10 { background-color: rgba(255, 255, 255, 0.1); }
 .bg-white\/20 { background-color: rgba(255, 255, 255, 0.2); }
-.bg-black\/5 { border-color: rgba(0, 0, 0, 0.05); }
+.bg-black\/5 { border-color: rgba(215, 88, 111, 0.05); }
 
 /* Border Opacity */
-.border-black\/5 { border-color: rgba(0, 0, 0, 0.05); }
+.border-black\/5 { border-color: rgba(215, 88, 111, 0.05); }
 .border-white\/30 { border-color: rgba(255, 255, 255, 0.3); }
 .border-brand-blue\/20 { border-color: rgba(40, 100, 198, 0.2); }
 .border-brand-blue\/10 { border-color: rgba(40, 100, 2, 0.1); }
@@ -719,11 +752,11 @@ a:visited {
 
 /* Shadow Custom */
 .shadow-\[0_8px_30px_rgb\(0\,0\,0\,0\.04\)\] {
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 8px 30px rgba(215, 88, 111, 0.04);
 }
 
 .shadow-\[0_20px_40px_rgba\(0\,0\,0\,0\.12\)\] {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 20px 40px rgba(215, 88, 111, 0.12);
 }
 
 /* Animation */
@@ -850,7 +883,7 @@ a:visited {
 .bg-\[#E53E3E\]\/90 { background-color: rgba(229, 62, 62, 0.9); }
 
 /* Custom Text Colors */
-.text-\[#2864C6\] { color: #2864C6; }
+.text-\[#2864C6\] { color: var(--brand-blue); }
 
 /* Custom Widths */
 .w-\[32px\] { width: 32px; }
@@ -878,7 +911,7 @@ a:visited {
 
 /* Custom Background Gradients */
 .bg-gradient-to-t { background-image: linear-gradient(to top, var(--tw-gradient-stops)); }
-.from-black\/80 { --tw-gradient-from: rgba(0, 0, 0, 0.8); }
+.from-black\/80 { --tw-gradient-from: rgba(215, 88, 111, 0.8); }
 .to-transparent { --tw-gradient-to: transparent; }
 
 /* Custom Border Widths */

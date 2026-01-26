@@ -1,0 +1,62 @@
+/* AboutMe Component Styles */
+
+.about-me-page {
+  min-height: 100vh;
+  background-color: var(--brand-bg);
+  padding: 2rem;
+}
+
+.about-me-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.about-me-back-button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: rgba(246, 249, 224, 0.8);
+  backdrop-filter: blur(12px);
+  padding: 0.625rem 1.25rem;
+  border-radius: 9999px;
+  color: #1A1A1A;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(215, 88, 111, 0.05);
+  margin-bottom: 4rem;
+}
+
+.about-me-back-button:hover {
+  background-color: #D7586F;
+  color: white;
+}
+
+.about-me-back-icon {
+  transition: transform 0.3s ease;
+}
+
+.about-me-back-button:hover .about-me-back-icon {
+  transform: translateX(-0.25rem);
+}
+
+.about-me-title {
+  font-size: 6rem;
+  font-weight: bold;
+  color: #7866B2;
+  text-align: center;
+  margin-top: 10rem;
+  font-family: 'Graphik LC Web', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+@media (min-width: 768px) {
+  .about-me-title {
+    font-size: 8rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-me-title {
+    font-size: 10rem;
+  }
+}

@@ -1,0 +1,986 @@
+/* JargonCaseStudy Component Styles */
+
+.jargon-case-study-container {
+  background-color: var(--brand-bg);
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  z-index: 40;
+  color: #1A1A1A;
+}
+
+.jargon-case-study-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding: 1.5rem;
+  pointer-events: none;
+}
+
+.jargon-case-study-nav-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.jargon-case-study-back-button {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: rgba(246, 249, 224, 0.8);
+  backdrop-filter: blur(12px);
+  padding: 0.625rem 1.25rem;
+  border-radius: 9999px;
+  color: #1A1A1A;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(215, 88, 111, 0.05);
+}
+
+.jargon-case-study-back-button:hover {
+  background-color: #D7586F;
+  color: white;
+}
+
+.jargon-case-study-back-icon {
+  transition: transform 0.3s ease;
+}
+
+.jargon-case-study-back-button:hover .jargon-case-study-back-icon {
+  transform: translateX(-0.25rem);
+}
+
+.jargon-case-study-hero {
+  width: 100%;
+  height: 65vh;
+  position: relative;
+}
+
+.jargon-case-study-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.jargon-case-study-main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+}
+
+@media (min-width: 768px) {
+  .jargon-case-study-main {
+    padding: 8rem 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .jargon-case-study-main {
+    padding: 8rem 5rem;
+  }
+}
+
+.jargon-case-study-layout {
+  display: flex;
+  flex-direction: row;
+  gap: 5rem;
+  position: relative;
+}
+
+.jargon-case-study-sidebar {
+  display: block;
+  width: 20%;
+  min-width: 200px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.jargon-case-study-sidebar-sticky {
+  position: sticky;
+  top: 8rem;
+}
+
+.jargon-case-study-index-label {
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--brand-blue);
+  margin-bottom: 2rem;
+  display: block;
+}
+
+.jargon-case-study-timeline {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.jargon-case-study-timeline-track {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: #e5e7eb;
+}
+
+.jargon-case-study-timeline-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.jargon-case-study-timeline-item {
+  position: relative;
+}
+
+.jargon-case-study-timeline-indicator {
+  position: absolute;
+  left: -25px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: var(--brand-blue);
+}
+
+.jargon-case-study-timeline-link {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.jargon-case-study-timeline-link.active {
+  color: var(--brand-blue);
+  transform: translateX(0.5rem);
+}
+
+.jargon-case-study-timeline-link:not(.active) {
+  color: #9ca3af;
+}
+
+.jargon-case-study-timeline-link:not(.active):hover {
+  color: #1A1A1A;
+}
+
+.jargon-case-study-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.jargon-case-study-content > * + * {
+  margin-top: 10rem;
+}
+
+.jargon-case-study-title-block {
+  border-bottom: 1px solid #d1d5db;
+  padding-bottom: 5rem;
+}
+
+.jargon-case-study-title-badge {
+  color: var(--brand-blue);
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.jargon-case-study-title {
+  font-size: 3.75rem;
+  font-weight: bold;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  margin-left: -0.25rem;
+}
+
+@media (min-width: 768px) {
+  .jargon-case-study-title {
+    font-size: 5rem;
+  }
+}
+
+.jargon-case-study-title-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 3rem;
+  margin-top: 4rem;
+}
+
+.jargon-case-study-title-description {
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.25;
+  color: #1f2937;
+  max-width: 42rem;
+}
+
+@media (min-width: 768px) {
+  .jargon-case-study-title-description {
+    font-size: 1.875rem;
+  }
+}
+
+.jargon-case-study-title-meta {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem 3rem;
+  min-width: 300px;
+  margin-top: 0;
+}
+
+.jargon-case-study-meta-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #9ca3af;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.25rem;
+}
+
+.jargon-case-study-meta-value {
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.jargon-case-study-section {
+  scroll-margin-top: 8rem;
+}
+
+.jargon-case-study-section-label {
+  color: var(--brand-blue);
+  font-family: monospace;
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.jargon-case-study-section-title {
+  font-size: 2.25rem;
+  font-weight: bold;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .jargon-case-study-section-title {
+    font-size: 3rem;
+  }
+}
+
+.jargon-case-study-section-content {
+  font-size: 1.125rem;
+  color: #4b5563;
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+.jargon-case-study-section-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 3rem;
+}
+
+@media (min-width: 768px) {
+  .jargon-case-study-section-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6rem;
+  }
+}
+
+.jargon-case-study-problem-quote {
+  font-size: 1.875rem;
+  font-weight: bold;
+  line-height: 1.25;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .jargon-case-study-problem-quote {
+    font-size: 3rem;
+  }
+}
+
+.jargon-case-study-problem-divider {
+  height: 1px;
+  background-color: #d1d5db;
+  width: 100%;
+}
+
+.jargon-case-study-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+}
+
+@media (min-width: 768px) {
+  .jargon-case-study-stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.jargon-case-study-stat-number {
+  font-size: 3.75rem;
+  font-weight: bold;
+  color: #1A1A1A;
+  display: block;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.05em;
+}
+
+@media (min-width: 768px) {
+  .jargon-case-study-stat-number {
+    font-size: 4.5rem;
+  }
+}
+
+.jargon-case-study-stat-label {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #6b7280;
+}
+
+.jargon-case-study-research-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 3rem;
+}
+
+@media (min-width: 768px) {
+  .jargon-case-study-research-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.jargon-case-study-research-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.jargon-case-study-research-subtitle {
+  color: #4b5563;
+  margin-bottom: 1.5rem;
+}
+
+.jargon-case-study-research-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  color: #4b5563;
+}
+
+.jargon-case-study-research-item {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.jargon-case-study-research-bullet {
+  color: var(--brand-blue);
+}
+
+.jargon-case-study-image-break {
+  width: 100%;
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
+}
+
+@media (min-width: 768px) {
+  .jargon-case-study-image-break {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.jargon-case-study-image-break-image {
+  width: 100%;
+  height: 50vh;
+  object-fit: cover;
+  filter: grayscale(100%);
+}
+
+@media (min-width: 768px) {
+  .jargon-case-study-image-break-image {
+    border-radius: 0.125rem;
+  }
+}
+
+.jargon-case-study-image-break-caption {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin-top: 1rem;
+  text-align: right;
+}
+
+.jargon-case-study-process-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 3rem;
+}
+
+@media (min-width: 768px) {
+  .jargon-case-study-process-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.jargon-case-study-process-sketch-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .jargon-case-study-process-sketch-grid {
+    gap: 2rem;
+  }
+}
+
+.jargon-case-study-process-sketch {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: filter 0.5s ease;
+}
+
+.jargon-case-study-process-sketch:hover {
+  filter: grayscale(0%);
+}
+
+.jargon-case-study-visual-item {
+  margin-bottom: 2rem;
+}
+
+.jargon-case-study-visual-image {
+  width: 100%;
+  box-shadow: 0 25px 50px -12px rgba(215, 88, 111, 0.25);
+  margin-bottom: 2rem;
+}
+
+.jargon-case-study-visual-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .jargon-case-study-visual-content {
+    flex-direction: row;
+  }
+}
+
+.jargon-case-study-visual-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .jargon-case-study-visual-title {
+    width: 33.333333%;
+  }
+}
+
+.jargon-case-study-visual-description {
+  color: #4b5563;
+}
+
+@media (min-width: 768px) {
+  .jargon-case-study-visual-description {
+    width: 66.666667%;
+  }
+}
+
+.jargon-case-study-outcome-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 4rem;
+  margin-bottom: 6rem;
+}
+
+@media (min-width: 768px) {
+  .jargon-case-study-outcome-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.jargon-case-study-outcome-quote-box {
+  background-color: #f3f4f6;
+  padding: 2rem;
+}
+
+@media (min-width: 768px) {
+  .jargon-case-study-outcome-quote-box {
+    padding: 3rem;
+  }
+}
+
+.jargon-case-study-outcome-quote-mark {
+  font-size: 3.75rem;
+  font-family: serif;
+  color: var(--brand-blue);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.jargon-case-study-outcome-quote-text {
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+
+.jargon-case-study-outcome-quote-author {
+  font-size: 0.875rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #6b7280;
+}
+
+.jargon-case-study-outcome-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 3rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.jargon-case-study-outcome-next-label {
+  color: #9ca3af;
+  font-family: monospace;
+  font-size: 0.875rem;
+}
+
+.jargon-case-study-outcome-next-link {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: #1A1A1A;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .jargon-case-study-outcome-next-link {
+    font-size: 2.25rem;
+  }
+}
+
+.jargon-case-study-outcome-next-link:hover {
+  color: var(--brand-blue);
+}
+
+.jargon-case-study-outcome-next-icon {
+  transition: transform 0.3s ease;
+}
+
+.jargon-case-study-outcome-next-link:hover .jargon-case-study-outcome-next-icon {
+  transform: translate(0.25rem, -0.25rem);
+}
+
+/* Page Container */
+.jargon-case-study-page {
+  background-color: var(--brand-bg);
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  z-index: 40;
+  color: var(--brand-text);
+}
+
+/* Navigation */
+.jargon-case-study-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding: 1.5rem;
+  pointer-events: none;
+}
+
+.jargon-case-study-nav-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.jargon-case-study-back-button {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: rgba(246, 249, 224, 0.8);
+  backdrop-filter: blur(12px);
+  padding: 0.625rem 1.25rem;
+  border-radius: 9999px;
+  color: var(--brand-text);
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(215, 88, 111, 0.05);
+  cursor: pointer;
+}
+
+.jargon-case-study-back-button:hover {
+  background-color: #D7586F;
+  color: white;
+}
+
+.jargon-case-study-back-icon {
+  transition: transform 0.3s ease;
+}
+
+.jargon-case-study-back-button:hover .jargon-case-study-back-icon {
+  transform: translateX(-0.25rem);
+}
+
+/* Title Block */
+.jargon-case-study-title-block {
+  border-bottom: 1px solid var(--gray-300);
+  padding-bottom: 5rem;
+}
+
+.jargon-case-study-title-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.jargon-case-study-title-badge {
+  color: var(--brand-blue);
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+}
+
+.jargon-case-study-title {
+  font-size: 3.75rem;
+  font-weight: bold;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  margin-left: -0.25rem;
+}
+
+@media (min-width: 768px) {
+  .jargon-case-study-title {
+    font-size: 6rem;
+  }
+}
+
+.jargon-case-study-title-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 3rem;
+  margin-top: 4rem;
+}
+
+.jargon-case-study-title-description {
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.25;
+  color: var(--gray-800);
+  max-width: 42rem;
+}
+
+@media (min-width: 768px) {
+  .jargon-case-study-title-description {
+    font-size: 1.875rem;
+  }
+}
+
+.jargon-case-study-title-meta {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem 3rem;
+  min-width: 300px;
+  margin-top: 0;
+}
+
+.jargon-case-study-meta-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.25rem;
+}
+
+.jargon-case-study-meta-value {
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Section Styles */
+.jargon-case-study-section {
+  scroll-margin-top: 8rem;
+}
+
+.jargon-case-study-section-label {
+  color: var(--brand-blue);
+  font-family: monospace;
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.jargon-case-study-section-title {
+  font-size: 2.25rem;
+  font-weight: bold;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .jargon-case-study-section-title {
+    font-size: 3rem;
+  }
+}
+
+.jargon-case-study-section-title-spaced {
+  margin-bottom: 4rem;
+}
+
+.jargon-case-study-section-content {
+  font-size: 1.125rem;
+  color: var(--gray-600);
+  line-height: 1.75;
+  font-weight: 300;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Text Blocks */
+.jargon-case-study-text-block {
+  margin-bottom: 2rem;
+}
+
+.jargon-case-study-text-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--brand-text);
+  margin-bottom: 0.75rem;
+}
+
+.jargon-case-study-text-paragraph {
+  font-size: 1.125rem;
+  color: var(--gray-600);
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+.jargon-case-study-text-paragraph-spaced {
+  margin-top: 1rem;
+}
+
+.jargon-case-study-text-paragraph-bold {
+  font-weight: 600;
+}
+
+/* Lists */
+.jargon-case-study-list {
+  list-style: disc;
+  list-style-position: inside;
+  font-size: 1.125rem;
+  color: var(--gray-600);
+  line-height: 1.75;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.jargon-case-study-list-ordered {
+  list-style: decimal;
+  list-style-position: inside;
+  font-size: 1.125rem;
+  color: var(--gray-600);
+  line-height: 1.75;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Problem Section */
+.jargon-case-study-problem-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.jargon-case-study-problem-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-size: 1.125rem;
+  color: var(--gray-600);
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+/* Research Section */
+.jargon-case-study-research-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.jargon-case-study-research-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.jargon-case-study-image-full-width {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.jargon-case-study-image {
+  width: 100%;
+  box-shadow: 0 25px 50px -12px rgba(215, 88, 111, 0.25);
+  border-radius: 0.5rem;
+}
+
+.jargon-case-study-image-spaced {
+  margin-bottom: 4rem;
+}
+
+.jargon-case-study-persona-card {
+  background-color: var(--gray-50);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.jargon-case-study-persona-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--brand-text);
+  margin-bottom: 0.75rem;
+}
+
+.jargon-case-study-persona-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--gray-600);
+}
+
+/* Table */
+.jargon-case-study-table-wrapper {
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+.jargon-case-study-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.jargon-case-study-table thead tr {
+  border-bottom: 1px solid var(--gray-300);
+}
+
+.jargon-case-study-table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  color: var(--brand-text);
+}
+
+.jargon-case-study-table tbody tr {
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.jargon-case-study-table td {
+  padding: 0.75rem 1rem;
+  color: var(--gray-600);
+}
+
+.jargon-case-study-insight {
+  font-size: 1.125rem;
+  color: var(--gray-600);
+  line-height: 1.75;
+  font-weight: 600;
+}
+
+/* Process Section */
+.jargon-case-study-process-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.jargon-case-study-style-guide-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  font-size: 1.125rem;
+  color: var(--gray-600);
+  line-height: 1.75;
+  margin-bottom: 2rem;
+}
+
+/* Visuals Section */
+.jargon-case-study-visuals-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.jargon-case-study-feature-block {
+  margin-bottom: 1.5rem;
+}
+
+/* Outcome Section */
+.jargon-case-study-outcome-section {
+  padding-bottom: 6rem;
+  border-top: 1px solid var(--gray-300);
+  padding-top: 6rem;
+}
+
+.jargon-case-study-outcome-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+.jargon-case-study-conclusion {
+  border-top: 1px solid var(--gray-300);
+  padding-top: 4rem;
+}
+
+.jargon-case-study-conclusion-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.jargon-case-study-conclusion-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}

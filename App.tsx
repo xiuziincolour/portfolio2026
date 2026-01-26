@@ -7,10 +7,12 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CaseStudy from './components/CaseStudy';
+import JargonCaseStudy from './components/JargonCaseStudy';
 import Projects from './components/Projects';
+import AboutMe from './components/AboutMe';
 import './App.css';
 
-type ViewState = 'home' | 'case-study' | 'projects';
+type ViewState = 'home' | 'case-study' | 'jargon-case-study' | 'projects' | 'about-me';
 
 const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -25,9 +27,11 @@ const App: React.FC = () => {
   }, []);
 
   const handleOpenProject = (id: string) => {
-    // Only opening the first project for now as per request
     if (id === 'w1') {
       setCurrentView('case-study');
+      window.scrollTo(0, 0);
+    } else if (id === 'w2') {
+      setCurrentView('jargon-case-study');
       window.scrollTo(0, 0);
     }
   };
@@ -45,6 +49,11 @@ const App: React.FC = () => {
 
   const handleOpenProjects = () => {
     setCurrentView('projects');
+    window.scrollTo(0, 0);
+  };
+
+  const handleOpenAboutMe = () => {
+    setCurrentView('about-me');
     window.scrollTo(0, 0);
   };
 
@@ -80,10 +89,9 @@ const App: React.FC = () => {
             <Hero />
             {/* Pass the handler to WorkGrid */}
             <WorkGrid onOpenProject={handleOpenProject} />
-            <About />
+            <About onOpenAboutMe={handleOpenAboutMe} />
             <Contact />
           </main>
-          <Footer />
         </>
       )}
 
@@ -91,9 +99,19 @@ const App: React.FC = () => {
         <CaseStudy onBack={handleBackToHome} />
       )}
 
+      {currentView === 'jargon-case-study' && (
+        <JargonCaseStudy onBack={handleBackToHome} />
+      )}
+
       {currentView === 'projects' && (
         <Projects onBack={handleBackToHome} onOpenProject={handleOpenProject} />
       )}
+
+      {currentView === 'about-me' && (
+        <AboutMe onBack={handleBackToHome} />
+      )}
+
+      <Footer />
       
     </div>
   );

@@ -1,13 +1,14 @@
 /* WorkGrid Component Styles */
 
 .work-grid-section {
-  padding: var(--spacing-12) var(--spacing-6);
+  padding: var(--spacing-6) var(--spacing-6) var(--spacing-12) var(--spacing-6);
   background-color: var(--brand-bg);
+  scroll-margin-top: 6rem;
 }
 
 @media (min-width: 768px) {
   .work-grid-section {
-    padding: var(--spacing-24) var(--spacing-12);
+    padding: var(--spacing-8) var(--spacing-12) var(--spacing-24) var(--spacing-12);
   }
 }
 
@@ -32,7 +33,7 @@
   font-size: var(--text-4xl);
   font-weight: bold;
   letter-spacing: -0.02em;
-  color: var(--brand-text);
+  color: #D7586F;
   margin-bottom: var(--spacing-4);
 }
 
@@ -43,7 +44,7 @@
 }
 
 .work-grid-subtitle {
-  color: var(--gray-400);
+  color: #D7586F;
   font-weight: 500;
   font-size: var(--text-sm);
   text-transform: uppercase;
@@ -174,7 +175,7 @@
 .work-grid-overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(40, 100, 198, 0.9);
+  background-color: rgba(120, 102, 178, 0.9);
   display: flex;
   flex-direction: column;
   align-items: center;

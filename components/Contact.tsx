@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Linkedin, Dribbble, Globe, Copy, Check } from 'lucide-react';
+import { Mail, Copy, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useScrollDirection } from '../hooks/useScrollDirection';
 import './Contact.css';
@@ -10,20 +10,20 @@ const Contact: React.FC = () => {
   const shouldAnimate = scrollDirection === 'down' || scrollDirection === null;
 
   const handleCopy = () => {
-    navigator.clipboard.writeText('hello@xiuzi.design');
+    navigator.clipboard.writeText('xiuziguo@gmail.com');
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
   return (
-    <section id="contact" className="contact-section py-24 px-6 md:px-12 bg-brand-bg border-t border-gray-200 relative">
-      <div className="contact-container max-w-4xl mx-auto text-center">
+    <section id="contact" className="contact-section">
+      <div className="contact-container">
         <motion.div 
            initial={{ opacity: 0, y: 20 }}
            whileInView={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
            viewport={{ once: false }}
            transition={{ duration: shouldAnimate ? 0.6 : 0 }}
-           className="flex flex-col items-center"
+           className="contact-content-wrapper"
         >
            <motion.div 
              className="contact-badge-wrapper"
@@ -80,7 +80,7 @@ const Contact: React.FC = () => {
                 className="contact-email-button group"
              >
                 <Mail className="contact-email-icon" />
-                <span className="tracking-tight">hello@xiuzi.design</span>
+                <span>xiuziguo@gmail.com</span>
                 
                 <span className="contact-email-copy-icon">
                     <Copy size={20} />
@@ -101,41 +101,6 @@ const Contact: React.FC = () => {
                     </motion.div>
                 )}
              </AnimatePresence>
-          </motion.div>
-
-          <motion.div 
-            className="contact-social-wrapper"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-            transition={{ duration: shouldAnimate ? 0.6 : 0, delay: shouldAnimate ? 0.4 : 0 }}
-          >
-             <motion.span 
-               className="contact-social-label"
-               initial={{ opacity: 0 }}
-               whileInView={shouldAnimate ? { opacity: 1 } : { opacity: 1 }}
-               viewport={{ once: false }}
-               transition={{ duration: shouldAnimate ? 0.5 : 0, delay: shouldAnimate ? 0.5 : 0 }}
-             >
-               Connect on Social
-             </motion.span>
-             <motion.div 
-               className="contact-social-links"
-               initial={{ opacity: 0, y: 20 }}
-               whileInView={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-               viewport={{ once: false }}
-               transition={{ duration: shouldAnimate ? 0.6 : 0, delay: shouldAnimate ? 0.6 : 0 }}
-             >
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="contact-social-link group" aria-label="LinkedIn">
-                  <Linkedin size={24} className="contact-social-icon" />
-                </a>
-                <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" className="contact-social-link group" aria-label="Dribbble">
-                  <Dribbble size={24} className="contact-social-icon" />
-                </a>
-                <a href="https://behance.net" target="_blank" rel="noopener noreferrer" className="contact-social-link group" aria-label="Behance">
-                  <Globe size={24} className="contact-social-icon" />
-                </a>
-             </motion.div>
           </motion.div>
         </motion.div>
       </div>

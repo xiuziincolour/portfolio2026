@@ -3,7 +3,7 @@
 .app-loading-container {
   position: fixed;
   inset: 0;
-  background-color: #E9E9E7;
+  background-color: var(--brand-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,7 +13,7 @@
 .app-loading-spinner {
   width: 3rem;
   height: 3rem;
-  border: 4px solid #2864C6;
+  border: 4px solid var(--brand-blue);
   border-top-color: transparent;
   border-radius: 50%;
   animation: spin 1s linear infinite;
@@ -44,12 +44,12 @@
 
 .app-container {
   min-height: 100vh;
-  background-color: #E9E9E7;
+  background-color: var(--brand-bg);
   color: #1A1A1A;
   position: relative;
 }
 
 .app-container ::selection {
-  background-color: #2864C6;
+  background-color: var(--brand-blue);
   color: white;
 }
