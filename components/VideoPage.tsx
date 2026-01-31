@@ -28,15 +28,20 @@ const VideoItem: React.FC<VideoItemProps> = ({ item, index, onVideoClick }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (videoRef.current && item.videoUrl) {
-      videoRef.current.play().catch(() => {});
-      const timer = setTimeout(() => {
-        if (videoRef.current) {
-          videoRef.current.pause();
-        }
-      }, 20000); // 20 seconds
-      return () => clearTimeout(timer);
-    }
+    const video = videoRef.current;
+    if (!video || !item.videoUrl) return;
+
+    video.currentTime = 0;
+    video.play().catch(() => {});
+
+    const interval = setInterval(() => {
+      if (videoRef.current) {
+        videoRef.current.currentTime = 0;
+        videoRef.current.play().catch(() => {});
+      }
+    }, 20000); // every 20s: back to 0 and play again
+
+    return () => clearInterval(interval);
   }, [item.videoUrl]);
 
   return (
