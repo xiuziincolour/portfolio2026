@@ -42,28 +42,27 @@ export const UNIFIED_WORKS: WorkItem[] = [
   },
   {
     id: 'w3',
-    title: 'MicroCode',
-    subtitle: 'Product Design',
-    category: 'Video', // Using this slot for the "Video" requirement, represented by hardware photo
+    title: 'Jargon Merch',
+    subtitle: 'Merchandise Design',
+    category: 'UI/UX',
     type: 'image',
-    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2670&auto=format&fit=crop', // Circuit board/tech vibe
+    image: '/img/Jargon-merch/Jargon-tshirt-1.png',
   },
   {
     id: 'w4',
-    title: 'Kinetic Type',
-    subtitle: 'Motion Graphic',
+    title: 'Cans',
+    subtitle: 'Graphic Design',
     category: 'Motion',
-    type: 'solid-color',
-    bgColor: '#00A699', // Teal/Green like "Seattle Design Festival"
-    customContent: 'text-graphic' // Special flag to render angled text
+    type: 'image',
+    image: '/img/graphic-cans/Xiuzi_Cans-cover.png',
   },
   {
     id: 'w5',
-    title: 'Spectra',
-    subtitle: 'Senior Capstone Project',
+    title: 'Rock Poster',
+    subtitle: 'Graphic Design',
     category: 'UI/UX',
     type: 'image',
-    image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=2671&auto=format&fit=crop', // Laptop mockup vibe
+    image: '/img/posters/rockposter.png',
   },
   {
     id: 'w6',

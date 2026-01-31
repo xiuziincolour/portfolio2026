@@ -65,12 +65,6 @@
   }
 }
 
-@media (min-width: 1024px) {
-  .work-grid-items {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
 .work-grid-card {
   position: relative;
   aspect-ratio: 16 / 9;
