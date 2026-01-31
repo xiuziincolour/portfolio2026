@@ -4,12 +4,16 @@ import { motion } from 'framer-motion';
 import { useScrollDirection } from '../hooks/useScrollDirection';
 import './Footer.css';
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  variant?: 'default' | 'dark';
+}
+
+const Footer: React.FC<FooterProps> = ({ variant = 'default' }) => {
   const scrollDirection = useScrollDirection();
   const shouldAnimate = scrollDirection === 'down' || scrollDirection === null;
 
   return (
-    <footer className="footer">
+    <footer className={`footer ${variant === 'dark' ? 'footer-dark' : ''}`}>
       <div className="footer-container">
         <motion.div 
           className="footer-social-wrapper"

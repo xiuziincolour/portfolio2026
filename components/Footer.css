@@ -104,3 +104,34 @@
 .footer-social-link:hover .footer-social-icon {
   color: var(--brand-orange);
 }
+
+/* Dark variant for video page */
+.footer-dark {
+  background-color: #000;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-dark .footer-copyright {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-dark .footer-social-label {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-dark .footer-social-link {
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.footer-dark .footer-social-link:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+}
+
+.footer-dark .footer-social-icon {
+  color: #fff;
+}
+
+.footer-dark .footer-social-link:hover .footer-social-icon {
+  color: var(--brand-orange);
+}

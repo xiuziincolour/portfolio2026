@@ -1,7 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
 import Header from './components/Header';
-import Hero from './components/Hero';
 import WorkGrid from './components/WorkGrid';
 import About from './components/About';
 import Contact from './components/Contact';
@@ -10,9 +9,10 @@ import CaseStudy from './components/CaseStudy';
 import JargonCaseStudy from './components/JargonCaseStudy';
 import Projects from './components/Projects';
 import AboutMe from './components/AboutMe';
+import VideoPage from './components/VideoPage';
 import './App.css';
 
-type ViewState = 'home' | 'case-study' | 'jargon-case-study' | 'projects' | 'about-me';
+type ViewState = 'home' | 'case-study' | 'jargon-case-study' | 'projects' | 'about-me' | 'videos';
 
 const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -57,6 +57,11 @@ const App: React.FC = () => {
     window.scrollTo(0, 0);
   };
 
+  const handleOpenVideos = () => {
+    setCurrentView('videos');
+    window.scrollTo(0, 0);
+  };
+
   if (loading) {
     return (
       <div className="app-loading-container">
@@ -84,10 +89,8 @@ const App: React.FC = () => {
 
       {currentView === 'home' && (
         <>
-          <Header onNavigateToProjects={handleOpenProjects} />
+          <Header onNavigateToProjects={handleOpenProjects} onNavigateToVideos={handleOpenVideos} />
           <main>
-            <Hero />
-            {/* Pass the handler to WorkGrid */}
             <WorkGrid onOpenProject={handleOpenProject} />
             <About onOpenAboutMe={handleOpenAboutMe} />
             <Contact />
@@ -111,7 +114,11 @@ const App: React.FC = () => {
         <AboutMe onBack={handleBackToHome} />
       )}
 
-      <Footer />
+      {currentView === 'videos' && (
+        <VideoPage onBack={handleBackToHome} />
+      )}
+
+      <Footer variant={currentView === 'videos' ? 'dark' : 'default'} />
       
     </div>
   );

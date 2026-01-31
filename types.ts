@@ -47,5 +47,16 @@ export interface VideoItem {
   title: string;
   subtitle: string;
   thumbnail: string;
-  duration: string;
+  duration?: string;
+  videoUrl?: string;
+  bodytext?: string;
+}
+
+export interface MotionGraphicItem {
+  id: string;
+  title: string;
+  subtitle: string;
+  thumbnail: string;
+  videoUrl?: string;
+  bodytext?: string;
 }

@@ -296,51 +296,24 @@ const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
                           className="jargon-case-study-image"
                        />
                     </div>
-                    <div className="jargon-case-study-persona-card">
-                       <h4 className="jargon-case-study-persona-title">Primary Persona: Skilled Trades Immigrant</h4>
-                       <ul className="jargon-case-study-persona-list">
-                          <li><strong>Age:</strong> 20–40</li>
-                          <li><strong>Background:</strong> Automotive, electrical, construction, or similar trades</li>
-                          <li><strong>English:</strong> Conversationally fluent, struggles with technical language</li>
-                          <li><strong>Needs:</strong> Practical, fast, relevant learning tools</li>
-                          <li><strong>Pain Points:</strong> Manuals, safety instructions, industry jargon</li>
-                       </ul>
-                    </div>
                  </div>
                  
                  <div>
                     <h3 className="jargon-case-study-research-title">Competitive Analysis</h3>
-                    <div className="jargon-case-study-table-wrapper">
-                       <table className="jargon-case-study-table">
-                          <thead>
-                             <tr>
-                                <th>Product Type</th>
-                                <th>Strengths</th>
-                                <th>Limitations</th>
-                             </tr>
-                          </thead>
-                          <tbody>
-                             <tr>
-                                <td>General language apps</td>
-                                <td>Easy to use, gamified</td>
-                                <td>Not trade-specific</td>
-                             </tr>
-                             <tr>
-                                <td>ESL courses</td>
-                                <td>Structured learning</td>
-                                <td>Time-intensive, inflexible</td>
-                             </tr>
-                             <tr>
-                                <td>Official manuals</td>
-                                <td>Accurate information</td>
-                                <td>Hard to understand, text-heavy</td>
-                             </tr>
-                          </tbody>
-                       </table>
+                    <div className="jargon-case-study-text-block">
+                       <p className="jargon-case-study-text-paragraph">
+                          <strong>Objective:</strong> To identify market gaps by analyzing direct competitors in language learning (Duolingo, ELSA Speak) and indirect competitors in accessibility and real-time support (Be My Eyes).
+                       </p>
                     </div>
-                    <p className="jargon-case-study-insight">
-                      Insight: Most tools focus on language learning, not language use in real work contexts.
-                    </p>
+                    <div className="jargon-case-study-text-block">
+                       <p className="jargon-case-study-text-paragraph" style={{ marginBottom: '0.75rem', fontWeight: 600 }}>
+                          <strong>Key Takeaways</strong>
+                       </p>
+                       <ul className="jargon-case-study-list">
+                          <li><strong>Gamification vs. Precision:</strong> While Duolingo excels in user retention through streaks, ELSA Speak leads in technical accuracy. There is an opportunity to bridge the gap between "fun" and "functional depth."</li>
+                          <li><strong>Community & Support:</strong> Be My Eyes highlights the value of human-centric design. Integrating real-time AI assistance with community-driven motivation can significantly enhance the user experience.</li>
+                       </ul>
+                    </div>
                  </div>
                  
                  <div>

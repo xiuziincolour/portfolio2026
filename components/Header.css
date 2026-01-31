@@ -10,6 +10,7 @@
   justify-content: center;
   pointer-events: none;
   transition: all 0.5s ease;
+  background-color: #F5F5F5;
 }
 
 .header-container.scrolled {
@@ -28,7 +29,7 @@
 .header-nav-wrapper.scrolled {
   width: 80%;
   max-width: 1000px;
-  background-color: rgba(246, 249, 224, 0.8);
+  background-color: #F5F5F5;
   backdrop-filter: blur(12px);
   border: 1px solid rgba(215, 88, 111, 0.05);
   box-shadow: 0 8px 30px rgba(215, 88, 111, 0.04);

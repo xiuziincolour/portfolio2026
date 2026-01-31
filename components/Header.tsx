@@ -6,9 +6,10 @@ import './Header.css';
 
 interface HeaderProps {
   onNavigateToProjects?: () => void;
+  onNavigateToVideos?: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ onNavigateToProjects }) => {
+const Header: React.FC<HeaderProps> = ({ onNavigateToProjects, onNavigateToVideos }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -53,6 +54,17 @@ const Header: React.FC<HeaderProps> = ({ onNavigateToProjects }) => {
                     onClick={(e) => {
                       e.preventDefault();
                       onNavigateToProjects();
+                    }}
+                    className="header-nav-link group"
+                  >
+                    {link.name}
+                  </button>
+                ) : link.name === 'Videos' && onNavigateToVideos ? (
+                  <button
+                    key={link.name}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigateToVideos();
                     }}
                     className="header-nav-link group"
                   >
@@ -126,6 +138,16 @@ const Header: React.FC<HeaderProps> = ({ onNavigateToProjects }) => {
                       onClick={() => {
                         setMobileMenuOpen(false);
                         onNavigateToProjects();
+                      }}
+                      className="header-mobile-nav-link"
+                    >
+                      {link.name}
+                    </button>
+                  ) : link.name === 'Videos' && onNavigateToVideos ? (
+                    <button
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        onNavigateToVideos();
                       }}
                       className="header-mobile-nav-link"
                     >
