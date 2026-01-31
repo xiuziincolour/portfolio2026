@@ -269,7 +269,7 @@
 
 .case-study-section-label {
   color: var(--brand-blue);
-  font-family: monospace;
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.875rem;
   margin-bottom: 1.5rem;
   display: block;
@@ -750,7 +750,7 @@
 
 .case-study-outcome-quote-mark {
   font-size: 3.75rem;
-  font-family: serif;
+  font-family: 'Montserrat', sans-serif;
   color: var(--brand-blue);
   margin-bottom: 1rem;
   display: block;
@@ -781,7 +781,7 @@
 
 .case-study-outcome-next-label {
   color: #9ca3af;
-  font-family: monospace;
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.875rem;
 }
 

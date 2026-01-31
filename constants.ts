@@ -147,7 +147,7 @@ export const VIDEOS: VideoItem[] = [
   {
     id: 'v3',
     title: 'Aaron Yan — Tencent x Doki',
-    subtitle: 'Director/Editor',
+    subtitle: 'Editor',
     thumbnail: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop',
     duration: '2:45',
     videoUrl: PORTFOLIO_VIDEOS.tencentDoki,
@@ -156,7 +156,7 @@ export const VIDEOS: VideoItem[] = [
   {
     id: 'v4',
     title: 'PAx White — Murphy\'s MV',
-    subtitle: 'Director/Editor',
+    subtitle: 'Editor',
     thumbnail: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop',
     duration: '3:00',
     videoUrl: PORTFOLIO_VIDEOS.paxWhite,
