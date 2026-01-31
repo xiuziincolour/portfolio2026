@@ -26,11 +26,26 @@ interface VideoItemProps {
 
 const VideoItem: React.FC<VideoItemProps> = ({ item, index, onVideoClick }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper || !item.videoUrl) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInView(entry.isIntersecting),
+      { rootMargin: '80px', threshold: 0.1 }
+    );
+    observer.observe(wrapper);
+    return () => observer.disconnect();
+  }, [item.videoUrl]);
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || !item.videoUrl) return;
+    if (!video || !item.videoUrl || !isInView) return;
 
+    video.src = item.videoUrl;
     video.currentTime = 0;
     video.play().catch(() => {});
 
@@ -39,13 +54,17 @@ const VideoItem: React.FC<VideoItemProps> = ({ item, index, onVideoClick }) => {
         videoRef.current.currentTime = 0;
         videoRef.current.play().catch(() => {});
       }
-    }, 20000); // every 20s: back to 0 and play again
+    }, 20000);
 
-    return () => clearInterval(interval);
-  }, [item.videoUrl]);
+    return () => {
+      clearInterval(interval);
+      video.pause();
+    };
+  }, [item.videoUrl, isInView]);
 
   return (
     <motion.div
+      ref={wrapperRef}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -58,10 +77,10 @@ const VideoItem: React.FC<VideoItemProps> = ({ item, index, onVideoClick }) => {
           <video
             ref={videoRef}
             className="video-page-item-video"
-            src={item.videoUrl}
             playsInline
             loop
             muted
+            preload="metadata"
           />
         ) : (
           <img 
@@ -239,6 +258,7 @@ const VideoPage: React.FC<VideoPageProps> = ({ onBack }) => {
             playsInline
             loop
             muted
+            preload="auto"
           />
           <div className="video-page-hero-gradient-bottom"></div>
         </div>

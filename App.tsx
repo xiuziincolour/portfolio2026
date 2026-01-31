@@ -1,5 +1,4 @@
-
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy, Suspense } from 'react';
 import Header from './components/Header';
 import WorkGrid from './components/WorkGrid';
 import About from './components/About';
@@ -9,8 +8,9 @@ import CaseStudy from './components/CaseStudy';
 import JargonCaseStudy from './components/JargonCaseStudy';
 import Projects from './components/Projects';
 import AboutMe from './components/AboutMe';
-import VideoPage from './components/VideoPage';
 import './App.css';
+
+const VideoPage = lazy(() => import('./components/VideoPage'));
 
 type ViewState = 'home' | 'case-study' | 'jargon-case-study' | 'projects' | 'about-me' | 'videos';
 
@@ -18,11 +18,8 @@ const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [currentView, setCurrentView] = useState<ViewState>('home');
 
-  // Simple loading animation simulation
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
+    const timer = setTimeout(() => setLoading(false), 300);
     return () => clearTimeout(timer);
   }, []);
 
@@ -115,7 +112,9 @@ const App: React.FC = () => {
       )}
 
       {currentView === 'videos' && (
-        <VideoPage onBack={handleBackToHome} />
+        <Suspense fallback={<div className="app-loading-container"><div className="app-loading-spinner" /></div>}>
+          <VideoPage onBack={handleBackToHome} />
+        </Suspense>
       )}
 
       <Footer variant={currentView === 'videos' ? 'dark' : 'default'} />
