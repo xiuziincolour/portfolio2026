@@ -1018,7 +1018,6 @@
 /* Outcome Section */
 .jargon-case-study-outcome-section {
   padding-bottom: 6rem;
-  border-top: 1px solid var(--gray-300);
   padding-top: 6rem;
 }
 
@@ -1030,7 +1029,6 @@
 }
 
 .jargon-case-study-conclusion {
-  border-top: 1px solid var(--gray-300);
   padding-top: 4rem;
 }
 
@@ -1138,4 +1136,82 @@
   .jargon-case-study-nav {
     padding: 1rem;
   }
+}
+
+/* Figma embed (Low-Fi wireframes) */
+.jargon-case-study-figma-embed {
+  width: 100%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: var(--gray-100);
+  box-shadow: 0 25px 50px -12px rgba(120, 102, 178, 0.15);
+}
+
+.jargon-case-study-figma-iframe {
+  width: 100%;
+  height:  min(80vh, 640px);
+  border: none;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .jargon-case-study-figma-iframe {
+    height: min(85vh, 720px);
+  }
+}
+
+/* Clickable images → open lightbox */
+.jargon-case-study-image-clickable {
+  cursor: pointer;
+}
+
+/* Image lightbox */
+.jargon-case-study-lightbox-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  cursor: pointer;
+}
+
+.jargon-case-study-lightbox-content {
+  position: relative;
+  max-width: 95vw;
+  max-height: 90vh;
+  cursor: default;
+}
+
+.jargon-case-study-lightbox-close {
+  position: absolute;
+  top: -2.5rem;
+  right: 0;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.jargon-case-study-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.jargon-case-study-lightbox-image {
+  max-width: 95vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: 0.5rem;
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowUpRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowLeft, ArrowUpRight, X } from 'lucide-react';
 import './JargonCaseStudy.css';
 
 interface JargonCaseStudyProps {
@@ -18,6 +18,7 @@ const SECTIONS = [
 
 const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
   const [activeSection, setActiveSection] = useState(SECTIONS[0].id);
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
 
   useEffect(() => {
     const updateActiveSection = () => {
@@ -106,7 +107,11 @@ const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
         <img 
           src="/img/jargon/Jargon-cover.png" 
           alt="Jargon Hero" 
-          className="jargon-case-study-hero-image"
+          className="jargon-case-study-hero-image jargon-case-study-image-clickable"
+          onClick={(e) => setLightboxSrc((e.target as HTMLImageElement).currentSrc || (e.target as HTMLImageElement).src)}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => e.key === 'Enter' && setLightboxSrc('/img/jargon/Jargon-cover.png')}
         />
       </header>
 
@@ -286,14 +291,22 @@ const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
                        <img 
                           src="/img/jargon/Jargon-persona1.jpg" 
                           alt="Jargon User Persona 1" 
-                          className="jargon-case-study-image"
+                          className="jargon-case-study-image jargon-case-study-image-clickable"
+                          onClick={(e) => setLightboxSrc((e.target as HTMLImageElement).currentSrc || (e.target as HTMLImageElement).src)}
+                          role="button"
+                          tabIndex={0}
+                          onKeyDown={(e) => e.key === 'Enter' && setLightboxSrc('/img/jargon/Jargon-persona1.jpg')}
                        />
                     </div>
                     <div className="jargon-case-study-image-full-width">
                        <img 
                           src="/img/jargon/Jargon-persona2.jpg" 
                           alt="Jargon User Persona 2" 
-                          className="jargon-case-study-image"
+                          className="jargon-case-study-image jargon-case-study-image-clickable"
+                          onClick={(e) => setLightboxSrc((e.target as HTMLImageElement).currentSrc || (e.target as HTMLImageElement).src)}
+                          role="button"
+                          tabIndex={0}
+                          onKeyDown={(e) => e.key === 'Enter' && setLightboxSrc('/img/jargon/Jargon-persona2.jpg')}
                        />
                     </div>
                  </div>
@@ -359,18 +372,23 @@ const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
                        <img 
                           src="/img/jargon/Jargon-flow.jpg" 
                           alt="Jargon User Flow" 
-                          className="jargon-case-study-image"
+                          className="jargon-case-study-image jargon-case-study-image-clickable"
+                          onClick={(e) => setLightboxSrc((e.target as HTMLImageElement).currentSrc || (e.target as HTMLImageElement).src)}
+                          role="button"
+                          tabIndex={0}
+                          onKeyDown={(e) => e.key === 'Enter' && setLightboxSrc('/img/jargon/Jargon-flow.jpg')}
                        />
                     </div>
                  </div>
                  
                  <div>
                     <h3 className="jargon-case-study-research-title">Low-Fidelity Wireframes</h3>
-                    <div className="jargon-case-study-image-full-width">
-                       <img 
-                          src="/img/jargon/Jargon-greyscale.jpg" 
-                          alt="Jargon Wireframes" 
-                          className="jargon-case-study-image"
+                    <div className="jargon-case-study-figma-embed">
+                       <iframe
+                          title="Jargon portfolio – Low-Fi (Figma)"
+                          src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FLinZorgF0Yq032wKIhtMyF%2FJargon-portfolio%3Fnode-id%3D6-5068"
+                          allowFullScreen
+                          className="jargon-case-study-figma-iframe"
                        />
                     </div>
                     <p className="jargon-case-study-text-paragraph">
@@ -407,13 +425,6 @@ const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
                             Card-based layouts to reduce overwhelm
                           </p>
                        </div>
-                    </div>
-                    <div className="jargon-case-study-image-full-width">
-                       <img 
-                          src="/img/jargon/Jargon-greyscale.jpg" 
-                          alt="Jargon Style Guide" 
-                          className="jargon-case-study-image"
-                       />
                     </div>
                  </div>
                  
@@ -453,11 +464,12 @@ const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
                <span className="jargon-case-study-section-label">05 / Visuals</span>
                <h2 className="jargon-case-study-section-title jargon-case-study-section-title-spaced">High-Fidelity Design & Features</h2>
                
-               <div className="jargon-case-study-image-full-width jargon-case-study-image-spaced">
-                  <img 
-                     src="/img/jargon/Jargon-hifi.jpg" 
-                     alt="Jargon High-Fi Prototypes" 
-                     className="jargon-case-study-image"
+               <div className="jargon-case-study-figma-embed jargon-case-study-image-spaced">
+                  <iframe
+                     title="Jargon portfolio – High-Fi (Figma)"
+                     src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FLinZorgF0Yq032wKIhtMyF%2FJargon-portfolio%3Fnode-id%3D4-99"
+                     allowFullScreen
+                     className="jargon-case-study-figma-iframe"
                   />
                </div>
                
@@ -518,6 +530,42 @@ const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
           </main>
         </div>
       </div>
+
+      {/* Image Lightbox */}
+      <AnimatePresence>
+        {lightboxSrc && (
+          <motion.div
+            className="jargon-case-study-lightbox-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setLightboxSrc(null)}
+            role="button"
+            tabIndex={-1}
+            aria-label="Close"
+          >
+            <motion.div
+              className="jargon-case-study-lightbox-content"
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                className="jargon-case-study-lightbox-close"
+                onClick={() => setLightboxSrc(null)}
+                aria-label="Close"
+              >
+                <X size={24} />
+              </button>
+              <img src={lightboxSrc} alt="" className="jargon-case-study-lightbox-image" />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

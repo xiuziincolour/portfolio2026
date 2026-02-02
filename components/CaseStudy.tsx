@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowUpRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowLeft, ArrowUpRight, X } from 'lucide-react';
 import './CaseStudy.css';
 
 interface CaseStudyProps {
@@ -18,6 +18,7 @@ const SECTIONS = [
 
 const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
   const [activeSection, setActiveSection] = useState(SECTIONS[0].id);
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
 
   useEffect(() => {
     const updateActiveSection = () => {
@@ -106,7 +107,11 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
         <img 
           src="/img/linko/linko_header.jpg" 
           alt="Linko Hero" 
-          className="case-study-hero-image"
+          className="case-study-hero-image case-study-image-clickable"
+          onClick={(e) => setLightboxSrc((e.target as HTMLImageElement).currentSrc || (e.target as HTMLImageElement).src)}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => e.key === 'Enter' && setLightboxSrc('/img/linko/linko_header.jpg')}
         />
       </header>
 
@@ -270,7 +275,11 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
                        <img 
                           src="/img/linko/linko_UserPersonas.jpg" 
                           alt="Linko User Personas" 
-                          className="case-study-image"
+                          className="case-study-image case-study-image-clickable"
+                          onClick={(e) => setLightboxSrc((e.target as HTMLImageElement).currentSrc || (e.target as HTMLImageElement).src)}
+                          role="button"
+                          tabIndex={0}
+                          onKeyDown={(e) => e.key === 'Enter' && setLightboxSrc('/img/linko/linko_UserPersonas.jpg')}
                        />
                     </div>
                  </div>
@@ -299,7 +308,11 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
                        <img 
                           src="/img/linko/linko_moodboard.jpg" 
                           alt="Linko Moodboard" 
-                          className="case-study-image"
+                          className="case-study-image case-study-image-clickable"
+                          onClick={(e) => setLightboxSrc((e.target as HTMLImageElement).currentSrc || (e.target as HTMLImageElement).src)}
+                          role="button"
+                          tabIndex={0}
+                          onKeyDown={(e) => e.key === 'Enter' && setLightboxSrc('/img/linko/linko_moodboard.jpg')}
                        />
                     </div>
                     <p className="case-study-text-paragraph">
@@ -324,7 +337,11 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
                        <img 
                           src="/img/linko/linko_Userflow.jpg" 
                           alt="Linko User Flow" 
-                          className="case-study-image"
+                          className="case-study-image case-study-image-clickable"
+                          onClick={(e) => setLightboxSrc((e.target as HTMLImageElement).currentSrc || (e.target as HTMLImageElement).src)}
+                          role="button"
+                          tabIndex={0}
+                          onKeyDown={(e) => e.key === 'Enter' && setLightboxSrc('/img/linko/linko_Userflow.jpg')}
                        />
                     </div>
                     <div className="case-study-grid-2">
@@ -373,7 +390,11 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
                        <img 
                           src="/img/linko/linko_styleguide.jpg" 
                           alt="Linko Style Guide" 
-                          className="case-study-image"
+                          className="case-study-image case-study-image-clickable"
+                          onClick={(e) => setLightboxSrc((e.target as HTMLImageElement).currentSrc || (e.target as HTMLImageElement).src)}
+                          role="button"
+                          tabIndex={0}
+                          onKeyDown={(e) => e.key === 'Enter' && setLightboxSrc('/img/linko/linko_styleguide.jpg')}
                        />
                     </div>
                  </div>
@@ -384,7 +405,11 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
                        <img 
                           src="/img/linko/linko_low-fi.jpg" 
                           alt="Linko Low-Fi Wireframes" 
-                          className="case-study-image"
+                          className="case-study-image case-study-image-clickable"
+                          onClick={(e) => setLightboxSrc((e.target as HTMLImageElement).currentSrc || (e.target as HTMLImageElement).src)}
+                          role="button"
+                          tabIndex={0}
+                          onKeyDown={(e) => e.key === 'Enter' && setLightboxSrc('/img/linko/linko_low-fi.jpg')}
                        />
                     </div>
                     <div className="case-study-grid-2">
@@ -414,7 +439,11 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
                   <img 
                      src="/img/linko/linko_high-fi.jpg" 
                      alt="Linko High-Fi Prototypes" 
-                     className="case-study-image"
+                     className="case-study-image case-study-image-clickable"
+                     onClick={(e) => setLightboxSrc((e.target as HTMLImageElement).currentSrc || (e.target as HTMLImageElement).src)}
+                     role="button"
+                     tabIndex={0}
+                     onKeyDown={(e) => e.key === 'Enter' && setLightboxSrc('/img/linko/linko_high-fi.jpg')}
                   />
                </div>
                
@@ -495,6 +524,42 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
           </main>
         </div>
       </div>
+
+      {/* Image Lightbox */}
+      <AnimatePresence>
+        {lightboxSrc && (
+          <motion.div
+            className="case-study-lightbox-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setLightboxSrc(null)}
+            role="button"
+            tabIndex={-1}
+            aria-label="Close"
+          >
+            <motion.div
+              className="case-study-lightbox-content"
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                className="case-study-lightbox-close"
+                onClick={() => setLightboxSrc(null)}
+                aria-label="Close"
+              >
+                <X size={24} />
+              </button>
+              <img src={lightboxSrc} alt="" className="case-study-lightbox-image" />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
