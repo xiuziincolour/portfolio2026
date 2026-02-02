@@ -66,11 +66,11 @@ export const UNIFIED_WORKS: WorkItem[] = [
   },
   {
     id: 'w6',
-    title: 'Public Library',
-    subtitle: 'Product Design',
-    category: 'Product', // The 6th item to fill the grid
+    title: 'Xiuzi Menu',
+    subtitle: 'Graphic Design',
+    category: 'UI/UX',
     type: 'image',
-    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=2670&auto=format&fit=crop', // Phone mockup vibe
+    image: '/img/graphic-others/xiuzi_menu.png',
   }
 ];
 
