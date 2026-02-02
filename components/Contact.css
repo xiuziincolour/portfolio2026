@@ -3,7 +3,7 @@
 .contact-section {
   padding: 6rem 1.5rem;
   background-color: var(--brand-bg);
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--gray-200);
   position: relative;
 }
 
@@ -62,7 +62,7 @@
 
 .contact-description {
   font-size: 1.25rem;
-  color: #6b7280;
+  color: var(--gray-600);
   margin-bottom: 3rem;
   line-height: 1.75;
   max-width: 42rem;

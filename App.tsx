@@ -86,7 +86,7 @@ const App: React.FC = () => {
 
       {currentView === 'home' && (
         <>
-          <Header onNavigateToProjects={handleOpenProjects} onNavigateToVideos={handleOpenVideos} />
+          <Header onNavigateToProjects={handleOpenProjects} onNavigateToVideos={handleOpenVideos} onNavigateToAboutMe={handleOpenAboutMe} />
           <main>
             <WorkGrid onOpenProject={handleOpenProject} />
             <About onOpenAboutMe={handleOpenAboutMe} />

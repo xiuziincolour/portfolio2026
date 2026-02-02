@@ -136,22 +136,22 @@
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: #0F0F0F;
+  color: var(--brand-text);
   background-color: var(--gray-100);
-  border: 1px solid #0F0F0F;
+  border: 1px solid var(--brand-text);
   border-radius: 9999px;
 }
 
 .work-grid-tag-featured {
   background-color: var(--gray-100);
-  border-color: #0F0F0F;
-  color: #0F0F0F;
+  border-color: var(--brand-text);
+  color: var(--brand-text);
 }
 
 .work-grid-card-title {
   font-size: var(--text-lg);
   font-weight: 600;
-  color: #0F0F0F;
+  color: var(--brand-text);
   margin: 0 0 var(--spacing-1);
   letter-spacing: -0.02em;
 }

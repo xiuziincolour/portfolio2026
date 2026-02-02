@@ -15,7 +15,7 @@ const About: React.FC<AboutProps> = ({ onOpenAboutMe }) => {
     <section id="about" className="about-section">
       <div className="about-container">
          <div className="about-content-wrapper">
-            {/* Image Side */}
+            {/* Image Side - Centered */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={shouldAnimate ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
@@ -24,7 +24,7 @@ const About: React.FC<AboutProps> = ({ onOpenAboutMe }) => {
               className="about-image-wrapper"
             >
                <img 
-                  src="/img/aboutme/xiuzi-pic.png" 
+                  src="/img/aboutme/xiuzi-body.png" 
                   alt="Xiuzi Profile" 
                   className="about-image" 
                 />
