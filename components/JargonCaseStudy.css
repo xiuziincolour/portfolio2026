@@ -279,6 +279,66 @@
   }
 }
 
+/* Tablet: case study fonts and index spacing */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .jargon-case-study-main {
+    padding: 6rem 2rem 6rem;
+  }
+
+  .jargon-case-study-layout {
+    gap: 2.5rem;
+  }
+
+  .jargon-case-study-sidebar {
+    min-width: 120px;
+    width: 18%;
+  }
+
+  .jargon-case-study-index-label {
+    font-size: 0.6875rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .jargon-case-study-timeline {
+    padding-left: 1rem;
+  }
+
+  .jargon-case-study-timeline-list {
+    gap: 1.25rem;
+  }
+
+  .jargon-case-study-timeline-link {
+    font-size: 0.8125rem;
+  }
+
+  .jargon-case-study-title {
+    font-size: 3.5rem;
+    line-height: 0.95;
+  }
+
+  .jargon-case-study-title-description {
+    font-size: 1.375rem;
+  }
+
+  .jargon-case-study-title-block {
+    padding-bottom: 3.5rem;
+  }
+
+  .jargon-case-study-title-info {
+    margin-top: 3rem;
+    gap: 2rem;
+  }
+
+  .jargon-case-study-title-meta {
+    gap: 2rem 2rem;
+  }
+
+  .jargon-case-study-section-title {
+    font-size: 2.25rem;
+    margin-bottom: 2.5rem;
+  }
+}
+
 .jargon-case-study-section-content {
   font-size: 1.125rem;
   color: #4b5563;
