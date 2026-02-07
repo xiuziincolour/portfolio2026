@@ -7,13 +7,14 @@ import Footer from './components/Footer';
 import CaseStudy from './components/CaseStudy';
 import JargonCaseStudy from './components/JargonCaseStudy';
 import JargonMerchPage from './components/JargonMerchPage';
+import GraphicsEmagPage from './components/GraphicsEmagPage';
 import Projects from './components/Projects';
 import AboutMe from './components/AboutMe';
 import './App.css';
 
 const VideoPage = lazy(() => import('./components/VideoPage'));
 
-type ViewState = 'home' | 'case-study' | 'jargon-case-study' | 'jargon-merch' | 'projects' | 'about-me' | 'videos';
+type ViewState = 'home' | 'case-study' | 'jargon-case-study' | 'jargon-merch' | 'graphics-emag' | 'projects' | 'about-me' | 'videos';
 
 const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -33,6 +34,9 @@ const App: React.FC = () => {
       window.scrollTo(0, 0);
     } else if (id === 'w3') {
       setCurrentView('jargon-merch');
+      window.scrollTo(0, 0);
+    } else if (id === 'w7') {
+      setCurrentView('graphics-emag');
       window.scrollTo(0, 0);
     }
   };
@@ -109,6 +113,10 @@ const App: React.FC = () => {
 
       {currentView === 'jargon-merch' && (
         <JargonMerchPage onBack={handleBackToHome} />
+      )}
+
+      {currentView === 'graphics-emag' && (
+        <GraphicsEmagPage onBack={handleBackToHome} />
       )}
 
       {currentView === 'projects' && (

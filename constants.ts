@@ -73,6 +73,14 @@ export const UNIFIED_WORKS: WorkItem[] = [
     category: 'Graphic Design',
     type: 'image',
     image: '/img/graphic-others/xiuzi_menu.png',
+  },
+  {
+    id: 'w7',
+    title: 'Graphics E-mag',
+    subtitle: 'Graphic Design',
+    category: 'Graphic Design',
+    type: 'image',
+    image: '/img/graphics-emag/xiuzi-emag-1.png',
   }
 ];
 

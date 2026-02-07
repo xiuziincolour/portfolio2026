@@ -423,3 +423,13 @@
   object-fit: contain;
   border-radius: 0;
 }
+
+/* Graphics E-mag — Heyzine flipbook iframe */
+.graphics-emag-embed {
+  margin-top: 0.5rem;
+}
+
+.graphics-emag-iframe {
+  display: block;
+  border-radius: 0;
+}
