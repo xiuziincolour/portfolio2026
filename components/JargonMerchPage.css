@@ -1,0 +1,425 @@
+/* Jargon Merch — Graphic project page (distinct from case study) */
+
+.jargon-merch-page {
+  background-color: var(--brand-bg);
+  min-height: 100vh;
+  color: var(--brand-text);
+  padding-bottom: 4rem;
+  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Nav */
+.jargon-merch-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding: 1.5rem;
+  pointer-events: none;
+}
+
+.jargon-merch-nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.jargon-merch-back {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(245, 245, 245, 0.9);
+  backdrop-filter: blur(12px);
+  padding: 0.625rem 1.25rem;
+  border-radius: 9999px;
+  color: var(--brand-text);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.jargon-merch-back:hover {
+  background: var(--brand-orange);
+  color: white;
+  border-color: transparent;
+}
+
+.jargon-merch-back-icon {
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.jargon-merch-back:hover .jargon-merch-back-icon {
+  transform: translateX(-3px);
+}
+
+/* Main */
+.jargon-merch-main {
+  padding-top: 5.5rem;
+}
+
+.jargon-merch-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .jargon-merch-container {
+    padding: 0 2.5rem;
+  }
+}
+
+/* Header block */
+.jargon-merch-header {
+  margin-bottom: 3.5rem;
+}
+
+.jargon-merch-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-orange);
+  margin-bottom: 0.75rem;
+}
+
+.jargon-merch-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+  font-family: 'JMH Typewriter Dry', 'Graphik LC Web', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.jargon-merch-subtitle {
+  font-size: 1.0625rem;
+  color: var(--brand-gray);
+  margin-bottom: 2rem;
+}
+
+.jargon-merch-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.jargon-merch-meta-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--brand-text);
+}
+
+.jargon-merch-meta-value {
+  font-size: 0.9375rem;
+  color: var(--brand-gray);
+}
+
+.jargon-merch-concept {
+  border-left: 3px solid var(--brand-orange);
+  padding-left: 1.25rem;
+}
+
+.jargon-merch-concept-label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--brand-text);
+}
+
+.jargon-merch-concept-text {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--brand-text);
+  max-width: 56ch;
+}
+
+/* Product sections */
+.jargon-merch-section {
+  margin-bottom: 4rem;
+}
+
+.jargon-merch-section:last-child {
+  margin-bottom: 0;
+}
+
+.jargon-merch-group-pictures {
+  margin-top: 2rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Jargon Photobooth */
+.jargon-merch-photobooth {
+  margin-top: 0.5rem;
+}
+
+.jargon-merch-photobooth-hero-wrap {
+  width: 100%;
+  margin-bottom: 1.25rem;
+}
+
+.jargon-merch-photobooth-hero {
+  width: 100%;
+  display: block;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.jargon-merch-photobooth-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+  color: var(--brand-orange);
+  margin-bottom: 1.5rem;
+  transition: color 0.2s ease;
+}
+
+.jargon-merch-photobooth-link:hover {
+  color: var(--brand-text);
+}
+
+.jargon-merch-photobooth-link span {
+  word-break: break-all;
+}
+
+.jargon-merch-photobooth-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.75rem 0;
+  overflow: visible;
+}
+
+.jargon-merch-photobooth-thumb {
+  flex: 0 0 auto;
+  width: 88px;
+  max-width: 88px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.25s ease;
+}
+
+.jargon-merch-photobooth-thumb:hover {
+  z-index: 10;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.jargon-merch-photobooth-thumb img {
+  width: 100%;
+  height: auto;
+  display: block;
+  vertical-align: middle;
+  border-radius: 0;
+}
+
+@media (min-width: 768px) {
+  .jargon-merch-photobooth-row {
+    gap: 0.75rem;
+  }
+
+  .jargon-merch-photobooth-thumb {
+    width: 118px;
+    max-width: 118px;
+  }
+}
+
+/* Group Pictures — Slideshow */
+.jargon-merch-slideshow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.jargon-merch-slideshow-arrow {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--brand-text);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.jargon-merch-slideshow-arrow:hover {
+  background: var(--brand-orange);
+  color: white;
+}
+
+.jargon-merch-slideshow-track {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.jargon-merch-slideshow-image-wrap {
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: block;
+}
+
+.jargon-merch-slideshow-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 0;
+}
+
+@media (min-width: 768px) {
+  .jargon-merch-slideshow {
+    gap: 1.5rem;
+  }
+
+  .jargon-merch-slideshow-arrow {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+.jargon-merch-section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+  color: var(--brand-text);
+  font-family: 'JMH Typewriter Dry', 'Graphik LC Web', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.jargon-merch-section-paragraph {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--brand-text);
+  max-width: 56ch;
+  margin-bottom: 1.5rem;
+}
+
+.jargon-merch-gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .jargon-merch-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .jargon-merch-gallery-grid {
+    gap: 2rem;
+  }
+}
+
+.jargon-merch-gallery-item {
+  position: relative;
+}
+
+.jargon-merch-gallery-thumb {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.jargon-merch-gallery-thumb:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.jargon-merch-gallery-thumb img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  vertical-align: middle;
+}
+
+/* Lightbox */
+.jargon-merch-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  cursor: pointer;
+}
+
+.jargon-merch-lightbox-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.jargon-merch-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.jargon-merch-lightbox-content {
+  max-width: 90vw;
+  max-height: 85vh;
+  cursor: default;
+}
+
+.jargon-merch-lightbox-content img {
+  max-width: 100%;
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 0;
+}

@@ -20,7 +20,7 @@ const Projects: React.FC<ProjectsProps> = ({ onBack, onOpenProject }) => {
     ? UNIFIED_WORKS 
     : activeFilter === 'UI/UX'
     ? UNIFIED_WORKS.filter(work => work.category === 'UI/UX')
-    : UNIFIED_WORKS.filter(work => work.category === 'Motion' || work.category === 'Product' || work.category === 'Video');
+    : UNIFIED_WORKS.filter(work => work.category === 'Graphic Design');
 
   const handleProjectClick = (work: WorkItem) => {
     if (onOpenProject) {

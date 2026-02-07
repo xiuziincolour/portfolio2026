@@ -42,8 +42,18 @@ const WorkGrid: React.FC<WorkGridProps> = ({ onOpenProject }) => {
                 <h3 className="work-grid-card-title">{work.title}</h3>
                 <p className="work-grid-card-subtitle">{work.subtitle}</p>
                 <div className="work-grid-card-tags">
-                  {index < 2 && <span className="work-grid-tag work-grid-tag-featured">FEATURED</span>}
-                  <span className="work-grid-tag">{work.category}</span>
+                  {work.tags?.length
+                    ? work.tags.map((tag) => (
+                        <span key={tag} className="work-grid-tag">
+                          {tag}
+                        </span>
+                      ))
+                    : (
+                      <>
+                        {index < 2 && <span className="work-grid-tag work-grid-tag-featured">FEATURED</span>}
+                        <span className="work-grid-tag">{work.category}</span>
+                      </>
+                    )}
                 </div>
               </div>
             </motion.div>
