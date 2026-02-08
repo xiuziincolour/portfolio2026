@@ -1,5 +1,6 @@
 import React, { useEffect, useState, lazy, Suspense } from 'react';
 import Header from './components/Header';
+import LandingIntro from './components/LandingIntro';
 import WorkGrid from './components/WorkGrid';
 import About from './components/About';
 import Contact from './components/Contact';
@@ -8,22 +9,64 @@ import CaseStudy from './components/CaseStudy';
 import JargonCaseStudy from './components/JargonCaseStudy';
 import JargonMerchPage from './components/JargonMerchPage';
 import GraphicsEmagPage from './components/GraphicsEmagPage';
+import GraphicMenuPage from './components/GraphicMenuPage';
 import Projects from './components/Projects';
 import AboutMe from './components/AboutMe';
 import './App.css';
 
 const VideoPage = lazy(() => import('./components/VideoPage'));
 
-type ViewState = 'home' | 'case-study' | 'jargon-case-study' | 'jargon-merch' | 'graphics-emag' | 'projects' | 'about-me' | 'videos';
+const THEME_BG = { light: '#F5F5F5', dark: '#0b0b0c' } as const;
+
+type ViewState = 'home' | 'case-study' | 'jargon-case-study' | 'jargon-merch' | 'graphics-emag' | 'graphic-menu' | 'projects' | 'about-me' | 'videos';
 
 const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [currentView, setCurrentView] = useState<ViewState>('home');
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    if (typeof window === 'undefined') return 'light';
+    const stored = window.localStorage.getItem('theme');
+    if (stored === 'light' || stored === 'dark') return stored;
+    return window.matchMedia?.('(prefers-color-scheme: dark)')?.matches ? 'dark' : 'light';
+  });
+  const [themeOverlay, setThemeOverlay] = useState<{ from: string; to: string } | null>(null);
+  const [overlayColor, setOverlayColor] = useState(THEME_BG.light);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 300);
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    try {
+      window.localStorage.setItem('theme', theme);
+    } catch {
+      // ignore
+    }
+  }, [theme]);
+
+  // When overlay is shown, animate its background from old to new theme (two frames so "from" paints first)
+  useEffect(() => {
+    if (!themeOverlay) return;
+    setOverlayColor(themeOverlay.from);
+    const id = requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setOverlayColor(themeOverlay.to);
+      });
+    });
+    return () => cancelAnimationFrame(id);
+  }, [themeOverlay]);
+
+  const runThemeTransition = () => {
+    const nextTheme = theme === 'dark' ? 'light' : 'dark';
+    setThemeOverlay({ from: THEME_BG[theme], to: THEME_BG[nextTheme] });
+    setTheme(nextTheme);
+  };
+
+  const handleThemeOverlayTransitionEnd = () => {
+    setThemeOverlay(null);
+  };
 
   const handleOpenProject = (id: string) => {
     if (id === 'w1') {
@@ -37,6 +80,9 @@ const App: React.FC = () => {
       window.scrollTo(0, 0);
     } else if (id === 'w7') {
       setCurrentView('graphics-emag');
+      window.scrollTo(0, 0);
+    } else if (id === 'w6') {
+      setCurrentView('graphic-menu');
       window.scrollTo(0, 0);
     }
   };
@@ -84,18 +130,27 @@ const App: React.FC = () => {
 
   return (
     <div className="app-container">
-      
-      {/* 
-        Conditional Rendering: 
-        If currentView is 'case-study', we render the detailed page ON TOP of everything 
-        (or instead of main content). 
-        To keep it clean, we'll replace the main content.
-      */}
+      {themeOverlay != null && (
+        <div
+          className="theme-overlay"
+          style={{ backgroundColor: overlayColor }}
+          onTransitionEnd={handleThemeOverlayTransitionEnd}
+          aria-hidden
+        />
+      )}
 
+      <div className="app-content">
       {currentView === 'home' && (
         <>
-          <Header onNavigateToProjects={handleOpenProjects} onNavigateToVideos={handleOpenVideos} onNavigateToAboutMe={handleOpenAboutMe} />
+          <Header
+            theme={theme}
+            onToggleTheme={runThemeTransition}
+            onNavigateToProjects={handleOpenProjects}
+            onNavigateToVideos={handleOpenVideos}
+            onNavigateToAboutMe={handleOpenAboutMe}
+          />
           <main>
+            <LandingIntro />
             <WorkGrid onOpenProject={handleOpenProject} />
             <About onOpenAboutMe={handleOpenAboutMe} />
             <Contact />
@@ -119,6 +174,10 @@ const App: React.FC = () => {
         <GraphicsEmagPage onBack={handleBackToHome} />
       )}
 
+      {currentView === 'graphic-menu' && (
+        <GraphicMenuPage onBack={handleBackToHome} />
+      )}
+
       {currentView === 'projects' && (
         <Projects onBack={handleBackToHome} onOpenProject={handleOpenProject} />
       )}
@@ -134,7 +193,7 @@ const App: React.FC = () => {
       )}
 
       <Footer variant={currentView === 'videos' ? 'dark' : 'default'} />
-      
+      </div>
     </div>
   );
 };

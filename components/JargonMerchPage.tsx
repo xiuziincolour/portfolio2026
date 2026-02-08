@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, X, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowLeft, X, ExternalLink } from 'lucide-react';
 import './JargonMerchPage.css';
+
+const GROUP_N = 6;
+function getGroupOffset(j: number, center: number): number {
+  let d = (j - center + GROUP_N) % GROUP_N;
+  if (d > GROUP_N / 2) d -= GROUP_N;
+  return d;
+}
 
 const PHOTOBOOTH_TOP_IMAGE = '/img/Jargon-merch/jargon-photobooth/Jargon-photobooth.png';
 const PHOTOBOOTH_SITE_URL = 'https://jargon-photobooth.vercel.app/';
@@ -64,16 +71,14 @@ interface JargonMerchPageProps {
 
 const JargonMerchPage: React.FC<JargonMerchPageProps> = ({ onBack }) => {
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
-  const [groupSlideIndex, setGroupSlideIndex] = useState(0);
-  const [slideDirection, setSlideDirection] = useState(0); // 1 = next (in from right), -1 = prev (in from left)
+  const [groupCenterIndex, setGroupCenterIndex] = useState(0);
 
-  const goToPrevSlide = () => {
-    setSlideDirection(-1);
-    setGroupSlideIndex((i) => (i === 0 ? GROUP_PICTURES.length - 1 : i - 1));
-  };
-  const goToNextSlide = () => {
-    setSlideDirection(1);
-    setGroupSlideIndex((i) => (i === GROUP_PICTURES.length - 1 ? 0 : i + 1));
+  const handleGroupItemClick = (index: number) => {
+    if (index === groupCenterIndex) {
+      setLightboxSrc(GROUP_PICTURES[index].src);
+    } else {
+      setGroupCenterIndex(index);
+    }
   };
 
   return (
@@ -196,7 +201,7 @@ const JargonMerchPage: React.FC<JargonMerchPageProps> = ({ onBack }) => {
             </React.Fragment>
           ))}
 
-          {/* Group Pictures — Slideshow */}
+          {/* Group Pictures — 3D Carousel */}
           <motion.section
             className="jargon-merch-section jargon-merch-group-pictures"
             initial={{ opacity: 0, y: 24 }}
@@ -204,43 +209,46 @@ const JargonMerchPage: React.FC<JargonMerchPageProps> = ({ onBack }) => {
             transition={{ duration: 0.5, delay: 0.35 }}
           >
             <h2 className="jargon-merch-section-title">Group Pictures</h2>
-            <div className="jargon-merch-slideshow">
-              <button
-                type="button"
-                className="jargon-merch-slideshow-arrow jargon-merch-slideshow-prev"
-                onClick={goToPrevSlide}
-                aria-label="Previous image"
-              >
-                <ChevronLeft size={28} />
-              </button>
-              <div className="jargon-merch-slideshow-track">
-                <AnimatePresence initial={false} mode="wait">
-                  <motion.button
-                    key={groupSlideIndex}
-                    type="button"
-                    className="jargon-merch-slideshow-image-wrap"
-                    onClick={() => setLightboxSrc(GROUP_PICTURES[groupSlideIndex].src)}
-                    initial={{ x: slideDirection * 120 }}
-                    animate={{ x: 0 }}
-                    exit={{ x: -slideDirection * 120 }}
-                    transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-                  >
-                    <img
-                      src={GROUP_PICTURES[groupSlideIndex].src}
-                      alt={GROUP_PICTURES[groupSlideIndex].alt}
-                      className="jargon-merch-slideshow-image"
-                    />
-                  </motion.button>
-                </AnimatePresence>
+            <p className="jargon-merch-section-paragraph">
+              Click a side image to bring it to the center; click the center image to view full size.
+            </p>
+            <div className="jargon-merch-group-carousel">
+              <div className="jargon-merch-group-carousel-track">
+                {GROUP_PICTURES.map((img, index) => {
+                  const offset = getGroupOffset(index, groupCenterIndex);
+                  const isCenter = offset === 0;
+                  return (
+                    <motion.button
+                      key={img.src}
+                      type="button"
+                      className="jargon-merch-group-carousel-item"
+                      onClick={() => handleGroupItemClick(index)}
+                      initial={{
+                        x: offset * 200,
+                        scale: isCenter ? 1 : 0.58,
+                        opacity: isCenter ? 1 : 0.4,
+                        filter: isCenter ? 'blur(0px)' : 'blur(4px)',
+                        zIndex: isCenter ? 10 : 5 - Math.abs(offset),
+                      }}
+                      style={{ originX: '50%', originY: '50%' }}
+                      animate={{
+                        x: offset * 200,
+                        scale: isCenter ? 1 : 0.58,
+                        opacity: isCenter ? 1 : 0.4,
+                        filter: isCenter ? 'blur(0px)' : 'blur(4px)',
+                        zIndex: isCenter ? 10 : 5 - Math.abs(offset),
+                      }}
+                      transition={{
+                        type: 'spring',
+                        stiffness: 280,
+                        damping: 28,
+                      }}
+                    >
+                      <img src={img.src} alt={img.alt} draggable={false} />
+                    </motion.button>
+                  );
+                })}
               </div>
-              <button
-                type="button"
-                className="jargon-merch-slideshow-arrow jargon-merch-slideshow-next"
-                onClick={goToNextSlide}
-                aria-label="Next image"
-              >
-                <ChevronRight size={28} />
-              </button>
             </div>
           </motion.section>
         </div>

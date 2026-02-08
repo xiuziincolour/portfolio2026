@@ -1,0 +1,70 @@
+/* Graphic Menu Page — 3D Carousel */
+
+.graphic-menu-page .graphic-menu-carousel-section {
+  margin-bottom: 4rem;
+}
+
+.graphic-menu-page-label {
+  text-align: center;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--brand-text);
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.graphic-menu-carousel {
+  position: relative;
+  width: 100%;
+  height: 460px;
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.graphic-menu-carousel-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.graphic-menu-carousel-item {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 320px;
+  max-width: 78vw;
+  height: 440px;
+  margin-left: -160px;
+  margin-top: -220px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.graphic-menu-carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+  border: none;
+}
+
+@media (min-width: 768px) {
+  .graphic-menu-carousel {
+    height: 560px;
+  }
+
+  .graphic-menu-carousel-item {
+    width: 380px;
+    height: 520px;
+    margin-left: -190px;
+    margin-top: -260px;
+  }
+}

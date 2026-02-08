@@ -86,13 +86,13 @@
   height: 2.5rem;
   background-color: var(--gray-100);
   border-radius: 50%;
-  box-shadow: 0 1px 3px rgba(215, 88, 111, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 47, 167, 0.1);
   transition: all 0.3s ease;
   flex-shrink: 0;
 }
 
 .footer-social-link:hover {
-  box-shadow: 0 4px 6px -1px rgba(215, 88, 111, 0.1), 0 2px 4px -1px rgba(215, 88, 111, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 47, 167, 0.1), 0 2px 4px -1px rgba(0, 47, 167, 0.06);
   transform: scale(1.1);
 }
 

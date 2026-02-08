@@ -8,6 +8,7 @@
   align-items: center;
   justify-content: center;
   z-index: 100;
+  transition: background-color 0.5s ease;
 }
 
 .app-loading-spinner {
@@ -45,11 +46,26 @@
 .app-container {
   min-height: 100vh;
   background-color: var(--brand-bg);
-  color: #1A1A1A;
+  color: var(--brand-text);
   position: relative;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .app-container ::selection {
   background-color: var(--brand-blue);
   color: white;
+}
+
+/* Layer behind content: only the background color transitions; content stays on top */
+.theme-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  transition: background-color 0.5s ease-out;
+}
+
+.app-content {
+  position: relative;
+  z-index: 2;
 }

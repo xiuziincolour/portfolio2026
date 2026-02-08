@@ -122,6 +122,25 @@ const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
           {/* Left Column: Sticky Timeline & Index */}
           <aside className="jargon-case-study-sidebar">
             <div className="jargon-case-study-sidebar-sticky">
+              <div className="jargon-case-study-outcome-buttons">
+                <a
+                  href="https://www.jargon-app.ca/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="jargon-case-study-outcome-btn"
+                >
+                  View Coded App
+                </a>
+                <a
+                  href="https://jargon-app.framer.website/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="jargon-case-study-outcome-btn"
+                >
+                  View website
+                </a>
+              </div>
+
               <span className="jargon-case-study-index-label">Index</span>
               
               <div className="jargon-case-study-timeline">

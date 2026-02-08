@@ -91,7 +91,7 @@
   width: 8rem;
   height: 2rem;
   background-color: rgba(229, 62, 62, 0.9);
-  box-shadow: 0 1px 3px rgba(215, 88, 111, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 47, 167, 0.1);
   z-index: 20;
   backdrop-filter: blur(1px);
   mix-blend-mode: multiply;
@@ -119,7 +119,7 @@
   position: relative;
   background-color: white;
   padding: 1.5rem;
-  box-shadow: 0 8px 30px rgba(215, 88, 111, 0.08);
+  box-shadow: 0 8px 30px rgba(0, 47, 167, 0.08);
   transition: all 0.5s ease;
 }
 
@@ -139,7 +139,7 @@
 
 .graphic-grid-paper:hover {
   transform: translateY(-0.25rem) rotate(0deg);
-  box-shadow: 0 20px 40px rgba(215, 88, 111, 0.12);
+  box-shadow: 0 20px 40px rgba(0, 47, 167, 0.12);
 }
 
 .graphic-grid-image-wrapper {

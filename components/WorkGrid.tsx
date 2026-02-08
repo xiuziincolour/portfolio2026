@@ -16,7 +16,7 @@ const WorkGrid: React.FC<WorkGridProps> = ({ onOpenProject }) => {
     <section id="work" className="work-grid-section">
       <div className="work-grid-container">
         <div className="work-grid-items">
-          {UNIFIED_WORKS.map((work, index) => (
+          {UNIFIED_WORKS.filter((work) => !work.hideOnHome).map((work, index) => (
             <motion.div
               key={work.id}
               initial={{ opacity: 0, y: 40, scale: 0.95 }}

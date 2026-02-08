@@ -52,8 +52,11 @@
 }
 
 .video-page-back-button:hover {
-  background-color: #D7586F;
-  color: white;
+  color: var(--brand-blue);
+}
+
+.video-page-back-button:active {
+  transform: scale(0.98);
 }
 
 .video-page-back-icon {
@@ -147,7 +150,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  color: #D7586F;
+  color: #002FA7;
   font-size: 0.875rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -174,12 +177,12 @@
 }
 
 .video-page-scroll-link:hover .video-page-scroll-icon-wrapper {
-  background-color: #D7586F;
+  background-color: #002FA7;
   transform: translateY(0.25rem);
 }
 
 .video-page-scroll-icon {
-  color: #D7586F;
+  color: #002FA7;
   transition: all 0.3s ease;
 }
 

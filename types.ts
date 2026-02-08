@@ -21,6 +21,7 @@ export interface WorkItem {
   subtitle: string; // The "secondary title"
   category: 'UI/UX' | 'Motion' | 'Video' | 'Product' | 'Graphic Design';
   type: 'image' | 'solid-color'; // To determine rendering style
+  hideOnHome?: boolean; // If true, show only on Projects page, not on home WorkGrid
   tags?: string[]; // Custom tags under the subtitle (e.g. Product design, UI/UX, Frontend)
   bgColor?: string; // For solid color blocks (e.g., Airbnb Red, Seattle Green)
   textColor?: string; // Text color for the graphic blocks

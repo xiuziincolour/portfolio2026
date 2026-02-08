@@ -35,13 +35,16 @@
   color: var(--brand-text);
   font-weight: 500;
   transition: all 0.3s ease;
-  border: 1px solid rgba(215, 88, 111, 0.05);
+  border: 1px solid rgba(0, 47, 167, 0.05);
   cursor: pointer;
 }
 
 .projects-back-button:hover {
-  background-color: #D7586F;
-  color: white;
+  color: var(--brand-blue);
+}
+
+.projects-back-button:active {
+  transform: scale(0.98);
 }
 
 .projects-back-icon {
@@ -94,7 +97,7 @@
 }
 
 .projects-subtitle {
-  color: #D7586F;
+  color: #002FA7;
   font-weight: 500;
   font-size: var(--text-base);
 }

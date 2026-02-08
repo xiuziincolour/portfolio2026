@@ -18,7 +18,7 @@ export const PORTFOLIO_VIDEOS = {
 
 export const NAV_LINKS = [
   { name: 'Projects', href: '#work' },
-  { name: 'Videos', href: '#work' },
+  { name: 'Film', href: '#work' },
   { name: 'About', href: '#about' },
 ];
 
@@ -51,12 +51,12 @@ export const UNIFIED_WORKS: WorkItem[] = [
     image: '/img/Jargon-merch/Jargon-tshirt-1.png',
   },
   {
-    id: 'w4',
-    title: 'Cans',
+    id: 'w7',
+    title: 'Graphics E-mag',
     subtitle: 'Graphic Design',
     category: 'Graphic Design',
     type: 'image',
-    image: '/img/graphic-cans/Xiuzi_Cans-cover.png',
+    image: '/img/graphics-emag/xiuzi-emag-1.png',
   },
   {
     id: 'w5',
@@ -65,6 +65,7 @@ export const UNIFIED_WORKS: WorkItem[] = [
     category: 'Graphic Design',
     type: 'image',
     image: '/img/posters/rockposter.png',
+    hideOnHome: true,
   },
   {
     id: 'w6',
@@ -75,12 +76,12 @@ export const UNIFIED_WORKS: WorkItem[] = [
     image: '/img/graphic-others/xiuzi_menu.png',
   },
   {
-    id: 'w7',
-    title: 'Graphics E-mag',
+    id: 'w4',
+    title: 'Cans',
     subtitle: 'Graphic Design',
     category: 'Graphic Design',
     type: 'image',
-    image: '/img/graphics-emag/xiuzi-emag-1.png',
+    image: '/img/graphic-cans/Xiuzi_Cans-cover.png',
   }
 ];
 

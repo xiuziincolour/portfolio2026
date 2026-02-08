@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Menu, X, Check, ArrowRight, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { NAV_LINKS } from '../constants';
 import './Header.css';
 
 interface HeaderProps {
+  theme: 'light' | 'dark';
+  onToggleTheme: () => void;
   onNavigateToProjects?: () => void;
   onNavigateToVideos?: () => void;
   onNavigateToAboutMe?: () => void;
@@ -37,26 +39,11 @@ const EmailIcon: React.FC<{ size?: number; className?: string }> = ({ size = 18,
   </svg>
 );
 
-const Header: React.FC<HeaderProps> = ({ onNavigateToProjects, onNavigateToVideos, onNavigateToAboutMe }) => {
+const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, onNavigateToProjects, onNavigateToVideos, onNavigateToAboutMe }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [cursorToast, setCursorToast] = useState<{ x: number; y: number; key: number } | null>(null);
-  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
-    if (typeof window === 'undefined') return 'light';
-    const stored = window.localStorage.getItem('theme');
-    if (stored === 'light' || stored === 'dark') return stored;
-    return window.matchMedia?.('(prefers-color-scheme: dark)')?.matches ? 'dark' : 'light';
-  });
 
   const EMAIL = 'xiuziguo@gmail.com';
-
-  useEffect(() => {
-    document.documentElement.dataset.theme = theme;
-    try {
-      window.localStorage.setItem('theme', theme);
-    } catch {
-      // ignore
-    }
-  }, [theme]);
 
   const copyToClipboard = async (text: string) => {
     // Prefer async clipboard API
@@ -88,8 +75,6 @@ const Header: React.FC<HeaderProps> = ({ onNavigateToProjects, onNavigateToVideo
     }
   };
 
-  const toggleTheme = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'));
-
   return (
     <>
       <header className="header-container">
@@ -118,7 +103,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigateToProjects, onNavigateToVideo
                   >
                     {link.name}
                   </button>
-                ) : link.name === 'Videos' && onNavigateToVideos ? (
+                ) : link.name === 'Film' && onNavigateToVideos ? (
                   <button
                     key={link.name}
                     onClick={(e) => {
@@ -167,7 +152,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigateToProjects, onNavigateToVideo
             <button
               type="button"
               className={`header-theme-toggle ${theme === 'dark' ? 'is-dark' : 'is-light'}`}
-              onClick={toggleTheme}
+              onClick={onToggleTheme}
               aria-label="Toggle dark mode"
               title="Toggle dark mode"
             >
@@ -251,7 +236,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigateToProjects, onNavigateToVideo
                     >
                       {link.name}
                     </button>
-                  ) : link.name === 'Videos' && onNavigateToVideos ? (
+                  ) : link.name === 'Film' && onNavigateToVideos ? (
                     <button
                       onClick={() => {
                         setMobileMenuOpen(false);

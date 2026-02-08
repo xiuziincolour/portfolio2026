@@ -122,6 +122,25 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
           {/* Left Column: Sticky Timeline & Index */}
           <aside className="case-study-sidebar">
             <div className="case-study-sidebar-sticky">
+              <div className="case-study-outcome-buttons">
+                <a
+                  href="https://mdia-2109-linko-7ulc.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="case-study-outcome-btn"
+                >
+                  View Coded App
+                </a>
+                <a
+                  href="https://htmlpreview.github.io/?https://github.com/primcharlin/LINKO-A5Styleguide/blob/main/index.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="case-study-outcome-btn"
+                >
+                  View website
+                </a>
+              </div>
+
               <span className="case-study-index-label">Index</span>
               
               <div className="case-study-timeline">

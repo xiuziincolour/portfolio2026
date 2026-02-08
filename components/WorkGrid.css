@@ -2,7 +2,7 @@
 
 .work-grid-section {
   padding: var(--spacing-6) var(--spacing-6) var(--spacing-12) var(--spacing-6);
-  padding-top: 6rem;
+  padding-top: 2.5rem;
   background-color: var(--brand-bg);
   scroll-margin-top: 6rem;
 }
@@ -10,7 +10,7 @@
 @media (min-width: 768px) {
   .work-grid-section {
     padding: var(--spacing-8) var(--spacing-12) var(--spacing-24) var(--spacing-12);
-    padding-top: 7rem;
+    padding-top: 3rem;
   }
 }
 
@@ -35,7 +35,7 @@
   font-size: var(--text-4xl);
   font-weight: bold;
   letter-spacing: -0.02em;
-  color: #D7586F;
+  color: #002FA7;
   margin-bottom: var(--spacing-4);
 }
 
@@ -46,7 +46,7 @@
 }
 
 .work-grid-subtitle {
-  color: #D7586F;
+  color: #002FA7;
   font-weight: 500;
   font-size: var(--text-sm);
   text-transform: uppercase;

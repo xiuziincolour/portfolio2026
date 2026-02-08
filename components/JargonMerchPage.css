@@ -39,13 +39,15 @@
   font-size: 0.9375rem;
   border: 1px solid rgba(0, 0, 0, 0.06);
   cursor: pointer;
-  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
 }
 
 .jargon-merch-back:hover {
-  background: var(--brand-orange);
-  color: white;
-  border-color: transparent;
+  color: var(--brand-blue);
+}
+
+.jargon-merch-back:active {
+  transform: scale(0.98);
 }
 
 .jargon-merch-back-icon {
@@ -54,7 +56,7 @@
 }
 
 .jargon-merch-back:hover .jargon-merch-back-icon {
-  transform: translateX(-3px);
+  transform: translateX(-0.25rem);
 }
 
 /* Main */
@@ -156,6 +158,63 @@
   margin-top: 2rem;
   padding-top: 2.5rem;
   border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Group Pictures — 3D Carousel (same as Menu page) */
+.jargon-merch-group-carousel {
+  position: relative;
+  width: 100%;
+  height: 460px;
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.jargon-merch-group-carousel-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.jargon-merch-group-carousel-item {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 320px;
+  max-width: 78vw;
+  height: 440px;
+  margin-left: -160px;
+  margin-top: -220px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.jargon-merch-group-carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+  border: none;
+}
+
+@media (min-width: 768px) {
+  .jargon-merch-group-carousel {
+    height: 560px;
+  }
+
+  .jargon-merch-group-carousel-item {
+    width: 380px;
+    height: 520px;
+    margin-left: -190px;
+    margin-top: -260px;
+  }
 }
 
 /* Jargon Photobooth */

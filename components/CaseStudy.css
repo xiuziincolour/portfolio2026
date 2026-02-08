@@ -36,12 +36,15 @@
   color: #1A1A1A;
   font-weight: 500;
   transition: all 0.3s ease;
-  border: 1px solid rgba(215, 88, 111, 0.05);
+  border: 1px solid rgba(0, 47, 167, 0.05);
 }
 
 .case-study-back-button:hover {
-  background-color: #D7586F;
-  color: white;
+  color: var(--brand-blue);
+}
+
+.case-study-back-button:active {
+  transform: scale(0.98);
 }
 
 .case-study-back-icon {
@@ -426,7 +429,7 @@
 
 .case-study-image {
   width: 100%;
-  box-shadow: 0 25px 50px -12px rgba(215, 88, 111, 0.25);
+  box-shadow: 0 25px 50px -12px rgba(0, 47, 167, 0.25);
   border-radius: 0.5rem;
 }
 
@@ -759,7 +762,7 @@
 
 .case-study-visual-image {
   width: 100%;
-  box-shadow: 0 25px 50px -12px rgba(215, 88, 111, 0.25);
+  box-shadow: 0 25px 50px -12px rgba(0, 47, 167, 0.25);
   margin-bottom: 2rem;
 }
 
@@ -883,6 +886,34 @@
 
 .case-study-outcome-next-link:hover .case-study-outcome-next-icon {
   transform: translate(0.25rem, -0.25rem);
+}
+
+.case-study-outcome-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.case-study-outcome-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.625rem 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--brand-text);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.case-study-outcome-btn:hover {
+  color: var(--brand-orange);
 }
 
 /* ========== Mobile (Case Study) ========== */
