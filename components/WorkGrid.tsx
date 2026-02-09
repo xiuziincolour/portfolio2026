@@ -8,7 +8,7 @@ const JARGON_MERCH_COVER_LIGHT = '/img/Jargon-merch/jagron-merch-cover-lightmode
 const JARGON_MERCH_COVER_DARK = '/img/Jargon-merch/jagron-merch-cover-darkmode.png';
 const EMAG_COVER_LIGHT = '/img/graphics-emag/xiuzi-emag-light-mode.png';
 const EMAG_COVER_DARK = '/img/graphics-emag/xiuzi-emag-dark-mode.png';
-const JARGON_HOME_COVER_VIDEO = '/img/jargon/Jargon-video.mp4';
+const JARGON_HOME_COVER_VIDEO = 'https://pub-b1a10ff6b2664d4c86d2cb6c5ad45fc8.r2.dev/Jargon-video.mp4';
 
 interface WorkGridProps {
   theme?: 'light' | 'dark';
