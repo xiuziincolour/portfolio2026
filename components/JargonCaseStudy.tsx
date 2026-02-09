@@ -396,11 +396,30 @@ const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
                                  />
                               </div>
                               <div className="jargon-case-study-text-block">
-                                 <h4 className="jargon-case-study-text-title">Color, Typography &amp; Components</h4>
+                                 <h4 className="jargon-case-study-text-title">Colour &amp; Type</h4>
                                  <p className="jargon-case-study-text-paragraph">
                                     High contrast for accessibility and clarity, set in clean, readable, industrial-inspired type, with card-based layouts to reduce overwhelm.
                                  </p>
                               </div>
+                           </div>
+
+                           <div className="jargon-case-study-image-full-width jargon-case-study-image-sm">
+                              <img
+                                 src="/img/jargon/Jargon-typeandcolour.jpg"
+                                 alt="Jargon Colour and Type"
+                                 className="jargon-case-study-image jargon-case-study-image-no-shadow jargon-case-study-image-clickable"
+                                 onClick={(e) =>
+                                    setLightboxSrc(
+                                       (e.target as HTMLImageElement).currentSrc ||
+                                       (e.target as HTMLImageElement).src
+                                    )
+                                 }
+                                 role="button"
+                                 tabIndex={0}
+                                 onKeyDown={(e) =>
+                                    e.key === 'Enter' && setLightboxSrc('/img/jargon/Jargon-typeandcolour.jpg')
+                                 }
+                              />
                            </div>
 
                            <div className="jargon-case-study-image-full-width jargon-case-study-image-sm jargon-case-study-styleguide-image">
