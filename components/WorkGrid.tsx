@@ -6,6 +6,7 @@ import './WorkGrid.css';
 
 const JARGON_MERCH_COVER_LIGHT = '/img/Jargon-merch/jagron-merch-cover-lightmode.png';
 const JARGON_MERCH_COVER_DARK = '/img/Jargon-merch/jagron-merch-cover-darkmode.png';
+const JARGON_MERCH_COVER_VIDEO = '/img/Jargon-merch/jargon-merch-cover.mp4';
 const EMAG_COVER_LIGHT = '/img/graphics-emag/xiuzi-emag-light-mode.png';
 const EMAG_COVER_DARK = '/img/graphics-emag/xiuzi-emag-dark-mode.png';
 const JARGON_HOME_COVER_VIDEO = 'https://pub-b1a10ff6b2664d4c86d2cb6c5ad45fc8.r2.dev/Jargon-video.mp4';
@@ -19,14 +20,13 @@ const WorkGrid: React.FC<WorkGridProps> = ({ theme = 'light', onOpenProject }) =
   const scrollDirection = useScrollDirection();
   const shouldAnimate = scrollDirection === 'down' || scrollDirection === null;
   const jargonVideoRef = useRef<HTMLVideoElement | null>(null);
+  const jargonMerchVideoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
-    const el = jargonVideoRef.current;
-    if (!el) return;
-    // Some browsers will show poster unless we explicitly try to play.
-    el.play().catch(() => {
-      // Autoplay can still be blocked in some environments; poster will remain.
-    });
+    jargonVideoRef.current?.play().catch(() => {});
+  }, []);
+  useEffect(() => {
+    jargonMerchVideoRef.current?.play().catch(() => {});
   }, []);
 
   const getCardImage = (work: (typeof UNIFIED_WORKS)[0]) => {
@@ -63,6 +63,19 @@ const WorkGrid: React.FC<WorkGridProps> = ({ theme = 'light', onOpenProject }) =
                     ref={jargonVideoRef}
                     className="work-grid-card-media"
                     src={JARGON_HOME_COVER_VIDEO}
+                    poster={getCardImage(work)}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    aria-label={work.title}
+                  />
+                ) : work.id === 'w3' ? (
+                  <video
+                    ref={jargonMerchVideoRef}
+                    className="work-grid-card-media"
+                    src={JARGON_MERCH_COVER_VIDEO}
                     poster={getCardImage(work)}
                     autoPlay
                     muted
