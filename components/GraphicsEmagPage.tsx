@@ -35,7 +35,7 @@ const GraphicsEmagPage: React.FC<GraphicsEmagPageProps> = ({ onBack }) => {
             transition={{ duration: 0.5 }}
           >
             <span className="jargon-merch-badge">Graphic Design</span>
-            <h1 className="jargon-merch-title">Graphics E-mag</h1>
+            <h1 className="jargon-merch-title">Drive The Dream, Feel The Coast</h1>
             <p className="jargon-merch-subtitle">Editorial Design</p>
 
             <div className="jargon-merch-meta">
@@ -89,7 +89,7 @@ const GraphicsEmagPage: React.FC<GraphicsEmagPageProps> = ({ onBack }) => {
             transition={{ duration: 0.5, delay: 0.15 }}
           >
             <iframe
-              title="Graphics E-mag flipbook"
+              title="Drive The Dream, Feel The Coast flipbook"
               allowFullScreen
               allow="clipboard-write"
               scrolling="no"

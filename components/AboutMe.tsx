@@ -151,7 +151,8 @@ const AboutMe: React.FC<AboutMeProps> = ({ onBack }) => {
           >
             <strong className="about-me-name">Xiuzi Guo</strong>
             {' '}
-            is a product & brand designer with a love for craft, interfaces, and moving image.
+            is a Product & UI/UX Designer with a love for user-centered interfaces, and moving image{' '}
+            <span className="about-me-intro-note">(and JRPGs)</span>.
           </motion.p>
         </section>
 
@@ -163,7 +164,7 @@ const AboutMe: React.FC<AboutMeProps> = ({ onBack }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
           >
-            I design and code digital products—from UI/UX and branding to motion and film. I focus on clear storytelling and thoughtful craft across interfaces and visuals.
+            Yes, the name starts with an X—but I promise it&rsquo;s easier to pronounce than Elon&rsquo;s kid! Think &lsquo;<strong>Show-tzu</strong>&rsquo;.
           </motion.p>
           <motion.p
             className="about-me-bio-p"
@@ -171,7 +172,7 @@ const AboutMe: React.FC<AboutMeProps> = ({ onBack }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, delay: 1.05, ease: [0.22, 1, 0.36, 1] }}
           >
-            My work spans product design, graphic design, and video—bringing ideas from concept to launch with a focus on user experience and visual identity.
+            I&rsquo;m a designer and developer dedicated to bringing digital products from concept to launch. With a background spanning product design, visual identity, and video production, I focus on clear storytelling and thoughtful craft. Whether I&rsquo;m wireframing an interface or editing a brand film, my goal is always the same: creating seamless user experiences through high-fidelity visuals.
           </motion.p>
         </section>
       </div>

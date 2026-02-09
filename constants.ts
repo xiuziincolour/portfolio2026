@@ -52,7 +52,7 @@ export const UNIFIED_WORKS: WorkItem[] = [
   },
   {
     id: 'w7',
-    title: 'Graphics E-mag',
+    title: 'Drive The Dream, Feel The Coast',
     subtitle: 'Graphic Design',
     category: 'Graphic Design',
     type: 'image',
@@ -69,7 +69,7 @@ export const UNIFIED_WORKS: WorkItem[] = [
   },
   {
     id: 'w6',
-    title: 'Xiuzi Menu',
+    title: 'Toastico Menu',
     subtitle: 'Graphic Design',
     category: 'Graphic Design',
     type: 'image',

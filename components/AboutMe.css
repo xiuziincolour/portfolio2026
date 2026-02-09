@@ -132,6 +132,10 @@
   color: var(--brand-text);
 }
 
+.about-me-intro-note {
+  font-size: 11px;
+}
+
 /* Bio paragraphs */
 .about-me-bio {
   margin-bottom: 3rem;

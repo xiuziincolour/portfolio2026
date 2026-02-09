@@ -7,7 +7,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CaseStudy from './components/CaseStudy';
 import JargonCaseStudy from './components/JargonCaseStudy';
-import JargonMerchPage from './components/JargonMerchPage';
+import JargonMerchPage from './components/JargonMerchPage.tsx';
 import GraphicsEmagPage from './components/GraphicsEmagPage';
 import GraphicMenuPage from './components/GraphicMenuPage';
 import Projects from './components/Projects';
@@ -151,7 +151,7 @@ const App: React.FC = () => {
           />
           <main>
             <LandingIntro />
-            <WorkGrid onOpenProject={handleOpenProject} />
+            <WorkGrid theme={theme} onOpenProject={handleOpenProject} />
             <About onOpenAboutMe={handleOpenAboutMe} />
             <Contact />
           </main>

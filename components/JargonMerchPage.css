@@ -148,10 +148,14 @@
 /* Product sections */
 .jargon-merch-section {
   margin-bottom: 4rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .jargon-merch-section:last-child {
   margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
 }
 
 .jargon-merch-group-pictures {
@@ -160,12 +164,22 @@
   border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-/* Group Pictures — 3D Carousel (same as Menu page) */
+/* Group Pictures section — shorter vertical spacing */
+.jargon-merch-section--group {
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+}
+
+.jargon-merch-section--group .jargon-merch-section-title {
+  margin-bottom: 0.5rem;
+}
+
+/* Group Pictures — 3D Carousel */
 .jargon-merch-group-carousel {
   position: relative;
   width: 100%;
-  height: 460px;
-  margin-top: 1.5rem;
+  height: 420px;
+  margin-top: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -182,11 +196,11 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 320px;
-  max-width: 78vw;
-  height: 440px;
-  margin-left: -160px;
-  margin-top: -220px;
+  width: 360px;
+  max-width: 82vw;
+  height: 500px;
+  margin-left: -180px;
+  margin-top: -250px;
   padding: 0;
   border: none;
   background: transparent;
@@ -206,14 +220,14 @@
 
 @media (min-width: 768px) {
   .jargon-merch-group-carousel {
-    height: 560px;
+    height: 520px;
   }
 
   .jargon-merch-group-carousel-item {
-    width: 380px;
-    height: 520px;
-    margin-left: -190px;
-    margin-top: -260px;
+    width: 440px;
+    height: 600px;
+    margin-left: -220px;
+    margin-top: -300px;
   }
 }
 
@@ -241,8 +255,10 @@
   gap: 0.5rem;
   font-size: 0.9375rem;
   color: var(--brand-orange);
-  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 0;
   transition: color 0.2s ease;
+  text-decoration: none;
 }
 
 .jargon-merch-photobooth-link:hover {
@@ -258,9 +274,10 @@
   align-items: flex-end;
   justify-content: center;
   gap: 0.5rem;
-  margin-top: 0.5rem;
-  padding: 0.75rem 0;
+  margin-top: 1rem;
+  padding: 1.5rem 0.75rem;
   overflow: visible;
+  min-height: 200px;
 }
 
 .jargon-merch-photobooth-thumb {
@@ -274,15 +291,29 @@
   position: relative;
   z-index: 1;
   border-radius: 0;
-  overflow: hidden;
+  overflow: visible;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-  transition: box-shadow 0.25s ease;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
+
+/* Slight rotation per strip so they don't look flat */
+.jargon-merch-photobooth-thumb:nth-child(1) { transform: rotate(-4deg); }
+.jargon-merch-photobooth-thumb:nth-child(2) { transform: rotate(3deg); }
+.jargon-merch-photobooth-thumb:nth-child(3) { transform: rotate(-2deg); }
+.jargon-merch-photobooth-thumb:nth-child(4) { transform: rotate(4deg); }
+.jargon-merch-photobooth-thumb:nth-child(5) { transform: rotate(-3deg); }
 
 .jargon-merch-photobooth-thumb:hover {
   z-index: 10;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transform: rotate(0deg) scale(1.02);
 }
+
+.jargon-merch-photobooth-thumb:nth-child(1):hover { transform: rotate(0deg) scale(1.02); }
+.jargon-merch-photobooth-thumb:nth-child(2):hover { transform: rotate(0deg) scale(1.02); }
+.jargon-merch-photobooth-thumb:nth-child(3):hover { transform: rotate(0deg) scale(1.02); }
+.jargon-merch-photobooth-thumb:nth-child(4):hover { transform: rotate(0deg) scale(1.02); }
+.jargon-merch-photobooth-thumb:nth-child(5):hover { transform: rotate(0deg) scale(1.02); }
 
 .jargon-merch-photobooth-thumb img {
   width: 100%;
@@ -295,6 +326,8 @@
 @media (min-width: 768px) {
   .jargon-merch-photobooth-row {
     gap: 0.75rem;
+    padding: 2rem 1rem;
+    min-height: 260px;
   }
 
   .jargon-merch-photobooth-thumb {
@@ -302,6 +335,7 @@
     max-width: 118px;
   }
 }
+
 
 /* Group Pictures — Slideshow */
 .jargon-merch-slideshow {

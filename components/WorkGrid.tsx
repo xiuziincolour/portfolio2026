@@ -1,16 +1,43 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { UNIFIED_WORKS } from '../constants';
 import { useScrollDirection } from '../hooks/useScrollDirection';
 import './WorkGrid.css';
 
+const JARGON_MERCH_COVER_LIGHT = '/img/Jargon-merch/jagron-merch-cover-lightmode.png';
+const JARGON_MERCH_COVER_DARK = '/img/Jargon-merch/jagron-merch-cover-darkmode.png';
+const EMAG_COVER_LIGHT = '/img/graphics-emag/xiuzi-emag-light-mode.png';
+const EMAG_COVER_DARK = '/img/graphics-emag/xiuzi-emag-dark-mode.png';
+const JARGON_HOME_COVER_VIDEO = '/img/jargon/Jargon-video.mp4';
+
 interface WorkGridProps {
+  theme?: 'light' | 'dark';
   onOpenProject?: (id: string) => void;
 }
 
-const WorkGrid: React.FC<WorkGridProps> = ({ onOpenProject }) => {
+const WorkGrid: React.FC<WorkGridProps> = ({ theme = 'light', onOpenProject }) => {
   const scrollDirection = useScrollDirection();
   const shouldAnimate = scrollDirection === 'down' || scrollDirection === null;
+  const jargonVideoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const el = jargonVideoRef.current;
+    if (!el) return;
+    // Some browsers will show poster unless we explicitly try to play.
+    el.play().catch(() => {
+      // Autoplay can still be blocked in some environments; poster will remain.
+    });
+  }, []);
+
+  const getCardImage = (work: (typeof UNIFIED_WORKS)[0]) => {
+    if (work.id === 'w3') {
+      return theme === 'dark' ? JARGON_MERCH_COVER_DARK : JARGON_MERCH_COVER_LIGHT;
+    }
+    if (work.id === 'w7') {
+      return theme === 'dark' ? EMAG_COVER_DARK : EMAG_COVER_LIGHT;
+    }
+    return work.image;
+  };
 
   return (
     <section id="work" className="work-grid-section">
@@ -31,8 +58,28 @@ const WorkGrid: React.FC<WorkGridProps> = ({ onOpenProject }) => {
               className="work-grid-card"
             >
               <div className="work-grid-card-image">
-                {work.type === 'image' && work.image && (
-                  <img src={work.image} alt={work.title} />
+                {work.id === 'w2' ? (
+                  <video
+                    ref={jargonVideoRef}
+                    className="work-grid-card-media"
+                    src={JARGON_HOME_COVER_VIDEO}
+                    poster={getCardImage(work)}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    aria-label={work.title}
+                  />
+                ) : (
+                  work.type === 'image' &&
+                  getCardImage(work) && (
+                    <img
+                      className="work-grid-card-media"
+                      src={getCardImage(work)}
+                      alt={work.title}
+                    />
+                  )
                 )}
                 <div className="work-grid-card-hover">
                   <span>View Case Study</span>

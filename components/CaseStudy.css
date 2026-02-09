@@ -189,7 +189,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .case-study-title-badge {
@@ -201,7 +201,7 @@
 }
 
 .case-study-title {
-  font-size: 3.75rem;
+  font-size: 2.75rem;
   font-weight: bold;
   letter-spacing: -0.05em;
   line-height: 0.9;
@@ -210,7 +210,7 @@
 
 @media (min-width: 768px) {
   .case-study-title {
-    font-size: 5rem;
+    font-size: 3.5rem;
   }
 }
 
@@ -247,12 +247,12 @@
   }
 
   .case-study-title {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     line-height: 0.95;
   }
 
   .case-study-title-description {
-    font-size: 1.375rem;
+    font-size: 1.0625rem;
   }
 
   .case-study-title-block {
@@ -260,7 +260,7 @@
   }
 
   .case-study-title-info {
-    margin-top: 3rem;
+    margin-top: 1.25rem;
     gap: 2rem;
   }
 
@@ -292,26 +292,20 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 3rem;
-  margin-top: 4rem;
+  margin-top: 1.5rem;
 }
 
-@media (min-width: 768px) {
-  .case-study-title-info {
-    flex-direction: row;
-  }
-}
 
 .case-study-title-description {
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   font-weight: 300;
   line-height: 1.25;
   color: #1f2937;
-  max-width: 42rem;
 }
 
 @media (min-width: 768px) {
   .case-study-title-description {
-    font-size: 1.875rem;
+    font-size: 1.25rem;
   }
 }
 
@@ -382,7 +376,7 @@
 }
 
 .case-study-text-paragraph {
-  font-size: 1.125rem;
+  font-size: 0.9375rem;
   color: #4b5563;
   line-height: 1.75;
   font-weight: 300;
@@ -395,7 +389,7 @@
   flex-direction: column;
   gap: 0.5rem;
   color: #4b5563;
-  font-size: 1.125rem;
+  font-size: 0.9375rem;
   line-height: 1.75;
   font-weight: 300;
 }
@@ -410,7 +404,7 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  font-size: 1.125rem;
+  font-size: 0.9375rem;
   color: #4b5563;
   line-height: 1.75;
   font-weight: 300;
@@ -453,7 +447,9 @@
 }
 
 .case-study-grid-text {
+  font-size: 0.9375rem;
   color: #4b5563;
+  line-height: 1.75;
 }
 
 .case-study-process-wrapper {
@@ -495,7 +491,7 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  font-size: 1.125rem;
+  font-size: 0.9375rem;
   color: #4b5563;
   line-height: 1.75;
   margin-bottom: 2rem;
@@ -974,17 +970,17 @@
   }
 
   .case-study-title {
-    font-size: 2rem;
+    font-size: 1.75rem;
     line-height: 1.1;
   }
 
   .case-study-title-info {
-    margin-top: 2.5rem;
+    margin-top: 1rem;
     gap: 2rem;
   }
 
   .case-study-title-description {
-    font-size: 1.125rem;
+    font-size: 1rem;
   }
 
   .case-study-title-meta {
@@ -1005,7 +1001,7 @@
   .case-study-text-paragraph,
   .case-study-problem-content,
   .case-study-grid-text {
-    font-size: 1rem;
+    font-size: 0.9375rem;
   }
 
   .case-study-nav {

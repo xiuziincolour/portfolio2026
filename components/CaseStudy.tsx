@@ -193,7 +193,7 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
                 <div className="case-study-title-header">
                    <span className="case-study-title-badge">Product Design</span>
                    <h1 className="case-study-title">
-                     Linko:<br/>Redefining the<br/>Live Music Social<br/>Experience
+                     Linko: Redefining the Live Music Social Experience
                    </h1>
                 </div>
                 
@@ -233,12 +233,6 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
                     <h3 className="case-study-text-title">Background</h3>
                     <p className="case-study-text-paragraph">
                       Linko is a social platform designed to connect music lovers, turning solo concert-going into a shared community experience. It addresses the common struggle of finding others who share a passion for live music.
-                    </p>
-                 </div>
-                 <div className="case-study-text-block">
-                    <h3 className="case-study-text-title">Role</h3>
-                    <p className="case-study-text-paragraph">
-                      <strong>UI/UX Designer</strong> — Responsible for the complete design process from research to high-fidelity prototypes.
                     </p>
                  </div>
                  <div className="case-study-text-block">

@@ -60,7 +60,7 @@ const GraphicMenuPage: React.FC<GraphicMenuPageProps> = ({ onBack }) => {
             transition={{ duration: 0.5 }}
           >
             <span className="jargon-merch-badge">Graphic Design</span>
-            <h1 className="jargon-merch-title">Xiuzi Menu</h1>
+            <h1 className="jargon-merch-title">Toastico Menu</h1>
             <p className="jargon-merch-subtitle">Editorial / Menu Design</p>
 
             <div className="jargon-merch-meta">

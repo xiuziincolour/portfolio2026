@@ -84,15 +84,20 @@
   border-radius: 0.5rem 0.5rem 0 0;
 }
 
-.work-grid-card-image img {
+.work-grid-card-media {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 0.5rem;
   transition: transform 0.5s ease;
+  display: block;
 }
 
-.work-grid-card:hover .work-grid-card-image img {
+.work-grid-card-image video.work-grid-card-media {
+  pointer-events: none;
+}
+
+.work-grid-card:hover .work-grid-card-media {
   transform: scale(1.03);
 }
 
