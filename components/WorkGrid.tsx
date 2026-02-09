@@ -6,7 +6,7 @@ import './WorkGrid.css';
 
 const JARGON_MERCH_COVER_LIGHT = '/img/Jargon-merch/jagron-merch-cover-lightmode.png';
 const JARGON_MERCH_COVER_DARK = '/img/Jargon-merch/jagron-merch-cover-darkmode.png';
-const JARGON_MERCH_COVER_VIDEO = '/img/Jargon-merch/jargon-merch-cover.mp4';
+const JARGON_MERCH_COVER_VIDEO = 'https://pub-b1a10ff6b2664d4c86d2cb6c5ad45fc8.r2.dev/jargon-merch-cover.mp4';
 const EMAG_COVER_LIGHT = '/img/graphics-emag/xiuzi-emag-light-mode.png';
 const EMAG_COVER_DARK = '/img/graphics-emag/xiuzi-emag-dark-mode.png';
 const JARGON_HOME_COVER_VIDEO = 'https://pub-b1a10ff6b2664d4c86d2cb6c5ad45fc8.r2.dev/Jargon-video.mp4';
@@ -23,10 +23,23 @@ const WorkGrid: React.FC<WorkGridProps> = ({ theme = 'light', onOpenProject }) =
   const jargonMerchVideoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
-    jargonVideoRef.current?.play().catch(() => {});
-  }, []);
-  useEffect(() => {
-    jargonMerchVideoRef.current?.play().catch(() => {});
+    const videos = [jargonVideoRef.current, jargonMerchVideoRef.current].filter(Boolean) as HTMLVideoElement[];
+    if (videos.length === 0) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target as HTMLVideoElement;
+          if (entry.isIntersecting) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.25, rootMargin: '50px' }
+    );
+    videos.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
   }, []);
 
   const getCardImage = (work: (typeof UNIFIED_WORKS)[0]) => {
