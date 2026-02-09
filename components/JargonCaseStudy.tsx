@@ -7,6 +7,8 @@ interface JargonCaseStudyProps {
    onBack: () => void;
 }
 
+const JARGON_HERO_VIDEO = 'https://pub-b1a10ff6b2664d4c86d2cb6c5ad45fc8.r2.dev/Jargon-video-banner.mp4';
+
 const SECTIONS = [
    { id: 'overview', title: '01. Overview' },
    { id: 'research', title: '02. Research' },
@@ -102,16 +104,18 @@ const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
             </div>
          </div>
 
-         {/* Hero Image Section - Image Only */}
+         {/* Hero Section - Jargon Video */}
          <header className="jargon-case-study-hero">
-            <img
-               src="/img/jargon/Jargon-cover.png"
-               alt="Jargon Hero"
-               className="jargon-case-study-hero-image jargon-case-study-image-clickable"
-               onClick={(e) => setLightboxSrc((e.target as HTMLImageElement).currentSrc || (e.target as HTMLImageElement).src)}
-               role="button"
-               tabIndex={0}
-               onKeyDown={(e) => e.key === 'Enter' && setLightboxSrc('/img/jargon/Jargon-cover.png')}
+            <video
+               className="jargon-case-study-hero-image"
+               src={JARGON_HERO_VIDEO}
+               poster="/img/jargon/Jargon-cover.png"
+               autoPlay
+               muted
+               loop
+               playsInline
+               preload="auto"
+               aria-label="Jargon case study hero video"
             />
          </header>
 
