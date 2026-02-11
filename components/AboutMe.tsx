@@ -30,6 +30,7 @@ const AboutMe: React.FC<AboutMeProps> = ({ onBack }) => {
   const [draggingId, setDraggingId] = useState<number | null>(null);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const [lightboxPhoto, setLightboxPhoto] = useState<{ src: string; alt: string } | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const collageRef = useRef<HTMLElement>(null);
   const pendingDragRef = useRef<{ index: number; startX: number; startY: number } | null>(null);
 
@@ -37,6 +38,7 @@ const AboutMe: React.FC<AboutMeProps> = ({ onBack }) => {
 
   const handlePointerDown = useCallback((e: React.PointerEvent, index: number) => {
     e.preventDefault();
+    setActiveIndex(index);
     pendingDragRef.current = { index, startX: e.clientX, startY: e.clientY };
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
   }, []);
@@ -124,10 +126,12 @@ const AboutMe: React.FC<AboutMeProps> = ({ onBack }) => {
               style={{
                 left: `${positions[index].left}%`,
                 top: `${positions[index].top}px`,
+                zIndex: activeIndex === index ? 20 : undefined,
               }}
               initial={{ opacity: 0, y: 28, rotate: PHOTO_ROTATIONS[index] }}
               animate={{ opacity: 1, y: 0, rotate: PHOTO_ROTATIONS[index] }}
-              transition={{ duration: 0.85, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ rotate: PHOTO_ROTATIONS[index] + 3, scale: 1.03 }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
               onPointerDown={(e) => handlePointerDown(e, index)}
               onPointerMove={handlePointerMove}
               onPointerUp={handlePointerUp}
