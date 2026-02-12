@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy, Suspense } from 'react';
+import React, { useCallback, useEffect, useState, useRef, lazy, Suspense } from 'react';
 import Header from './components/Header';
 import LandingIntro from './components/LandingIntro';
 import WorkGrid from './components/WorkGrid';
@@ -17,11 +17,23 @@ import './App.css';
 const VideoPage = lazy(() => import('./components/VideoPage'));
 
 const THEME_BG = { light: '#F5F5F5', dark: '#0b0b0c' } as const;
+const INTRO_PLAYED_KEY = 'xiuzi-intro-played';
 
 type ViewState = 'home' | 'case-study' | 'jargon-case-study' | 'jargon-merch' | 'graphics-emag' | 'graphic-menu' | 'projects' | 'about-me' | 'videos';
 
 const App: React.FC = () => {
-  const [loading, setLoading] = useState(true);
+  const [showIntroOverlay, setShowIntroOverlay] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return !sessionStorage.getItem(INTRO_PLAYED_KEY);
+  });
+  const [introUseGif, setIntroUseGif] = useState(() => {
+    if (typeof window === 'undefined') return true;
+    const v = document.createElement('video');
+    return !v.canPlayType('video/mp4') && !v.canPlayType('video/quicktime');
+  });
+  const [introVideoError, setIntroVideoError] = useState(false);
+  const introVideoRef = useRef<HTMLVideoElement>(null);
+  const introEndHandledRef = useRef(false);
   const [currentView, setCurrentView] = useState<ViewState>('home');
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     if (typeof window === 'undefined') return 'light';
@@ -32,10 +44,79 @@ const App: React.FC = () => {
   const [themeOverlay, setThemeOverlay] = useState<{ from: string; to: string } | null>(null);
   const [overlayColor, setOverlayColor] = useState(THEME_BG.light);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 300);
-    return () => clearTimeout(timer);
+  const handleIntroEnd = useCallback(() => {
+    try {
+      sessionStorage.setItem(INTRO_PLAYED_KEY, '1');
+    } catch {
+      // ignore
+    }
+    setShowIntroOverlay(false);
   }, []);
+
+  const finishIntroAndClose = useCallback(() => {
+    if (introEndHandledRef.current) return;
+    introEndHandledRef.current = true;
+    const video = introVideoRef.current;
+    if (video) {
+      video.pause();
+      if (Number.isFinite(video.duration)) video.currentTime = video.duration;
+    }
+    requestAnimationFrame(() => {
+      const v = introVideoRef.current;
+      if (v) {
+        v.pause();
+        if (Number.isFinite(v.duration)) v.currentTime = v.duration;
+      }
+      setTimeout(handleIntroEnd, 300);
+    });
+  }, [handleIntroEnd]);
+
+  const handleIntroVideoEnded = useCallback(() => {
+    const video = introVideoRef.current;
+    if (!video || !Number.isFinite(video.duration)) return;
+    video.pause();
+    video.currentTime = video.duration;
+    finishIntroAndClose();
+  }, [finishIntroAndClose]);
+
+  const handleIntroTimeUpdate = useCallback(() => {
+    const video = introVideoRef.current;
+    if (!video || !Number.isFinite(video.duration)) return;
+    if (video.currentTime >= video.duration - 0.08) {
+      video.pause();
+      video.currentTime = video.duration;
+      finishIntroAndClose();
+    }
+  }, [finishIntroAndClose]);
+
+  useEffect(() => {
+    if (!showIntroOverlay || introUseGif || introVideoError) return;
+    const video = introVideoRef.current;
+    if (video) {
+      video.play().catch(() => setIntroVideoError(true));
+    }
+  }, [showIntroOverlay, introUseGif, introVideoError]);
+
+  // GIF 或视频出错：4 秒后关闭 overlay
+  useEffect(() => {
+    if (!showIntroOverlay) return;
+    if (introUseGif || introVideoError) {
+      const t = setTimeout(handleIntroEnd, 4000);
+      return () => clearTimeout(t);
+    }
+    return undefined;
+  }, [showIntroOverlay, introUseGif, introVideoError, handleIntroEnd]);
+
+  // 视频路径安全超时：若视频一直不 ended（如无 mp4 仅 mov 在 Chrome 不播放），约 6 秒后强制关闭
+  useEffect(() => {
+    if (!showIntroOverlay || introUseGif || introVideoError) return;
+    const t = setTimeout(() => {
+      if (introEndHandledRef.current) return;
+      setIntroVideoError(true);
+      handleIntroEnd();
+    }, 6000);
+    return () => clearTimeout(t);
+  }, [showIntroOverlay, introUseGif, introVideoError, handleIntroEnd]);
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -113,21 +194,6 @@ const App: React.FC = () => {
     window.scrollTo(0, 0);
   };
 
-  if (loading) {
-    return (
-      <div className="app-loading-container">
-        <div className="flex flex-col items-center gap-4">
-          <div className="app-loading-spinner"></div>
-          <img 
-            src="/img/xiuzi_logo.png" 
-            alt="Xiuzi Logo" 
-            className="h-16 w-auto animate-pulse"
-          />
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="app-container">
       {themeOverlay != null && (
@@ -137,6 +203,34 @@ const App: React.FC = () => {
           onTransitionEnd={handleThemeOverlayTransitionEnd}
           aria-hidden
         />
+      )}
+
+      {currentView === 'home' && showIntroOverlay && (
+        <div className="app-loading-container" aria-hidden>
+          {(introUseGif || introVideoError) ? (
+            <img
+              src="/img/xiuzi-logo-animation.gif"
+              alt="Xiuzi Logo Animation"
+              className="app-loading-animation"
+            />
+          ) : (
+            <video
+              ref={introVideoRef}
+              className="app-loading-animation"
+              autoPlay
+              muted
+              playsInline
+              preload="auto"
+              aria-label="Xiuzi Logo Animation"
+              onTimeUpdate={handleIntroTimeUpdate}
+              onEnded={handleIntroVideoEnded}
+              onError={() => setIntroVideoError(true)}
+            >
+              <source src="/img/xiuzi-logo-animation.mp4" type="video/mp4" />
+              <source src="/img/xiuzi-logo-animation.mov" type="video/quicktime" />
+            </video>
+          )}
+        </div>
       )}
 
       <div className="app-content">

@@ -11,6 +11,16 @@
   transition: background-color 0.5s ease;
 }
 
+.app-loading-animation {
+  display: block;
+  width: auto;
+  height: 15rem;
+  min-height: 240px;
+  max-width: 720px;
+  object-fit: contain;
+  background: transparent;
+}
+
 .app-loading-spinner {
   width: 3rem;
   height: 3rem;
