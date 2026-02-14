@@ -139,7 +139,7 @@ export const VIDEOS: VideoItem[] = [
   {
     id: 'v1',
     title: 'Annsey Interview',
-    subtitle: 'Director/Editor',
+    subtitle: 'Director/Editor/Cinematographer',
     thumbnail: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=2053&auto=format&fit=crop',
     duration: '5:30',
     videoUrl: PORTFOLIO_VIDEOS.Annseyinterview,

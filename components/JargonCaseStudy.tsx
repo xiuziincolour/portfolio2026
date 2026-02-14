@@ -405,7 +405,7 @@ const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
 
                            <div className="jargon-case-study-image-full-width jargon-case-study-image-sm">
                               <img
-                                 src="/img/jargon/Jargon-typeandcolour.jpg"
+                                 src="/img/jargon/Jargon-typeandcolour.png"
                                  alt="Jargon Colour and Type"
                                  className="jargon-case-study-image jargon-case-study-image-no-shadow jargon-case-study-image-clickable"
                                  onClick={(e) =>
@@ -417,15 +417,16 @@ const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
                                  role="button"
                                  tabIndex={0}
                                  onKeyDown={(e) =>
-                                    e.key === 'Enter' && setLightboxSrc('/img/jargon/Jargon-typeandcolour.jpg')
+                                    e.key === 'Enter' && setLightboxSrc('/img/jargon/Jargon-typeandcolour.png')
                                  }
                               />
                            </div>
 
-                           <div className="jargon-case-study-image-full-width jargon-case-study-image-sm jargon-case-study-styleguide-image">
+                           <h3 className="jargon-case-study-research-title">Component</h3>
+                           <div className="jargon-case-study-image-full-width jargon-case-study-image-sm">
                               <img
-                                 src="/img/jargon/Jargon-styleguide.jpg"
-                                 alt="Jargon Style Guide"
+                                 src="/img/jargon/Jargon-component.png"
+                                 alt="Jargon Component"
                                  className="jargon-case-study-image jargon-case-study-image-no-shadow jargon-case-study-image-clickable"
                                  onClick={(e) =>
                                     setLightboxSrc(
@@ -436,10 +437,11 @@ const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
                                  role="button"
                                  tabIndex={0}
                                  onKeyDown={(e) =>
-                                    e.key === 'Enter' && setLightboxSrc('/img/jargon/Jargon-styleguide.jpg')
+                                    e.key === 'Enter' && setLightboxSrc('/img/jargon/Jargon-component.png')
                                  }
                               />
                            </div>
+
                         </div>
 
                      </div>
@@ -546,7 +548,7 @@ const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
          <AnimatePresence>
             {lightboxSrc && (
                <motion.div
-                  className="jargon-case-study-lightbox-backdrop"
+                  className={`jargon-case-study-lightbox-backdrop${/Jargon-typeandcolour|Jargon-component/.test(lightboxSrc) ? ' jargon-case-study-lightbox-backdrop--light' : ''}`}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
