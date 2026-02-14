@@ -41,27 +41,32 @@ const LandingIntro: React.FC = () => {
     const charEls = section.querySelectorAll<HTMLElement>('.landing-intro-char');
     if (charEls.length !== chars.length) return;
 
+    // Pin = animation (150%) + buffer (stay pinned after alignment = 50% viewport)
+    const PIN_ANIMATION = 150;
+    const PIN_BUFFER = 80; // % viewport — extra scroll before unlock
+    const PIN_TOTAL = PIN_ANIMATION + PIN_BUFFER;
+    const animProgressEnd = PIN_ANIMATION / PIN_TOTAL;
+
     const scrollTrigger = ScrollTrigger.create({
       trigger: section,
       start: 'top top',
-      end: '+=150%',
+      end: `+=${PIN_TOTAL}%`,
       pin: true,
       pinSpacing: true,
       onUpdate: (self) => {
-        const p = self.progress;
+        const pRaw = self.progress;
+        const p = Math.min(1, pRaw / animProgressEnd);
 
-        // Letters: chaos → aligned (0 → 1)
+        // Letters: chaos → aligned, then static in buffer
         charEls.forEach((el, i) => {
           const t = 1 - p;
           el.style.letterSpacing = `${BROKEN_KERNING[i] * t}em`;
           el.style.transform = `translate(${BROKEN_X[i] * t}px, ${BROKEN_Y[i] * t}px) rotate(${BROKEN_ROTATE[i] * t}deg)`;
         });
 
-        // Grid: fade in with scroll
         const gridOpacity = p < 0.35 ? (p / 0.35) * 0.12 : p < 0.7 ? 0.12 + ((p - 0.35) / 0.35) * 0.06 : 0.18;
         grid.style.opacity = String(gridOpacity);
 
-        // CTA: visible at start, fade out by mid scroll; hide after pin releases
         const ctaOpacity = p < 0.2 ? 1 : p < 0.5 ? 1 - (p - 0.2) / 0.3 : 0;
         cta.style.opacity = String(ctaOpacity);
       },
