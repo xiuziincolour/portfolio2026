@@ -6,7 +6,8 @@ import './LandingIntro.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const HEADLINE = "I have a love-hate relationship with chaos.";
+const HEADLINE = "Hey! I'm Xiuzi, a Product and UI/UX Designer";
+const HEADLINE_BREAK_INDEX = "Hey! I'm Xiuzi, ".length; // second line: "a Product and UI/UX Designer"
 
 const BROKEN_KERNING: number[] = [];
 const BROKEN_BASELINE: number[] = [];
@@ -93,18 +94,34 @@ const LandingIntro: React.FC = () => {
       <div className="landing-intro-container">
         <div className="landing-intro-text">
           <h2 className="landing-intro-headline" aria-label={HEADLINE}>
-            {chars.map((char, i) => (
+            {chars.slice(0, HEADLINE_BREAK_INDEX).map((char, idx) => (
               <span
-                key={i}
+                key={idx}
                 className="landing-intro-char"
                 style={{
-                  letterSpacing: `${BROKEN_KERNING[i]}em`,
-                  transform: `translate(${BROKEN_X[i]}px, ${BROKEN_Y[i]}px) rotate(${BROKEN_ROTATE[i]}deg)`,
+                  letterSpacing: `${BROKEN_KERNING[idx]}em`,
+                  transform: `translate(${BROKEN_X[idx]}px, ${BROKEN_Y[idx]}px) rotate(${BROKEN_ROTATE[idx]}deg)`,
                 }}
               >
                 {char === ' ' ? '\u00A0' : char}
               </span>
             ))}
+            <br />
+            {chars.slice(HEADLINE_BREAK_INDEX).map((char, idx) => {
+              const i = HEADLINE_BREAK_INDEX + idx;
+              return (
+                <span
+                  key={i}
+                  className="landing-intro-char"
+                  style={{
+                    letterSpacing: `${BROKEN_KERNING[i]}em`,
+                    transform: `translate(${BROKEN_X[i]}px, ${BROKEN_Y[i]}px) rotate(${BROKEN_ROTATE[i]}deg)`,
+                  }}
+                >
+                  {char === ' ' ? '\u00A0' : char}
+                </span>
+              );
+            })}
           </h2>
           <motion.div
             className="landing-intro-body"
@@ -114,7 +131,7 @@ const LandingIntro: React.FC = () => {
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
             <p>
-              I love diving into chaos, and I hate leaving it messy. With 6+ years of experience, I've become a professional &lsquo;noise-canceling&rsquo; filter for digital products. I translate messy ideas into confident, scalable systems—because life is too short for clunky interfaces and bad kerning.
+              with a strong background in Film and Motion. Driven by purposeful design, user psychology, and exploring Vancouver's craft beer scene.
             </p>
           </motion.div>
         </div>
