@@ -1,0 +1,18 @@
+标签页图标还是扁？请按下面做：
+
+1. 很多浏览器会「先」请求根目录的 /favicon.ico，不会用 index.html 里的 PNG。
+   请把「正方形」的图标放到这里：
+   
+   public/favicon.ico   （必须放在 public 根目录，不是 public/img）
+
+2. 做法：
+   - 用你的正方形 favicon.png（public/img/favicon.png）
+   - 用在线工具转成 .ico：例如 https://favicon.io/favicon-converter/
+   - 下载得到的 favicon.ico，放到 public/ 目录下（和 index.html 同级的那层 public）
+
+3. 确认图片本身是正方形：
+   用预览/PS 等打开 favicon.png，看宽高是否完全一致（如 32×32、64×64）。
+   若宽≠高，导出时改成同一数字再替换。
+
+4. 更新后强制刷新：Ctrl+Shift+R（Windows）或 Cmd+Shift+R（Mac），
+   或关掉该标签页重新打开网站。

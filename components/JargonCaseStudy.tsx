@@ -282,6 +282,17 @@ const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
                            </div>
                            <div className="jargon-case-study-text-block">
                               <h4 className="jargon-case-study-text-title">Findings</h4>
+                              <div className="jargon-case-study-image-full-width jargon-case-study-image-near-link">
+                                 <img
+                                    src="/img/jargon/Jagron-suvery.png"
+                                    alt="Jargon User Survey"
+                                    className="jargon-case-study-image jargon-case-study-image-no-shadow jargon-case-study-image-clickable"
+                                    onClick={(e) => setLightboxSrc((e.target as HTMLImageElement).currentSrc || (e.target as HTMLImageElement).src)}
+                                    role="button"
+                                    tabIndex={0}
+                                    onKeyDown={(e) => e.key === 'Enter' && setLightboxSrc('/img/jargon/Jagron-suvery.png')}
+                                 />
+                              </div>
                               <p className="jargon-case-study-text-paragraph">
                                  <a
                                     href="/img/jargon/Jargon%20-User%20Survey%20Findings.pdf"
@@ -292,44 +303,53 @@ const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
                                     Jargon – User Survey Findings (PDF)
                                  </a>
                               </p>
+                              <h4 className="jargon-case-study-text-title jargon-case-study-text-paragraph-spaced">Identifying Patterns</h4>
+                              <p className="jargon-case-study-text-paragraph">
+                                 After synthesizing findings from 8 research participants, I identified the following core data points:
+                              </p>
+                              <ul className="jargon-case-study-list">
+                                 <li><strong>Safety Concerns:</strong> Language barriers directly impacted safety for <strong>62.5%</strong> of workers, often leading to misunderstood site warnings.</li>
+                                 <li><strong>Communication Gaps:</strong> <strong>75%</strong> of users faced persistent trouble when trying to clarify tasks or ask questions to supervisors.</li>
+                                 <li><strong>Micro-learning Habits:</strong> <strong>50%</strong> favored gamified assessments over traditional methods, prioritizing quick <strong>5–8 minute</strong> lessons that fit into their busy shifts.</li>
+                              </ul>
                            </div>
                         </div>
 
-                        <div>
+                        <div className="jargon-case-study-persona-group">
                            <h3 className="jargon-case-study-research-title">User Persona</h3>
+                           <p className="jargon-case-study-text-paragraph jargon-case-study-text-paragraph-spaced">
+                              Based on these data points, I developed two representative personas to transform complex research findings into tangible human stories.
+                           </p>
                            <div className="jargon-case-study-image-full-width">
                               <img
-                                 src="/img/jargon/Jargon-persona1.jpg"
+                                 src="/img/jargon/jargon-persona1.png"
                                  alt="Jargon User Persona 1"
                                  className="jargon-case-study-image jargon-case-study-image-clickable jargon-case-study-image-no-shadow"
                                  onClick={(e) => setLightboxSrc((e.target as HTMLImageElement).currentSrc || (e.target as HTMLImageElement).src)}
                                  role="button"
                                  tabIndex={0}
-                                 onKeyDown={(e) => e.key === 'Enter' && setLightboxSrc('/img/jargon/Jargon-persona1.jpg')}
+                                 onKeyDown={(e) => e.key === 'Enter' && setLightboxSrc('/img/jargon/jargon-persona1.png')}
                               />
                            </div>
                            <div className="jargon-case-study-image-full-width">
                               <img
-                                 src="/img/jargon/Jargon-persona2.jpg"
+                                 src="/img/jargon/Jargon-persona2.png"
                                  alt="Jargon User Persona 2"
                                  className="jargon-case-study-image jargon-case-study-image-clickable jargon-case-study-image-no-shadow"
                                  onClick={(e) => setLightboxSrc((e.target as HTMLImageElement).currentSrc || (e.target as HTMLImageElement).src)}
                                  role="button"
                                  tabIndex={0}
-                                 onKeyDown={(e) => e.key === 'Enter' && setLightboxSrc('/img/jargon/Jargon-persona2.jpg')}
+                                 onKeyDown={(e) => e.key === 'Enter' && setLightboxSrc('/img/jargon/Jargon-persona2.png')}
                               />
                            </div>
-                        </div>
-
-                        <div>
-                           <h3 className="jargon-case-study-research-title">Key Pain Points Identified</h3>
+                           <h4 className="jargon-case-study-text-title jargon-case-study-text-paragraph-spaced">Action Points</h4>
                            <ul className="jargon-case-study-list">
-                              <li>Difficulty understanding safety terminology</li>
-                              <li>Stress when reading technical documents</li>
-                              <li>Learning tools feel disconnected from real work</li>
-                              <li>Low motivation due to lack of visible progress</li>
+                              <li><strong>Document to Lesson:</strong> Let users upload manuals, safety notices, and forms; auto-generate flashcards, quizzes, and summaries from their own documents for immediate job relevance.</li>
+                              <li><strong>Clear Progress &amp; Standards:</strong> Display skill gains (speaking, safety, technical terms) with plain-language criteria and job-task checkmarks.</li>
+                              <li><strong>Scheduling That Fits Shifts:</strong> Surface dates/times prominently and suggest 5–8 minute micro-sessions for “Before work,” “After work,” and “During breaks,” based on user preferences.</li>
                            </ul>
                         </div>
+
                      </div>
                   </section>
 

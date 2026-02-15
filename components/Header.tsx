@@ -80,12 +80,14 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, onNavigateToProje
       <header className="header-container">
         <div className="header-nav-wrapper">
           {/* Logo */}
-          <a href="#" className="header-logo-link">
-            <img 
-              src="/img/xiuzi_logo.png" 
-              alt="Xiuzi Logo" 
-              className="header-logo-image"
-            />
+          <a href="#" className="header-logo-link" aria-label="Home">
+            <span className="header-logo-wrap">
+              <img 
+                src="/img/xiuzi_logo.png" 
+                alt="Xiuzi Logo" 
+                className="header-logo-image"
+              />
+            </span>
           </a>
 
           {/* Desktop Nav */}
@@ -205,11 +207,13 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, onNavigateToProje
             className="header-mobile-menu"
           >
             <div className="header-mobile-menu-header">
-               <img 
-                 src="/img/xiuzi_logo.png" 
-                 alt="Xiuzi Logo" 
-                 className="header-mobile-logo-image"
-               />
+               <span className="header-logo-wrap">
+                 <img 
+                   src="/img/xiuzi_logo.png" 
+                   alt="Xiuzi Logo" 
+                   className="header-mobile-logo-image"
+                 />
+               </span>
                <button 
                 onClick={() => setMobileMenuOpen(false)}
                 className="header-mobile-menu-close"
