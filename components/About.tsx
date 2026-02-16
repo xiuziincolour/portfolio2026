@@ -1,13 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useScrollDirection } from '../hooks/useScrollDirection';
 import './About.css';
 
-interface AboutProps {
-  onOpenAboutMe?: () => void;
-}
-
-const About: React.FC<AboutProps> = ({ onOpenAboutMe }) => {
+const About: React.FC = () => {
   const scrollDirection = useScrollDirection();
   const shouldAnimate = scrollDirection === 'down' || scrollDirection === null;
 
@@ -28,12 +25,12 @@ const About: React.FC<AboutProps> = ({ onOpenAboutMe }) => {
                   alt="Xiuzi Profile" 
                   className="about-image" 
                 />
-               <button 
+               <Link 
+                 to="/about"
                  className="about-image-button"
-                 onClick={onOpenAboutMe}
                >
                  About Me
-               </button>
+               </Link>
             </motion.div>
 
             {/* Text Side */}

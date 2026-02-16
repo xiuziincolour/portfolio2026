@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu, X, Check, ArrowRight, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { NAV_LINKS } from '../constants';
 import './Header.css';
 
 interface HeaderProps {
   theme: 'light' | 'dark';
   onToggleTheme: () => void;
-  onNavigateToProjects?: () => void;
-  onNavigateToVideos?: () => void;
-  onNavigateToAboutMe?: () => void;
 }
+
+const NAV_ITEMS = [
+  { name: 'Projects', to: '/projects' },
+  { name: 'Film', to: '/film' },
+  { name: 'About', to: '/about' },
+];
 
 const EmailIcon: React.FC<{ size?: number; className?: string }> = ({ size = 18, className }) => (
   <svg
@@ -39,19 +42,17 @@ const EmailIcon: React.FC<{ size?: number; className?: string }> = ({ size = 18,
   </svg>
 );
 
-const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, onNavigateToProjects, onNavigateToVideos, onNavigateToAboutMe }) => {
+const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [cursorToast, setCursorToast] = useState<{ x: number; y: number; key: number } | null>(null);
 
   const EMAIL = 'xiuziguo@gmail.com';
 
   const copyToClipboard = async (text: string) => {
-    // Prefer async clipboard API
     if (navigator.clipboard?.writeText) {
       await navigator.clipboard.writeText(text);
       return;
     }
-    // Fallback for older browsers
     const textarea = document.createElement('textarea');
     textarea.value = text;
     textarea.style.position = 'fixed';
@@ -64,10 +65,8 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, onNavigateToProje
   };
 
   const handleEmailClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    // Cursor feedback animation near click point
     setCursorToast({ x: e.clientX, y: e.clientY, key: Date.now() });
     window.setTimeout(() => setCursorToast(null), 900);
-
     try {
       await copyToClipboard(EMAIL);
     } catch {
@@ -79,63 +78,26 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, onNavigateToProje
     <>
       <header className="header-container">
         <div className="header-nav-wrapper">
-          {/* Logo */}
-          <a href="#" className="header-logo-link" aria-label="Home">
+          <Link to="/" className="header-logo-link" aria-label="Home">
             <span className="header-logo-wrap">
-              <img 
-                src="/img/xiuzi_logo.png" 
-                alt="Xiuzi Logo" 
+              <img
+                src="/img/xiuzi_logo.png"
+                alt="Xiuzi Logo"
                 className="header-logo-image"
               />
             </span>
-          </a>
+          </Link>
 
-          {/* Desktop Nav */}
           <nav className="header-desktop-nav">
             <div className="header-nav-links">
-              {NAV_LINKS.map((link) => (
-                link.name === 'Projects' && onNavigateToProjects ? (
-                  <button
-                    key={link.name}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      onNavigateToProjects();
-                    }}
-                    className="header-nav-link group"
-                  >
-                    {link.name}
-                  </button>
-                ) : link.name === 'Film' && onNavigateToVideos ? (
-                  <button
-                    key={link.name}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      onNavigateToVideos();
-                    }}
-                    className="header-nav-link group"
-                  >
-                    {link.name}
-                  </button>
-                ) : link.name === 'About' && onNavigateToAboutMe ? (
-                  <button
-                    key={link.name}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      onNavigateToAboutMe();
-                    }}
-                    className="header-nav-link group"
-                  >
-                    {link.name}
-                  </button>
-                ) : (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    className="header-nav-link group"
-                  >
-                    {link.name}
-                  </a>
-                )
+              {NAV_ITEMS.map((link) => (
+                <Link
+                  key={link.name}
+                  to={link.to}
+                  className="header-nav-link group"
+                >
+                  {link.name}
+                </Link>
               ))}
             </div>
           </nav>
@@ -167,18 +129,16 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, onNavigateToProje
               </span>
             </button>
 
-          {/* Mobile Toggle */}
-          <button
-            className="header-mobile-toggle"
-            onClick={() => setMobileMenuOpen(true)}
-          >
-            <Menu size={24} />
-          </button>
+            <button
+              className="header-mobile-toggle"
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              <Menu size={24} />
+            </button>
           </div>
         </div>
       </header>
 
-      {/* Cursor toast near click position */}
       <AnimatePresence>
         {cursorToast && (
           <motion.div
@@ -196,7 +156,6 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, onNavigateToProje
         )}
       </AnimatePresence>
 
-      {/* Full Screen Mobile Menu Overlay */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -207,105 +166,73 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, onNavigateToProje
             className="header-mobile-menu"
           >
             <div className="header-mobile-menu-header">
-               <span className="header-logo-wrap">
-                 <img 
-                   src="/img/xiuzi_logo.png" 
-                   alt="Xiuzi Logo" 
-                   className="header-mobile-logo-image"
-                 />
-               </span>
-               <button 
+              <span className="header-logo-wrap">
+                <img
+                  src="/img/xiuzi_logo.png"
+                  alt="Xiuzi Logo"
+                  className="header-mobile-logo-image"
+                />
+              </span>
+              <button
                 onClick={() => setMobileMenuOpen(false)}
                 className="header-mobile-menu-close"
-               >
-                 <X size={24} />
-               </button>
+              >
+                <X size={24} />
+              </button>
             </div>
-            
+
             <nav className="header-mobile-nav">
-              {NAV_LINKS.map((link, i) => (
+              {NAV_ITEMS.map((link, i) => (
                 <motion.div
                   key={link.name}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 + i * 0.1 }}
                 >
-                  {link.name === 'Projects' && onNavigateToProjects ? (
-                    <button
-                      onClick={() => {
-                        setMobileMenuOpen(false);
-                        onNavigateToProjects();
-                      }}
-                      className="header-mobile-nav-link"
-                    >
-                      {link.name}
-                    </button>
-                  ) : link.name === 'Film' && onNavigateToVideos ? (
-                    <button
-                      onClick={() => {
-                        setMobileMenuOpen(false);
-                        onNavigateToVideos();
-                      }}
-                      className="header-mobile-nav-link"
-                    >
-                      {link.name}
-                    </button>
-                  ) : link.name === 'About' && onNavigateToAboutMe ? (
-                    <button
-                      onClick={() => {
-                        setMobileMenuOpen(false);
-                        onNavigateToAboutMe();
-                      }}
-                      className="header-mobile-nav-link"
-                    >
-                      {link.name}
-                    </button>
-                  ) : (
-                    <a
-                      href={link.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="header-mobile-nav-link"
-                    >
-                      {link.name}
-                    </a>
-                  )}
+                  <Link
+                    to={link.to}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="header-mobile-nav-link"
+                  >
+                    {link.name}
+                  </Link>
                 </motion.div>
               ))}
               <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="header-mobile-cta-wrapper"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="header-mobile-cta-wrapper"
               >
-                  <a
-                    href="#contact"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="header-mobile-cta"
-                  >
-                    Start a Project <ArrowRight size={24} className="header-mobile-cta-icon" />
-                  </a>
+                <Link
+                  to="/#contact"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="header-mobile-cta"
+                >
+                  Start a Project <ArrowRight size={24} className="header-mobile-cta-icon" />
+                </Link>
               </motion.div>
             </nav>
-            
-            <motion.div 
-               initial={{ opacity: 0 }}
-               animate={{ opacity: 1 }}
-               transition={{ delay: 0.6 }}
-               className="header-mobile-footer"
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="header-mobile-footer"
             >
-               <div className="header-mobile-footer-content">
-                 <div>
-                    <p className="header-mobile-social-label">Contact</p>
-                    <button
-                      type="button"
-                      className="header-mobile-contact-email"
-                      onClick={handleEmailClick}
-                    >
-                      {EMAIL}
-                    </button>
-                 </div>
-                 <p className="header-mobile-location">Based in BC</p>
-               </div>
+              <div className="header-mobile-footer-content">
+                <div>
+                  <p className="header-mobile-social-label">Contact</p>
+                  <button
+                    type="button"
+                    className="header-mobile-contact-email"
+                    onClick={handleEmailClick}
+                  >
+                    {EMAIL}
+                  </button>
+                </div>
+                <p className="header-mobile-location">Based in BC</p>
+              </div>
             </motion.div>
           </motion.div>
         )}
