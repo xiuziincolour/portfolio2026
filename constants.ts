@@ -36,7 +36,7 @@ export const UNIFIED_WORKS: WorkItem[] = [
   {
     id: 'w2',
     title: 'Jargon',
-    subtitle: 'Redefining the User Experience Design',
+    subtitle: 'Bridging Language Gaps in Skilled Trades',
     category: 'UI/UX',
     type: 'image',
     image: '/img/jargon/Jargon-cover.png',
