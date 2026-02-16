@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowUpRight, X } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, X, PanelLeftClose } from 'lucide-react';
 import './JargonCaseStudy.css';
 
 interface JargonCaseStudyProps {
@@ -21,6 +21,42 @@ const SECTIONS = [
 const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
    const [activeSection, setActiveSection] = useState(SECTIONS[0].id);
    const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
+   const [caseStudyMenuOpen, setCaseStudyMenuOpen] = useState(false);
+   const pendingScrollToIdRef = React.useRef<string | null>(null);
+
+   useEffect(() => {
+      if (caseStudyMenuOpen) {
+         const scrollY = window.scrollY;
+         document.body.style.overflow = 'hidden';
+         document.body.style.position = 'fixed';
+         document.body.style.top = `-${scrollY}px`;
+         document.body.style.left = '0';
+         document.body.style.right = '0';
+         return () => {
+            document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.left = '';
+            document.body.style.right = '';
+            const id = pendingScrollToIdRef.current;
+            if (id) {
+               pendingScrollToIdRef.current = null;
+               requestAnimationFrame(() => {
+                  const el = document.getElementById(id);
+                  el?.scrollIntoView({ behavior: 'smooth' });
+               });
+            } else {
+               window.scrollTo({ top: scrollY, left: 0, behavior: 'instant' });
+            }
+         };
+      } else {
+         document.body.style.overflow = '';
+         document.body.style.position = '';
+         document.body.style.top = '';
+         document.body.style.left = '';
+         document.body.style.right = '';
+      }
+   }, [caseStudyMenuOpen]);
 
    useEffect(() => {
       const updateActiveSection = () => {
@@ -119,11 +155,108 @@ const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
             />
          </header>
 
+         {/* Mobile: Floating trigger for case study index menu (distinct from main site hamburger) */}
+         <button
+            type="button"
+            className="jargon-case-study-float-trigger"
+            onClick={() => setCaseStudyMenuOpen(true)}
+            aria-label="Open case study index"
+         >
+            <PanelLeftClose size={22} aria-hidden />
+            <span className="jargon-case-study-float-trigger-label">Index</span>
+         </button>
+
+         {/* Mobile: Floating collapsible panel (sidebar content) */}
+         <AnimatePresence>
+            {caseStudyMenuOpen && (
+               <motion.div
+                  className="jargon-case-study-float-overlay"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  onClick={() => setCaseStudyMenuOpen(false)}
+                  aria-hidden
+               />
+            )}
+         </AnimatePresence>
+         <AnimatePresence>
+            {caseStudyMenuOpen && (
+               <motion.aside
+                  className="jargon-case-study-float-panel"
+                  initial={{ x: '-100%' }}
+                  animate={{ x: 0 }}
+                  exit={{ x: '-100%' }}
+                  transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+                  aria-label="Case study index and links"
+               >
+                  <div className="jargon-case-study-float-panel-inner">
+                     <button
+                        type="button"
+                        className="jargon-case-study-float-close"
+                        onClick={() => setCaseStudyMenuOpen(false)}
+                        aria-label="Close menu"
+                     >
+                        <X size={20} />
+                     </button>
+                     <div className="jargon-case-study-outcome-buttons">
+                        <a
+                           href="https://www.jargon-app.ca/"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           className="jargon-case-study-outcome-btn"
+                           onClick={() => setCaseStudyMenuOpen(false)}
+                        >
+                           View Coded App
+                        </a>
+                        <a
+                           href="https://jargon-app.framer.website/"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           className="jargon-case-study-outcome-btn"
+                           onClick={() => setCaseStudyMenuOpen(false)}
+                        >
+                           View website
+                        </a>
+                     </div>
+                     <span className="jargon-case-study-index-label">Index</span>
+                     <div className="jargon-case-study-timeline">
+                        <div className="jargon-case-study-timeline-track" />
+                        <ul className="jargon-case-study-timeline-list">
+                           {SECTIONS.map((section) => (
+                              <li key={section.id} className="jargon-case-study-timeline-item">
+                                 {activeSection === section.id && (
+                                    <motion.div
+                                       layoutId="active-indicator-jargon-float"
+                                       className="jargon-case-study-timeline-indicator"
+                                       transition={{ type: 'spring', stiffness: 400, damping: 35, mass: 0.5 }}
+                                    />
+                                 )}
+                                 <a
+                                    href={`#${section.id}`}
+                                    onClick={(e) => {
+                                       handleScrollToSection(e, section.id);
+                                       pendingScrollToIdRef.current = section.id;
+                                       setCaseStudyMenuOpen(false);
+                                    }}
+                                    className={`jargon-case-study-timeline-link ${activeSection === section.id ? 'active' : ''}`}
+                                 >
+                                    {section.title}
+                                 </a>
+                              </li>
+                           ))}
+                        </ul>
+                     </div>
+                  </div>
+               </motion.aside>
+            )}
+         </AnimatePresence>
+
          {/* Main Content Layout */}
          <div className="jargon-case-study-main">
             <div className="jargon-case-study-layout">
 
-               {/* Left Column: Sticky Timeline & Index */}
+               {/* Left Column: Sticky Timeline & Index (hidden on mobile, content in float panel) */}
                <aside className="jargon-case-study-sidebar">
                   <div className="jargon-case-study-sidebar-sticky">
                      <div className="jargon-case-study-outcome-buttons">

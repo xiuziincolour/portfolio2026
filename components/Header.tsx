@@ -295,14 +295,16 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, onNavigateToProje
             >
                <div className="header-mobile-footer-content">
                  <div>
-                    <p className="header-mobile-social-label">Socials</p>
-                    <div className="header-mobile-social-links">
-                       <a href="#" className="header-mobile-social-link">LinkedIn</a>
-                       <a href="#" className="header-mobile-social-link">Behance</a>
-                       <a href="#" className="header-mobile-social-link">Instagram</a>
-                    </div>
+                    <p className="header-mobile-social-label">Contact</p>
+                    <button
+                      type="button"
+                      className="header-mobile-contact-email"
+                      onClick={handleEmailClick}
+                    >
+                      {EMAIL}
+                    </button>
                  </div>
-                 <p className="header-mobile-location">Based in SF</p>
+                 <p className="header-mobile-location">Based in BC</p>
                </div>
             </motion.div>
           </motion.div>

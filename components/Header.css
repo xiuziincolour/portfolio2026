@@ -232,15 +232,24 @@
 }
 
 .header-mobile-toggle {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
   color: var(--brand-text);
-  padding: 0.5rem;
-  border-radius: 9999px;
+  border-radius: 50%;
   transition: background-color 0.3s ease;
 }
 
 .header-mobile-toggle:hover {
   background-color: var(--gray-100);
+}
+
+.header-mobile-toggle svg {
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 @media (min-width: 1024px) {
@@ -256,22 +265,27 @@
   background-color: var(--brand-bg);
   display: flex;
   flex-direction: column;
-  padding: 1.5rem;
+  padding: 1.25rem 3rem 1.5rem;
   overflow-y: auto;
 }
 
 @media (min-width: 768px) {
   .header-mobile-menu {
-    padding: 3rem;
+    padding: 1.25rem 3rem 3rem;
   }
 }
 
+/* Same top padding as main header so logo and close button align with hamburger */
 .header-mobile-menu-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 3rem;
   flex-shrink: 0;
+}
+
+.header-mobile-menu-header .header-logo-wrap {
+  height: 3.5rem;
 }
 
 .header-mobile-menu-header .header-logo-wrap .header-mobile-logo-image {
@@ -285,10 +299,16 @@
   vertical-align: middle;
 }
 
+/* Same size and shape as hamburger (2.75rem circle) */
 .header-mobile-menu-close {
-  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
   background-color: var(--gray-100);
-  border-radius: 9999px;
+  border-radius: 50%;
   transition: all 0.3s ease;
   box-shadow: 0 1px 3px rgba(0, 47, 167, 0.1);
 }
@@ -301,6 +321,7 @@
 .header-mobile-nav {
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   gap: 1.5rem;
 }
 
@@ -316,12 +337,12 @@
   cursor: pointer;
   font-family: inherit;
   padding: 0;
-  text-align: left;
+  text-align: right;
 }
 
 .header-mobile-nav-link:hover {
   color: var(--brand-blue);
-  transform: translateX(1rem);
+  transform: translateX(-1rem);
 }
 
 @media (min-width: 640px) {
@@ -338,6 +359,7 @@
 
 .header-mobile-cta-wrapper {
   margin-top: var(--spacing-8);
+  align-self: flex-end;
 }
 
 .header-mobile-cta {
@@ -390,6 +412,22 @@
 }
 
 .header-mobile-social-link:hover {
+  color: var(--brand-blue);
+}
+
+.header-mobile-contact-email {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  color: var(--brand-text);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.header-mobile-contact-email:hover {
   color: var(--brand-blue);
 }
 
