@@ -53,6 +53,31 @@
   letter-spacing: 0.1em;
 }
 
+.work-grid-more {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--spacing-16);
+}
+
+.work-grid-more-link {
+  display: inline-block;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--brand-blue, #002FA7);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+  font-family: inherit;
+}
+
+.work-grid-more-link:hover {
+  color: var(--brand-orange);
+  transform: scale(1.08);
+}
+
 .work-grid-items {
   display: grid;
   grid-template-columns: 1fr;

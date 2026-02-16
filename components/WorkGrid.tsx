@@ -14,9 +14,10 @@ const JARGON_HOME_COVER_VIDEO = 'https://pub-b1a10ff6b2664d4c86d2cb6c5ad45fc8.r2
 interface WorkGridProps {
   theme?: 'light' | 'dark';
   onOpenProject?: (id: string) => void;
+  onNavigateToProjects?: () => void;
 }
 
-const WorkGrid: React.FC<WorkGridProps> = ({ theme = 'light', onOpenProject }) => {
+const WorkGrid: React.FC<WorkGridProps> = ({ theme = 'light', onOpenProject, onNavigateToProjects }) => {
   const scrollDirection = useScrollDirection();
   const shouldAnimate = scrollDirection === 'down' || scrollDirection === null;
   const jargonVideoRef = useRef<HTMLVideoElement | null>(null);
@@ -132,6 +133,17 @@ const WorkGrid: React.FC<WorkGridProps> = ({ theme = 'light', onOpenProject }) =
             </motion.div>
           ))}
         </div>
+        {onNavigateToProjects && (
+          <div className="work-grid-more">
+            <button
+              type="button"
+              className="work-grid-more-link"
+              onClick={onNavigateToProjects}
+            >
+              View more works
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

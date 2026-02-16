@@ -342,7 +342,7 @@
 }
 
 .jargon-case-study-section-content {
-  font-size: 0.9375rem;
+  font-size: var(--text-body);
   color: #4b5563;
   line-height: 1.75;
   font-weight: 300;
@@ -854,7 +854,7 @@
 }
 
 .jargon-case-study-section-content {
-  font-size: 0.9375rem;
+  font-size: var(--text-body);
   color: var(--gray-600);
   line-height: 1.75;
   font-weight: 300;
@@ -876,10 +876,18 @@
 }
 
 .jargon-case-study-text-paragraph {
-  font-size: 0.9375rem;
+  font-size: var(--text-body);
   color: var(--gray-600);
   line-height: 1.75;
   font-weight: 300;
+}
+
+.jargon-case-study-research-intro {
+  margin-bottom: 1.5rem;
+}
+
+.jargon-case-study-style-guide-intro {
+  margin-bottom: 1.5rem;
 }
 
 .jargon-case-study-text-paragraph-spaced {
@@ -915,7 +923,7 @@
 .jargon-case-study-list {
   list-style: disc;
   list-style-position: inside;
-  font-size: 0.9375rem;
+  font-size: var(--text-body);
   color: var(--gray-600);
   line-height: 1.75;
   display: flex;
@@ -927,7 +935,7 @@
 .jargon-case-study-list-ordered {
   list-style: decimal;
   list-style-position: inside;
-  font-size: 0.9375rem;
+  font-size: var(--text-body);
   color: var(--gray-600);
   line-height: 1.75;
   display: flex;
@@ -946,7 +954,7 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  font-size: 0.9375rem;
+  font-size: var(--text-body);
   color: var(--gray-600);
   line-height: 1.75;
   font-weight: 300;
@@ -994,6 +1002,13 @@
 
 .jargon-case-study-image-sm .jargon-case-study-image {
   width: min(80%, 720px);
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.jargon-case-study-typeandcolour-wrap .jargon-case-study-image {
+  width: 100%;
   max-width: 100%;
   height: auto;
   object-fit: contain;
@@ -1070,7 +1085,7 @@
 }
 
 .jargon-case-study-insight {
-  font-size: 0.9375rem;
+  font-size: var(--text-body);
   color: var(--gray-600);
   line-height: 1.75;
   font-weight: 600;
@@ -1087,7 +1102,7 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  font-size: 0.9375rem;
+  font-size: var(--text-body);
   color: var(--gray-600);
   line-height: 1.75;
   margin-bottom: 1.25rem;
@@ -1357,7 +1372,7 @@
   }
 
   .jargon-case-study-section-content {
-    font-size: 0.9375rem;
+    font-size: var(--text-body);
   }
 
   .jargon-case-study-nav {
@@ -1377,14 +1392,14 @@
 
 .jargon-case-study-figma-iframe {
   width: 100%;
-  height:  min(80vh, 640px);
+  height: min(40vh, 320px);
   border: none;
   display: block;
 }
 
 @media (min-width: 768px) {
   .jargon-case-study-figma-iframe {
-    height: min(85vh, 720px);
+    height: min(42.5vh, 360px);
   }
 }
 

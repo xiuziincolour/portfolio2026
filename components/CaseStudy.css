@@ -273,7 +273,7 @@
   }
 
   .case-study-meta-value {
-    font-size: 0.9375rem;
+    font-size: var(--text-body);
   }
 
   .case-study-section-title {
@@ -376,7 +376,7 @@
 }
 
 .case-study-text-paragraph {
-  font-size: 0.9375rem;
+  font-size: var(--text-body);
   color: #4b5563;
   line-height: 1.75;
   font-weight: 300;
@@ -389,7 +389,7 @@
   flex-direction: column;
   gap: 0.5rem;
   color: #4b5563;
-  font-size: 0.9375rem;
+  font-size: var(--text-body);
   line-height: 1.75;
   font-weight: 300;
 }
@@ -404,7 +404,7 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  font-size: 0.9375rem;
+  font-size: var(--text-body);
   color: #4b5563;
   line-height: 1.75;
   font-weight: 300;
@@ -447,7 +447,7 @@
 }
 
 .case-study-grid-text {
-  font-size: 0.9375rem;
+  font-size: var(--text-body);
   color: #4b5563;
   line-height: 1.75;
 }
@@ -491,7 +491,7 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  font-size: 0.9375rem;
+  font-size: var(--text-body);
   color: #4b5563;
   line-height: 1.75;
   margin-bottom: 2rem;
@@ -1001,7 +1001,7 @@
   .case-study-text-paragraph,
   .case-study-problem-content,
   .case-study-grid-text {
-    font-size: 0.9375rem;
+    font-size: var(--text-body);
   }
 
   .case-study-nav {

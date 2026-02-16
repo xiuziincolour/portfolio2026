@@ -65,6 +65,7 @@
   --spacing-24: 6rem;
   
   /* Font Sizes */
+  --text-body: 1.125rem; /* 18px, body text (+2px) */
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
@@ -113,8 +114,13 @@ body {
   background-color: var(--brand-bg);
   color: var(--brand-text);
   font-family: 'Montserrat', sans-serif;
+  font-size: var(--text-body);
   overflow-x: hidden;
   line-height: 1.5;
+}
+
+p {
+  font-size: var(--text-body);
 }
 
 /* Theme switch: smooth transition when data-theme changes */

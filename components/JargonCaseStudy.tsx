@@ -390,6 +390,9 @@ const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
                      <div className="jargon-case-study-research-wrapper">
                         <div>
                            <h3 className="jargon-case-study-research-title">Research</h3>
+                           <p className="jargon-case-study-text-paragraph jargon-case-study-research-intro">
+                              Before diving into the design process, I conducted some researches to understand the systemic challenges within Canada's trade industries.
+                           </p>
                            <div className="jargon-case-study-text-block">
                               <h4 className="jargon-case-study-text-title">Who?</h4>
                               <p className="jargon-case-study-text-paragraph">
@@ -403,6 +406,9 @@ const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
                            <div className="jargon-case-study-text-block">
                               <h4 className="jargon-case-study-text-title">User Survey</h4>
                               <p className="jargon-case-study-text-paragraph">
+                                 We needed to understand the personal, day-to-day realities of the workers themselves. I designed and conducted a targeted user survey to move beyond statistics and build a foundation for my user personas based on lived experience.
+                              </p>
+                              <p className="jargon-case-study-text-paragraph jargon-case-study-text-paragraph-spaced">
                                  <a
                                     href="https://docs.google.com/forms/d/1b3GmWDbYcK6sPDfj9f6c2Fb68hIMvYmKRp6RT8iFIUg/edit"
                                     target="_blank"
@@ -503,15 +509,9 @@ const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
                               </ul>
                            </div>
                            <div className="jargon-case-study-text-block">
-                              <h4 className="jargon-case-study-text-title">Core Flow</h4>
-                              <ol className="jargon-case-study-list-ordered">
-                                 <li>Onboard and select trade</li>
-                                 <li>Enter My Courses</li>
-                                 <li>Learn structured Apprentice-level content</li>
-                                 <li>Upload work documents</li>
-                                 <li>Auto-generate translations, flashcards, and quizzes</li>
-                                 <li>Reinforce learning through practice</li>
-                              </ol>
+                              <p className="jargon-case-study-text-paragraph">
+                                 Our team collaborated to build an intuitive flow driven by user data, streamlining the experience so that trade workers can start their essential learning without delay.
+                              </p>
                            </div>
                            <div className="jargon-case-study-figma-embed">
                               <iframe
@@ -525,6 +525,20 @@ const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
 
                         <div>
                            <h3 className="jargon-case-study-research-title">Low-Fidelity Wireframes</h3>
+                           <p className="jargon-case-study-text-paragraph jargon-case-study-text-paragraph-spaced">
+                              Our initial focus was on developing a structured track system and reward mechanisms, ensuring users feel a continuous sense of progress at every touchpoint. To make learning less repetitive, we introduced &apos;Rocky&apos;—a mascot and customizable avatar that accompanies users on their journey, transforming a mundane task into an engaging experience.
+                           </p>
+                           <div className="jargon-case-study-image-full-width jargon-case-study-image-near-link">
+                              <img
+                                 src="/img/jargon/Jargon-lowfi-example.png"
+                                 alt="Jargon Low-Fidelity example"
+                                 className="jargon-case-study-image jargon-case-study-image-no-shadow jargon-case-study-image-clickable"
+                                 onClick={(e) => setLightboxSrc((e.target as HTMLImageElement).currentSrc || (e.target as HTMLImageElement).src)}
+                                 role="button"
+                                 tabIndex={0}
+                                 onKeyDown={(e) => e.key === 'Enter' && setLightboxSrc('/img/jargon/Jargon-lowfi-example.png')}
+                              />
+                           </div>
                            <div className="jargon-case-study-figma-embed">
                               <iframe
                                  title="Jargon portfolio – Low-Fi (Figma)"
@@ -533,13 +547,13 @@ const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
                                  className="jargon-case-study-figma-iframe"
                               />
                            </div>
-                           <p className="jargon-case-study-text-paragraph">
-                              Early sketches focused on clarifying where users should start, reducing decision fatigue, and prioritizing learning over features.
-                           </p>
                         </div>
 
                         <div>
                            <h3 className="jargon-case-study-research-title">Style Guide</h3>
+                           <p className="jargon-case-study-text-paragraph jargon-case-study-style-guide-intro">
+                              By integrating industrial elements with a talk bubble, the brand identity highlights our mission: bridging the language gap within the trade industry.
+                           </p>
                            <div className="jargon-case-study-style-guide-text">
                               <div className="jargon-case-study-logo-block">
                                  <img
@@ -549,14 +563,13 @@ const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
                                  />
                               </div>
                               <div className="jargon-case-study-text-block">
-                                 <h4 className="jargon-case-study-text-title">Colour &amp; Type</h4>
                                  <p className="jargon-case-study-text-paragraph">
                                     High contrast for accessibility and clarity, set in clean, readable, industrial-inspired type, with card-based layouts to reduce overwhelm.
                                  </p>
                               </div>
                            </div>
 
-                           <div className="jargon-case-study-image-full-width jargon-case-study-image-sm">
+                           <div className="jargon-case-study-image-full-width jargon-case-study-typeandcolour-wrap">
                               <img
                                  src="/img/jargon/Jargon-typeandcolour.png"
                                  alt="Jargon Colour and Type"
@@ -575,26 +588,6 @@ const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
                               />
                            </div>
 
-                           <h3 className="jargon-case-study-research-title">Component</h3>
-                           <div className="jargon-case-study-image-full-width jargon-case-study-image-sm">
-                              <img
-                                 src="/img/jargon/Jargon-component.png"
-                                 alt="Jargon Component"
-                                 className="jargon-case-study-image jargon-case-study-image-no-shadow jargon-case-study-image-clickable"
-                                 onClick={(e) =>
-                                    setLightboxSrc(
-                                       (e.target as HTMLImageElement).currentSrc ||
-                                       (e.target as HTMLImageElement).src
-                                    )
-                                 }
-                                 role="button"
-                                 tabIndex={0}
-                                 onKeyDown={(e) =>
-                                    e.key === 'Enter' && setLightboxSrc('/img/jargon/Jargon-component.png')
-                                 }
-                              />
-                           </div>
-
                         </div>
 
                      </div>
@@ -607,12 +600,23 @@ const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
 
                      <div className="jargon-case-study-process-wrapper">
                         <div>
-                           <h3 className="jargon-case-study-research-title">Usability Testing Insights</h3>
+                           <h3 className="jargon-case-study-research-title">Main Issues Identified</h3>
                            <ul className="jargon-case-study-list">
                               <li>Users preferred starting from real documents</li>
                               <li>Flashcards generated from personal materials felt more valuable</li>
                               <li>Faster access to learning increased engagement</li>
                            </ul>
+                        </div>
+                        <div className="jargon-case-study-image-full-width jargon-case-study-image-near-link">
+                           <img
+                              src="/img/jargon/Jargon-changes.png"
+                              alt="Jargon changes"
+                              className="jargon-case-study-image jargon-case-study-image-no-shadow jargon-case-study-image-clickable"
+                              onClick={(e) => setLightboxSrc((e.target as HTMLImageElement).currentSrc || (e.target as HTMLImageElement).src)}
+                              role="button"
+                              tabIndex={0}
+                              onKeyDown={(e) => e.key === 'Enter' && setLightboxSrc('/img/jargon/Jargon-changes.png')}
+                           />
                         </div>
                         <div>
                            <h3 className="jargon-case-study-research-title">Iterations Made</h3>
@@ -629,6 +633,18 @@ const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
                   <section id="visuals" className="jargon-case-study-section">
                      <span className="jargon-case-study-section-label">05 / High-Fidelity</span>
                      <h2 className="jargon-case-study-section-title jargon-case-study-section-title-spaced">High-Fidelity Design & Features</h2>
+
+                     <div className="jargon-case-study-image-full-width jargon-case-study-image-near-link">
+                        <img
+                           src="/img/jargon/Jargon-hifi-example.png"
+                           alt="Jargon High-Fidelity example"
+                           className="jargon-case-study-image jargon-case-study-image-no-shadow jargon-case-study-image-clickable"
+                           onClick={(e) => setLightboxSrc((e.target as HTMLImageElement).currentSrc || (e.target as HTMLImageElement).src)}
+                           role="button"
+                           tabIndex={0}
+                           onKeyDown={(e) => e.key === 'Enter' && setLightboxSrc('/img/jargon/Jargon-hifi-example.png')}
+                        />
+                     </div>
 
                      <div className="jargon-case-study-figma-embed jargon-case-study-image-spaced">
                         <iframe
@@ -701,7 +717,7 @@ const JargonCaseStudy: React.FC<JargonCaseStudyProps> = ({ onBack }) => {
          <AnimatePresence>
             {lightboxSrc && (
                <motion.div
-                  className={`jargon-case-study-lightbox-backdrop${/Jargon-typeandcolour|Jargon-component/.test(lightboxSrc) ? ' jargon-case-study-lightbox-backdrop--light' : ''}`}
+                  className={`jargon-case-study-lightbox-backdrop${/Jargon-typeandcolour|persona1|persona2/.test(lightboxSrc) ? ' jargon-case-study-lightbox-backdrop--light' : ''}`}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}

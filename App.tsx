@@ -245,7 +245,7 @@ const App: React.FC = () => {
           />
           <main>
             <LandingIntro />
-            <WorkGrid theme={theme} onOpenProject={handleOpenProject} />
+            <WorkGrid theme={theme} onOpenProject={handleOpenProject} onNavigateToProjects={handleOpenProjects} />
             <About onOpenAboutMe={handleOpenAboutMe} />
             <Contact />
           </main>
