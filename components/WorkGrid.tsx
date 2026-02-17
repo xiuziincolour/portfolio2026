@@ -6,9 +6,8 @@ import { hasProjectPage, getProjectPath } from '../lib/routes';
 import { useScrollDirection } from '../hooks/useScrollDirection';
 import './WorkGrid.css';
 
-const JARGON_MERCH_COVER_LIGHT = '/img/Jargon-merch/jagron-merch-cover-lightmode.png';
-const JARGON_MERCH_COVER_DARK = '/img/Jargon-merch/jagron-merch-cover-darkmode.png';
 const JARGON_MERCH_COVER_VIDEO = '/img/Jargon-merch/Jargon-merch-cover.mp4';
+const JARGON_MERCH_POSTER = '/img/Jargon-merch/Jargon-tshirt-1.png'; // fallback while video loads
 const EMAG_COVER_LIGHT = '/img/graphics-emag/xiuzi-emag-light-mode.png';
 const EMAG_COVER_DARK = '/img/graphics-emag/xiuzi-emag-dark-mode.png';
 const JARGON_HOME_COVER_VIDEO = 'https://pub-b1a10ff6b2664d4c86d2cb6c5ad45fc8.r2.dev/Jargon-video.mp4';
@@ -45,7 +44,7 @@ const WorkGrid: React.FC<WorkGridProps> = ({ theme = 'light' }) => {
 
   const getCardImage = (work: (typeof UNIFIED_WORKS)[0]) => {
     if (work.id === 'w3') {
-      return theme === 'dark' ? JARGON_MERCH_COVER_DARK : JARGON_MERCH_COVER_LIGHT;
+      return JARGON_MERCH_POSTER;
     }
     if (work.id === 'w7') {
       return theme === 'dark' ? EMAG_COVER_DARK : EMAG_COVER_LIGHT;
@@ -80,7 +79,7 @@ const WorkGrid: React.FC<WorkGridProps> = ({ theme = 'light' }) => {
                       ref={jargonMerchVideoRef}
                       className="work-grid-card-media"
                       src={JARGON_MERCH_COVER_VIDEO}
-                      poster={getCardImage(work)}
+                      poster={JARGON_MERCH_POSTER}
                       autoPlay
                       muted
                       loop
