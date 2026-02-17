@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowUpRight, X } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, X, PanelLeftClose } from 'lucide-react';
 import './CaseStudy.css';
 
 interface CaseStudyProps {
@@ -12,13 +12,50 @@ const SECTIONS = [
   { id: 'problem', title: '02. Problem' },
   { id: 'research', title: '03. Research' },
   { id: 'process', title: '04. Process' },
-  { id: 'visuals', title: '05. Visuals' },
-  { id: 'outcome', title: '06. Outcome' },
+  { id: 'iteration', title: '05. Iteration' },
+  { id: 'visuals', title: '06. High-Fidelity' },
+  { id: 'outcome', title: '07. Outcome' },
 ];
 
 const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
   const [activeSection, setActiveSection] = useState(SECTIONS[0].id);
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
+  const [caseStudyMenuOpen, setCaseStudyMenuOpen] = useState(false);
+  const pendingScrollToIdRef = React.useRef<string | null>(null);
+
+  useEffect(() => {
+    if (caseStudyMenuOpen) {
+      const scrollY = window.scrollY;
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      return () => {
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
+        document.body.style.right = '';
+        const id = pendingScrollToIdRef.current;
+        if (id) {
+          pendingScrollToIdRef.current = null;
+          requestAnimationFrame(() => {
+            const el = document.getElementById(id);
+            el?.scrollIntoView({ behavior: 'smooth' });
+          });
+        } else {
+          window.scrollTo({ top: scrollY, left: 0, behavior: 'instant' });
+        }
+      };
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+    }
+  }, [caseStudyMenuOpen]);
 
   useEffect(() => {
     const updateActiveSection = () => {
@@ -114,6 +151,103 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
           onKeyDown={(e) => e.key === 'Enter' && setLightboxSrc('/img/linko/linko_header.jpg')}
         />
       </header>
+
+      {/* Mobile: Floating trigger for case study index (same as Jargon) */}
+      <button
+        type="button"
+        className="case-study-float-trigger"
+        onClick={() => setCaseStudyMenuOpen(true)}
+        aria-label="Open case study index"
+      >
+        <PanelLeftClose size={22} aria-hidden />
+        <span className="case-study-float-trigger-label">Index</span>
+      </button>
+
+      {/* Mobile: Floating collapsible panel */}
+      <AnimatePresence>
+        {caseStudyMenuOpen && (
+          <motion.div
+            className="case-study-float-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setCaseStudyMenuOpen(false)}
+            aria-hidden
+          />
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {caseStudyMenuOpen && (
+          <motion.aside
+            className="case-study-float-panel"
+            initial={{ x: '-100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '-100%' }}
+            transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+            aria-label="Case study index and links"
+          >
+            <div className="case-study-float-panel-inner">
+              <button
+                type="button"
+                className="case-study-float-close"
+                onClick={() => setCaseStudyMenuOpen(false)}
+                aria-label="Close menu"
+              >
+                <X size={20} />
+              </button>
+              <div className="case-study-outcome-buttons">
+                <a
+                  href="https://mdia-2109-linko-7ulc.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="case-study-outcome-btn"
+                  onClick={() => setCaseStudyMenuOpen(false)}
+                >
+                  View Coded App
+                </a>
+                <a
+                  href="https://htmlpreview.github.io/?https://github.com/primcharlin/LINKO-A5Styleguide/blob/main/index.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="case-study-outcome-btn"
+                  onClick={() => setCaseStudyMenuOpen(false)}
+                >
+                  View website
+                </a>
+              </div>
+              <span className="case-study-index-label">Index</span>
+              <div className="case-study-timeline">
+                <div className="case-study-timeline-track" />
+                <ul className="case-study-timeline-list">
+                  {SECTIONS.map((section) => (
+                    <li key={section.id} className="case-study-timeline-item">
+                      {activeSection === section.id && (
+                        <motion.div
+                          layoutId="active-indicator-float"
+                          className="case-study-timeline-indicator"
+                          transition={{ type: 'spring', stiffness: 400, damping: 35, mass: 0.5 }}
+                        />
+                      )}
+                      <a
+                        href={`#${section.id}`}
+                        onClick={(e) => {
+                          handleScrollToSection(e, section.id);
+                          pendingScrollToIdRef.current = section.id;
+                          setCaseStudyMenuOpen(false);
+                        }}
+                        className={`case-study-timeline-link ${activeSection === section.id ? 'active' : ''}`}
+                      >
+                        {section.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </motion.aside>
+        )}
+      </AnimatePresence>
 
       {/* Main Content Layout */}
       <div className="case-study-main">
@@ -414,49 +548,62 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
                  
                  <div>
                     <h3 className="case-study-research-title">Wireframing & Prototyping</h3>
-                    <div className="case-study-image-full-width">
-                       <img 
-                          src="/img/linko/linko_low-fi.jpg" 
-                          alt="Linko Low-Fi Wireframes" 
+                    <div className="case-study-image-full-width case-study-image-spaced">
+                       <img
+                          src="/img/linko/Link-lowfi-example.png"
+                          alt="Linko Low-Fi example"
                           className="case-study-image case-study-image-clickable"
                           onClick={(e) => setLightboxSrc((e.target as HTMLImageElement).currentSrc || (e.target as HTMLImageElement).src)}
                           role="button"
                           tabIndex={0}
-                          onKeyDown={(e) => e.key === 'Enter' && setLightboxSrc('/img/linko/linko_low-fi.jpg')}
+                          onKeyDown={(e) => e.key === 'Enter' && setLightboxSrc('/img/linko/Link-lowfi-example.png')}
                        />
                     </div>
-                    <div className="case-study-grid-2">
-                       <div>
-                          <h4 className="case-study-text-title">Wireframing (Lo-Fi)</h4>
-                          <p className="case-study-text-paragraph">
-                            Initial sketches focused on the "Matching Page" and "Explore" layouts to finalize the user journey before visual styling.
-                          </p>
-                       </div>
-                       <div>
-                          <h4 className="case-study-text-title">Prototyping (Hi-Fi)</h4>
-                          <p className="case-study-text-paragraph">
-                            Finalized with polished UI elements, interactive components, and consistent branding.
-                          </p>
-                       </div>
+                    <div className="case-study-figma-embed">
+                       <iframe
+                          title="Linko portfolio – Low-Fi (Figma)"
+                          src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FNv8pgwGMQpnijX5vNenQQD%2FLinko-portfolio%3Fnode-id%3D400-3447%26p%3Df%26t%3De01fWMpAcmovvlRn-0"
+                          allowFullScreen
+                          className="case-study-figma-iframe"
+                       />
                     </div>
                  </div>
               </div>
             </section>
 
-            {/* 05. Visuals */}
+            {/* 05. Iteration */}
+            <section id="iteration" className="case-study-section">
+               <span className="case-study-section-label">05 / Iteration</span>
+               <h2 className="case-study-section-title">Testing & Iteration</h2>
+               <div className="case-study-text-block">
+                  <p className="case-study-text-paragraph">
+                     Based on user feedback and testing, we refined the matching flow and concert channel experience to better support discovery and safety.
+                  </p>
+               </div>
+            </section>
+
+            {/* 06. High-Fidelity */}
             <section id="visuals" className="case-study-section">
-               <span className="case-study-section-label">05 / Visuals</span>
+               <span className="case-study-section-label">06 / High-Fidelity</span>
                <h2 className="case-study-section-title case-study-section-title-spaced">High-Fidelity Design & Features</h2>
                
                <div className="case-study-image-full-width case-study-image-spaced">
-                  <img 
-                     src="/img/linko/linko_high-fi.jpg" 
-                     alt="Linko High-Fi Prototypes" 
+                  <img
+                     src="/img/linko/Link-hifi-example.png"
+                     alt="Linko High-Fi example"
                      className="case-study-image case-study-image-clickable"
                      onClick={(e) => setLightboxSrc((e.target as HTMLImageElement).currentSrc || (e.target as HTMLImageElement).src)}
                      role="button"
                      tabIndex={0}
-                     onKeyDown={(e) => e.key === 'Enter' && setLightboxSrc('/img/linko/linko_high-fi.jpg')}
+                     onKeyDown={(e) => e.key === 'Enter' && setLightboxSrc('/img/linko/Link-hifi-example.png')}
+                  />
+               </div>
+               <div className="case-study-figma-embed case-study-image-spaced">
+                  <iframe
+                     title="Linko portfolio – High-Fi (Figma)"
+                     src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FNv8pgwGMQpnijX5vNenQQD%2FLinko-portfolio%3Fnode-id%3D1243-9710%26p%3Df%26t%3De01fWMpAcmovvlRn-0"
+                     allowFullScreen
+                     className="case-study-figma-iframe"
                   />
                </div>
                
@@ -487,34 +634,9 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
                </div>
             </section>
 
-            {/* 06. Outcome */}
+            {/* 07. Outcome */}
             <section id="outcome" className="case-study-section case-study-outcome-section">
-               <span className="case-study-section-label">06 / Outcome</span>
-               <h2 className="case-study-section-title">Testing & Accessibility</h2>
-               
-               <div className="case-study-outcome-content">
-                  <div className="case-study-text-block">
-                     <h3 className="case-study-text-title">User Control</h3>
-                     <p className="case-study-text-paragraph">
-                        Integrated "Show/Hide Toggles" during onboarding so users can decide exactly what info is public.
-                     </p>
-                  </div>
-                  
-                  <div className="case-study-text-block">
-                     <h3 className="case-study-text-title">Accessibility Features</h3>
-                     <p className="case-study-text-paragraph">
-                        The app includes a "Color Blind Mode" and easy switching between Dark and Light modes to accommodate different visual needs.
-                     </p>
-                  </div>
-                  
-                  <div className="case-study-text-block">
-                     <h3 className="case-study-text-title">Navigation</h3>
-                     <p className="case-study-text-paragraph">
-                        Intuitive "Progress Bars" and simple navigation buttons help users understand where they are in the onboarding process.
-                     </p>
-                  </div>
-               </div>
-
+               <span className="case-study-section-label">07 / Outcome</span>
                <div className="case-study-conclusion">
                   <h2 className="case-study-section-title">Conclusion & Reflections</h2>
                   <div className="case-study-conclusion-content">

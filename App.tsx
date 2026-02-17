@@ -40,6 +40,17 @@ const App: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // 路由变化时滚动：从 project 返回首页则滚到 #work，否则滚到顶部
+  useEffect(() => {
+    if (location.pathname === '/' && (location.state as { scrollTo?: string } | null)?.scrollTo === 'work') {
+      const id = setTimeout(() => {
+        document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+      return () => clearTimeout(id);
+    }
+    window.scrollTo(0, 0);
+  }, [location.pathname, location.state]);
+
   const handleIntroEnd = useCallback(() => {
     try {
       sessionStorage.setItem(INTRO_PLAYED_KEY, '1');

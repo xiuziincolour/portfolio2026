@@ -59,7 +59,7 @@
   overflow: hidden;
   background: none;
   border: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12), 0 8px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: none;
 }
 
 .about-me-polaroid-image {
@@ -183,6 +183,6 @@
   height: auto;
   object-fit: contain;
   border-radius: 4px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  box-shadow: none;
 }
 

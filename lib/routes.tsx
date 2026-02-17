@@ -32,5 +32,5 @@ export function ProjectDetailPage() {
     return <Navigate to="/" replace />;
   }
   const Component = PROJECT_COMPONENTS[id];
-  return <Component onBack={() => navigate('/')} />;
+  return <Component onBack={() => navigate('/', { state: { scrollTo: 'work' } })} />;
 }

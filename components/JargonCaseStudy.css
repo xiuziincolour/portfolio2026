@@ -531,7 +531,7 @@
 
 .jargon-case-study-visual-image {
   width: 100%;
-  box-shadow: 0 25px 50px -12px rgba(0, 47, 167, 0.25);
+  box-shadow: none;
   margin-bottom: 2rem;
 }
 
@@ -987,7 +987,7 @@
 
 .jargon-case-study-image {
   width: 100%;
-  box-shadow: 0 25px 50px -12px rgba(0, 47, 167, 0.25);
+  box-shadow: none;
   border-radius: 0.5rem;
 }
 
@@ -1386,7 +1386,7 @@
   border-radius: 0.5rem;
   overflow: hidden;
   background-color: var(--gray-100);
-  box-shadow: 0 25px 50px -12px rgba(120, 102, 178, 0.15);
+  box-shadow: none;
   margin-bottom: 2rem;
 }
 
