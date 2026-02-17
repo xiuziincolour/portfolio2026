@@ -6,7 +6,7 @@ import { hasProjectPage, getProjectPath } from '../lib/routes';
 import { useScrollDirection } from '../hooks/useScrollDirection';
 import './WorkGrid.css';
 
-const JARGON_MERCH_COVER_VIDEO = '/img/Jargon-merch/jargon-merch-cover.mp4';
+const JARGON_MERCH_COVER_VIDEO = '/img/Jargon-merch/Jargon-merch-cover.mp4';
 const JARGON_MERCH_POSTER = '/img/Jargon-merch/Jargon-tshirt-1.png';
 const EMAG_COVER_LIGHT = '/img/graphics-emag/xiuzi-emag-light-mode.png';
 const EMAG_COVER_DARK = '/img/graphics-emag/xiuzi-emag-dark-mode.png';
