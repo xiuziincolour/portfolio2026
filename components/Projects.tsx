@@ -7,6 +7,8 @@ import { WorkItem } from '../types';
 import { hasProjectPage, getProjectPath } from '../lib/routes';
 import './Projects.css';
 
+const JARGON_MERCH_COVER_VIDEO = '/img/Jargon-merch/Jargon-merch-cover.mp4';
+
 type FilterType = 'all' | 'UI/UX' | 'Graphic Design';
 
 const Projects: React.FC = () => {
@@ -77,13 +79,23 @@ const Projects: React.FC = () => {
                       className="projects-card-content"
                       data-bg-color={work.bgColor || 'transparent'}
                     >
-                      {work.type === 'image' && (
+                      {work.id === 'w3' ? (
+                        <video
+                          src={JARGON_MERCH_COVER_VIDEO}
+                          className="projects-card-image"
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          aria-label={work.title}
+                        />
+                      ) : work.type === 'image' ? (
                         <img
                           src={work.image}
                           alt={work.title}
                           className="projects-card-image"
                         />
-                      )}
+                      ) : null}
 
                       {work.type === 'solid-color' && !work.customContent && (
                         <div className="projects-card-logo-wrapper">
