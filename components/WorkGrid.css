@@ -120,6 +120,7 @@
 
 .work-grid-card-image video.work-grid-card-media {
   pointer-events: none;
+  display: block;
 }
 
 .work-grid-card:hover .work-grid-card-media {

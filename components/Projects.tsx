@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
@@ -7,12 +7,31 @@ import { WorkItem } from '../types';
 import { hasProjectPage, getProjectPath } from '../lib/routes';
 import './Projects.css';
 
-const JARGON_MERCH_COVER_VIDEO = '/img/Jargon-merch/Jargon-merch-cover.mp4';
+const JARGON_MERCH_COVER_VIDEO = '/img/Jargon-merch/jargon-merch-cover.mp4';
+const JARGON_MERCH_POSTER = '/img/jagron-merch-cover-lightmode.png';
 
 type FilterType = 'all' | 'UI/UX' | 'Graphic Design';
 
 const Projects: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<FilterType>('all');
+  const jargonMerchVideoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const video = jargonMerchVideoRef.current;
+    if (!video) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const el = entry.target as HTMLVideoElement;
+          if (entry.isIntersecting) el.play().catch(() => {});
+          else el.pause();
+        });
+      },
+      { threshold: 0.25, rootMargin: '50px' }
+    );
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, [activeFilter]);
 
   const filteredWorks = activeFilter === 'all'
     ? UNIFIED_WORKS
@@ -81,12 +100,15 @@ const Projects: React.FC = () => {
                     >
                       {work.id === 'w3' ? (
                         <video
+                          ref={jargonMerchVideoRef}
                           src={JARGON_MERCH_COVER_VIDEO}
+                          poster={JARGON_MERCH_POSTER}
                           className="projects-card-image"
                           autoPlay
                           muted
                           loop
                           playsInline
+                          preload="auto"
                           aria-label={work.title}
                         />
                       ) : work.type === 'image' ? (
