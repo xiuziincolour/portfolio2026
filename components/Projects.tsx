@@ -7,7 +7,7 @@ import { WorkItem } from '../types';
 import { hasProjectPage, getProjectPath } from '../lib/routes';
 import './Projects.css';
 
-const JARGON_MERCH_COVER_VIDEO = '/img/Jargon-merch/Jargon-merch-cover.mp4';
+const JARGON_MERCH_COVER_VIDEO = 'https://pub-b1a10ff6b2664d4c86d2cb6c5ad45fc8.r2.dev/Jargon-merch-cover.mp4';
 const JARGON_MERCH_POSTER = '/img/jagron-merch-cover-lightmode.png';
 
 type FilterType = 'all' | 'UI/UX' | 'Graphic Design';
