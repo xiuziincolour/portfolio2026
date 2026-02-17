@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 
 export interface Project {
   id: string;
@@ -26,7 +27,7 @@ export interface WorkItem {
   bgColor?: string; // For solid color blocks (e.g., Airbnb Red, Seattle Green)
   textColor?: string; // Text color for the graphic blocks
   image?: string;
-  customContent?: React.ReactNode; // For text-based graphics like "Seattle Design Festival"
+  customContent?: ReactNode; // For text-based graphics like "Seattle Design Festival"
 }
 
 export interface GraphicItem {
