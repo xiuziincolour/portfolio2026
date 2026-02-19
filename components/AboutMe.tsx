@@ -158,6 +158,15 @@ const AboutMe: React.FC<AboutMeProps> = ({ onBack }) => {
             is a Product & UI/UX Designer with a love for user-centered interfaces, and moving image{' '}
             <span className="about-me-intro-note">(and JRPGs)</span>.
           </motion.p>
+          <motion.div
+            className="about-me-intro-links"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <a href="/img/Xiuzi Guo_Resume.pdf" target="_blank" rel="noopener noreferrer" className="about-me-link">Resume</a>
+            <a href="https://www.linkedin.com/in/xiuzi-guo" target="_blank" rel="noopener noreferrer" className="about-me-link">LinkedIn</a>
+          </motion.div>
         </section>
 
         {/* Professional experience */}
@@ -168,7 +177,7 @@ const AboutMe: React.FC<AboutMeProps> = ({ onBack }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
           >
-            Yes, the name starts with an X—but I promise it&rsquo;s easier to pronounce than Elon&rsquo;s kid! Think &lsquo;<strong>Show-tzu</strong>&rsquo;.
+            Yes, the name starts with an X—but I promise it&rsquo;s easier to pronounce than Elon&rsquo;s kid (X Æ A 12)! Think &lsquo;<strong>Show-tzu</strong>&rsquo;.
           </motion.p>
           <motion.p
             className="about-me-bio-p"

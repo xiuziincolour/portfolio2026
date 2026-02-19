@@ -136,6 +136,27 @@
   font-size: 11px;
 }
 
+.about-me-intro-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  margin-top: 1rem;
+}
+
+.about-me-link {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+  font-weight: 500;
+  color: var(--brand-text);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  transition: opacity 0.2s ease;
+}
+
+.about-me-link:hover {
+  opacity: 0.75;
+}
+
 /* Bio paragraphs */
 .about-me-bio {
   margin-bottom: 3rem;
