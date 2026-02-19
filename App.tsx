@@ -186,7 +186,7 @@ const App: React.FC = () => {
               onError={() => setIntroVideoError(true)}
             >
               <source src="/img/xiuzi-logo-animation.mp4" type="video/mp4" />
-              <source src="/img/xiuzi-logo-animation.mov" type="video/quicktime" />
+              <source src="https://pub-b1a10ff6b2664d4c86d2cb6c5ad45fc8.r2.dev/xiuzi-logo-animation.mov" type="video/quicktime" />
             </video>
           )}
         </div>
