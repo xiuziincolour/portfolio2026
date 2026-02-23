@@ -5,9 +5,10 @@ import JargonCaseStudy from '../components/JargonCaseStudy';
 import JargonMerchPage from '../components/JargonMerchPage';
 import GraphicsEmagPage from '../components/GraphicsEmagPage';
 import GraphicMenuPage from '../components/GraphicMenuPage';
+import GraphicCansPage from '../components/GraphicCansPage';
 
 /** Project IDs that have a dedicated detail page */
-export const PROJECT_IDS = ['w1', 'w2', 'w3', 'w6', 'w7'] as const;
+export const PROJECT_IDS = ['w1', 'w2', 'w3', 'w4', 'w6', 'w7'] as const;
 
 export function hasProjectPage(id: string): boolean {
   return PROJECT_IDS.includes(id as (typeof PROJECT_IDS)[number]);
@@ -21,6 +22,7 @@ const PROJECT_COMPONENTS: Record<string, React.ComponentType<{ onBack: () => voi
   w1: CaseStudy,
   w2: JargonCaseStudy,
   w3: JargonMerchPage,
+  w4: GraphicCansPage,
   w6: GraphicMenuPage,
   w7: GraphicsEmagPage,
 };
