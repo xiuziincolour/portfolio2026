@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { UNIFIED_WORKS } from '../constants';
 import { hasProjectPage, getProjectPath } from '../lib/routes';
 import { useScrollDirection } from '../hooks/useScrollDirection';
+import { WorkItem } from '../types';
 import './WorkGrid.css';
 
 const JARGON_MERCH_COVER_VIDEO = 'https://pub-b1a10ff6b2664d4c86d2cb6c5ad45fc8.r2.dev/Jargon-merch-cover.mp4';
@@ -14,13 +15,18 @@ const JARGON_HOME_COVER_VIDEO = 'https://pub-b1a10ff6b2664d4c86d2cb6c5ad45fc8.r2
 
 interface WorkGridProps {
   theme?: 'light' | 'dark';
+  works?: WorkItem[];
+  showMoreLink?: boolean;
 }
 
-const WorkGrid: React.FC<WorkGridProps> = ({ theme = 'light' }) => {
+const WorkGrid: React.FC<WorkGridProps> = ({ theme = 'light', works, showMoreLink = true }) => {
   const scrollDirection = useScrollDirection();
   const shouldAnimate = scrollDirection === 'down' || scrollDirection === null;
   const jargonVideoRef = useRef<HTMLVideoElement | null>(null);
   const jargonMerchVideoRef = useRef<HTMLVideoElement | null>(null);
+
+  const displayWorks = works ?? UNIFIED_WORKS.filter((work) => !work.hideOnHome);
+  const displayWorkIds = displayWorks.map((w) => w.id).join('|');
 
   useEffect(() => {
     const videos = [jargonVideoRef.current, jargonMerchVideoRef.current].filter(Boolean) as HTMLVideoElement[];
@@ -40,9 +46,9 @@ const WorkGrid: React.FC<WorkGridProps> = ({ theme = 'light' }) => {
     );
     videos.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
+  }, [displayWorkIds]);
 
-  const getCardImage = (work: (typeof UNIFIED_WORKS)[0]) => {
+  const getCardImage = (work: WorkItem) => {
     if (work.id === 'w7') {
       return theme === 'dark' ? EMAG_COVER_DARK : EMAG_COVER_LIGHT;
     }
@@ -53,7 +59,7 @@ const WorkGrid: React.FC<WorkGridProps> = ({ theme = 'light' }) => {
     <section id="work" className="work-grid-section">
       <div className="work-grid-container">
         <div className="work-grid-items">
-          {UNIFIED_WORKS.filter((work) => !work.hideOnHome).map((work, index) => {
+          {displayWorks.map((work, index) => {
             const path = hasProjectPage(work.id) ? getProjectPath(work.id) : null;
             const content = (
               <>
@@ -145,11 +151,13 @@ const WorkGrid: React.FC<WorkGridProps> = ({ theme = 'light' }) => {
             );
           })}
         </div>
-        <div className="work-grid-more">
-          <Link to="/projects" className="work-grid-more-link">
-            View more works
-          </Link>
-        </div>
+        {showMoreLink && (
+          <div className="work-grid-more">
+            <Link to="/projects" className="work-grid-more-link">
+              View more works
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );
