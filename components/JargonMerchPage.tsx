@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, X } from 'lucide-react';
 import './JargonMerchPage.css';
@@ -66,6 +66,8 @@ interface JargonMerchPageProps {
 const JargonMerchPage: React.FC<JargonMerchPageProps> = ({ onBack }) => {
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
   const [groupCenterIndex, setGroupCenterIndex] = useState(1);
+  const [isPromoPlaying, setIsPromoPlaying] = useState(false);
+  const promoVideoRef = useRef<HTMLVideoElement | null>(null);
 
   const handleGroupCarouselClick = (index: number) => {
     if (index === groupCenterIndex) {
@@ -143,39 +145,90 @@ const JargonMerchPage: React.FC<JargonMerchPageProps> = ({ onBack }) => {
 
               {/* Photobooth — only after T-shirt */}
               {section.id === 'tshirt' && (
-                <div className="jargon-merch-group-pictures jargon-merch-photobooth">
-                  <h3 className="jargon-merch-section-title">Photobooth</h3>
-                  <p className="jargon-merch-section-paragraph">
-                    The Photobooth website, developed via vibe coding, is designed to be integrated into the booth to boost audience engagement.
-                  </p>
-                  <div className="jargon-merch-photobooth-hero-wrap">
-                    <img
-                      src="/img/Jargon-merch/jargon-photobooth/Jargon-photobooth.png"
-                      alt="Photobooth"
-                      className="jargon-merch-photobooth-hero"
-                    />
+                <>
+                  <div className="jargon-merch-group-pictures jargon-merch-photobooth">
+                    <h3 className="jargon-merch-section-title">Photobooth</h3>
+                    <p className="jargon-merch-section-paragraph">
+                      The Photobooth website, developed via vibe coding, is designed to be integrated into the booth to boost audience engagement.
+                    </p>
+                    <div className="jargon-merch-photobooth-hero-wrap">
+                      <img
+                        src="/img/Jargon-merch/jargon-photobooth/Jargon-photobooth.png"
+                        alt="Photobooth"
+                        className="jargon-merch-photobooth-hero"
+                      />
+                    </div>
+                    <a
+                      href="https://jargon-photobooth.vercel.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="jargon-merch-photobooth-link"
+                    >
+                      jargon-photobooth.vercel.app
+                    </a>
+                    <div className="jargon-merch-photobooth-row">
+                      {PHOTOBOOTH_IMAGES.map((img) => (
+                        <button
+                          key={img.src}
+                          type="button"
+                          className="jargon-merch-photobooth-thumb"
+                          onClick={() => setLightboxSrc(img.src)}
+                        >
+                          <img src={img.src} alt={img.alt} />
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                  <a
-                    href="https://jargon-photobooth.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="jargon-merch-photobooth-link"
-                  >
-                    jargon-photobooth.vercel.app
-                  </a>
-                  <div className="jargon-merch-photobooth-row">
-                    {PHOTOBOOTH_IMAGES.map((img) => (
-                      <button
-                        key={img.src}
-                        type="button"
-                        className="jargon-merch-photobooth-thumb"
-                        onClick={() => setLightboxSrc(img.src)}
-                      >
-                        <img src={img.src} alt={img.alt} />
-                      </button>
-                    ))}
+
+                  {/* Promotional Video — between Photobooth and Business card */}
+                  <div className="jargon-merch-promo">
+                    <h3 className="jargon-merch-section-title">Promotional Video</h3>
+                    <p className="jargon-merch-section-paragraph">
+                      Storyboard & Promotional Video — A soft-sell narrative designed for organic brand awareness.
+                    </p>
+                    <button
+                      type="button"
+                      className="jargon-merch-promo-image-button"
+                      onClick={() => setLightboxSrc('/img/Jargon-merch/Jargon-storyboard.png')}
+                    >
+                      <img
+                        src="/img/Jargon-merch/Jargon-storyboard.png"
+                        alt="Jargon promotional storyboard"
+                        className="jargon-merch-promo-image"
+                        loading="lazy"
+                      />
+                    </button>
+                    <div className="jargon-merch-promo-video-wrap">
+                      <div className="jargon-merch-promo-video-inner">
+                        <video
+                          ref={promoVideoRef}
+                          className="jargon-merch-promo-video"
+                          src="https://pub-b1a10ff6b2664d4c86d2cb6c5ad45fc8.r2.dev/Jargon-ad.mp4"
+                          poster="/img/Jargon-merch/Jaron-videocover.png"
+                          controls
+                          playsInline
+                        />
+                        {!isPromoPlaying && (
+                          <button
+                            type="button"
+                            className="jargon-merch-promo-play"
+                            onClick={() => {
+                              const video = promoVideoRef.current;
+                              if (!video) return;
+                              video
+                                .play()
+                                .then(() => setIsPromoPlaying(true))
+                                .catch(() => {});
+                            }}
+                            aria-label="Play promotional video"
+                          >
+                            <span className="jargon-merch-promo-play-icon" />
+                          </button>
+                        )}
+                      </div>
+                    </div>
                   </div>
-                </div>
+                </>
               )}
             </motion.section>
           ))}
