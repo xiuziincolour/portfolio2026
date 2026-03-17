@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState, useRef, lazy, Suspense } from 'react';
 import { Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import Header from './components/Header';
-import LandingIntro from './components/LandingIntro';
+import LandingIntro from './components/LandingIntro.jsx';
 import WorkGrid from './components/WorkGrid';
 import About from './components/About';
 import Contact from './components/Contact';

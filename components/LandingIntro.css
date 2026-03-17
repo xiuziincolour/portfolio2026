@@ -58,12 +58,12 @@
   display: block;
   min-height: 8rem;
   overflow: visible;
-  transform: translateX(2.5rem);
 }
 
 .landing-intro-char {
   display: inline-block;
-  will-change: transform;
+  will-change: transform, opacity;
+  opacity: 0;
 }
 
 /* CTA: fixed to viewport bottom until animation ends (ScrollTrigger drives opacity) */
@@ -113,4 +113,17 @@
   .landing-intro-body {
     font-size: var(--text-body);
   }
+}
+
+/* Visually hidden but screen-reader accessible text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
