@@ -34,88 +34,86 @@ function LandingIntro() {
   const chars = useMemo(() => HEADLINE.split(''), []);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    const grid = gridRef.current;
-    const cta = ctaRef.current;
-    if (!section || !grid || !cta) return;
+    const ctx = gsap.context(() => {
+      const section = sectionRef.current;
+      const grid = gridRef.current;
+      const cta = ctaRef.current;
+      if (!section || !grid || !cta) return;
 
-    const charEls = section.querySelectorAll('.landing-intro-char');
-    if (charEls.length !== chars.length) return;
+      const charEls = section.querySelectorAll('.landing-intro-char');
+      if (charEls.length !== chars.length) return;
 
-    // 初始随机散落状态交给 GSAP 处理，避免频繁手动改 style
-    charEls.forEach((el, i) => {
-      gsap.set(el, {
-        letterSpacing: `${BROKEN_KERNING[i]}em`,
-        x: BROKEN_X[i],
-        y: BROKEN_Y[i],
-        rotate: BROKEN_ROTATE[i],
-        opacity: 1,
+      const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 1440;
+      const isMobile = viewportWidth < 768;
+      const offsetMultiplier = isMobile ? 0.5 : 1;
+
+      charEls.forEach((el, i) => {
+        gsap.set(el, {
+          letterSpacing: `${BROKEN_KERNING[i]}em`,
+          x: BROKEN_X[i] * offsetMultiplier,
+          y: BROKEN_Y[i] * offsetMultiplier,
+          rotate: BROKEN_ROTATE[i],
+          opacity: 1,
+        });
       });
-    });
 
-    const PIN_ANIMATION = 150;
-    const PIN_BUFFER = 80;
-    const PIN_TOTAL = PIN_ANIMATION + PIN_BUFFER;
-    const animProgressEnd = PIN_ANIMATION / PIN_TOTAL;
+      const PIN_ANIMATION = 150;
+      const PIN_BUFFER = 80;
+      const PIN_TOTAL = PIN_ANIMATION + PIN_BUFFER;
+      const animProgressEnd = PIN_ANIMATION / PIN_TOTAL;
 
-    const tl = gsap.timeline({
-      defaults: { ease: 'none' },
-      scrollTrigger: {
-        trigger: section,
-        start: 'top top',
-        end: `+=${PIN_TOTAL}%`,
-        scrub: true,
-        pin: true,
-        pinSpacing: true,
-        onLeave: () => {
-          cta.style.visibility = 'hidden';
+      const tl = gsap.timeline({
+        defaults: { ease: 'none' },
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',
+          end: `+=${PIN_TOTAL}%`,
+          scrub: true,
+          pin: true,
+          pinSpacing: true,
+          onLeave: () => {
+            cta.style.visibility = 'hidden';
+          },
+          onEnterBack: () => {
+            cta.style.visibility = 'visible';
+          },
         },
-        onEnterBack: () => {
-          cta.style.visibility = 'visible';
-        },
-      },
-    });
+      });
 
-    // 字符：从混乱到对齐
-    tl.to(
-      charEls,
-      {
-        letterSpacing: 0,
-        x: 0,
-        y: 0,
-        rotate: 0,
-        duration: animProgressEnd,
-      },
-      0
-    )
-      // 背景网格逐渐显现
-      .to(
-        grid,
+      tl.to(
+        charEls,
         {
-          opacity: 0.18,
+          letterSpacing: 0,
+          x: 0,
+          y: 0,
+          rotate: 0,
           duration: animProgressEnd,
         },
         0
       )
-      // CTA 渐隐
-      .to(
-        cta,
-        {
-          opacity: 0,
-          duration: animProgressEnd * 0.8,
-        },
-        animProgressEnd * 0.2
-      )
-      // 剩余 80% 滚动只是保持 pin，不再改变视觉
-      .to({}, { duration: 1 - animProgressEnd });
+        .to(
+          grid,
+          {
+            opacity: 0.18,
+            duration: animProgressEnd,
+          },
+          0
+        )
+        .to(
+          cta,
+          {
+            opacity: 0,
+            duration: animProgressEnd * 0.8,
+          },
+          animProgressEnd * 0.2
+        )
+        .to({}, { duration: 1 - animProgressEnd });
 
-    cta.style.visibility = 'visible';
+      cta.style.visibility = 'visible';
+    }, sectionRef);
 
     return () => {
-      if (tl.scrollTrigger) {
-        tl.scrollTrigger.kill();
-      }
-      tl.kill();
+      ctx.revert();
     };
   }, [chars.length]);
 

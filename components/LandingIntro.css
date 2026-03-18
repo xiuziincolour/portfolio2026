@@ -9,7 +9,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 6rem var(--spacing-6) 5rem;
-  overflow-x: hidden;
+  overflow: hidden;
   box-sizing: border-box;
 }
 
