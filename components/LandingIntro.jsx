@@ -7,6 +7,8 @@ import './LandingIntro.css';
 gsap.registerPlugin(ScrollTrigger);
 
 const HEADLINE = "Hey! I'm Xiuzi, a Product and UI/UX Designer";
+/** Line break after this phrase (includes trailing space before “UI/UX”) */
+const HEADLINE_BREAK_INDEX = "Hey! I'm Xiuzi, a Product and ".length;
 
 const BROKEN_KERNING = [];
 const BROKEN_BASELINE = [];
@@ -124,7 +126,7 @@ function LandingIntro() {
       <div className="landing-intro-container">
         <div className="landing-intro-text">
           <h2 className="landing-intro-headline" aria-hidden="true">
-            {chars.map((char, idx) => (
+            {chars.slice(0, HEADLINE_BREAK_INDEX).map((char, idx) => (
               <span
                 key={idx}
                 className="landing-intro-char"
@@ -136,6 +138,22 @@ function LandingIntro() {
                 {char === ' ' ? '\u00A0' : char}
               </span>
             ))}
+            <br />
+            {chars.slice(HEADLINE_BREAK_INDEX).map((char, idx) => {
+              const i = HEADLINE_BREAK_INDEX + idx;
+              return (
+                <span
+                  key={i}
+                  className="landing-intro-char"
+                  style={{
+                    letterSpacing: `${BROKEN_KERNING[i]}em`,
+                    transform: `translate(${BROKEN_X[i]}px, ${BROKEN_Y[i]}px) rotate(${BROKEN_ROTATE[i]}deg)`,
+                  }}
+                >
+                  {char === ' ' ? '\u00A0' : char}
+                </span>
+              );
+            })}
           </h2>
           <span className="sr-only">{HEADLINE}</span>
           <motion.div
