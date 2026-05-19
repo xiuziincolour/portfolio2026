@@ -74,6 +74,7 @@ export const UNIFIED_WORKS: WorkItem[] = [
     category: 'Graphic Design',
     type: 'image',
     image: '/img/graphic-others/xiuzi_menu.png',
+    hideOnHome: true,
   },
   {
     id: 'w4',
@@ -82,6 +83,7 @@ export const UNIFIED_WORKS: WorkItem[] = [
     category: 'Graphic Design',
     type: 'image',
     image: '/img/graphic-cans/Xiuzi_Cans-cover.png',
+    hideOnHome: true,
   }
 ];
 

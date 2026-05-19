@@ -1,4 +1,4 @@
-/* Landing intro: GSAP ScrollTrigger pin — section pinned until animation completes */
+/* Landing intro: one scroll gesture triggers smooth align animation */
 
 .landing-intro {
   position: relative;
@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 6rem var(--spacing-6) 5rem;
+  padding: 6rem var(--spacing-6) 2rem;
   overflow: hidden;
   box-sizing: border-box;
 }
@@ -27,24 +27,50 @@
   background-position: 0 0;
 }
 
-.landing-intro-container {
-  position: relative;
-  z-index: 1;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
 @media (min-width: 768px) {
   .landing-intro {
-    padding: 7rem var(--spacing-12) 5rem;
+    padding: 7rem var(--spacing-12) 2rem;
   }
 }
 
-/* Text */
+/* Extra scroll room after intro — text stays readable before projects rise */
+.landing-intro-spacer {
+  height: 55vh;
+  min-height: 55vh;
+  background-color: var(--brand-bg);
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .landing-intro-spacer {
+    height: 65vh;
+    min-height: 65vh;
+  }
+}
+
+/* Fixed in viewport — does not scroll with the page */
+.landing-intro-text-layer {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem var(--spacing-6) 2rem;
+  z-index: 5;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .landing-intro-text-layer {
+    padding: 7rem var(--spacing-12) 2rem;
+  }
+}
+
 .landing-intro-text {
+  width: 100%;
   max-width: 42rem;
-  margin-left: auto;
-  margin-right: auto;
+  will-change: opacity;
 }
 
 
@@ -78,6 +104,8 @@
   gap: 0.5rem;
   z-index: 10;
   pointer-events: none;
+  will-change: opacity;
+  transform: none;
 }
 
 .landing-intro-cta-text {
