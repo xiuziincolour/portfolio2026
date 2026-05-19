@@ -3,7 +3,6 @@ import { Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-
 import Header from './components/Header';
 import LandingIntro from './components/LandingIntro.jsx';
 import WorkGrid from './components/WorkGrid';
-import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Projects from './components/Projects';
@@ -205,7 +204,6 @@ const App: React.FC = () => {
                 <main>
                   <LandingIntro />
                   <WorkGrid theme={theme} />
-                  <About />
                   <Contact />
                 </main>
                 <Footer variant="default" />
