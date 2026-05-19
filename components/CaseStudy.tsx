@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowUpRight, X, PanelLeftClose } from 'lucide-react';
+import CaseStudyScrollProgress from './CaseStudyScrollProgress';
 import './CaseStudy.css';
 
 interface CaseStudyProps {
@@ -125,7 +126,8 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ onBack }) => {
 
   return (
     <div className="case-study-container">
-      
+      <CaseStudyScrollProgress />
+
       {/* Navigation - Minimal & Fixed */}
       <div className="case-study-nav">
         <div className="case-study-nav-wrapper">

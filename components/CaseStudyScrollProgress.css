@@ -1,0 +1,17 @@
+.case-study-scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 60;
+  background-color: rgba(0, 47, 167, 0.1);
+  pointer-events: none;
+}
+
+.case-study-scroll-progress-bar {
+  height: 100%;
+  width: 0;
+  background-color: var(--brand-blue);
+  transition: width 0.08s linear;
+}
