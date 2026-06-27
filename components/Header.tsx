@@ -11,9 +11,12 @@ interface HeaderProps {
 
 const NAV_ITEMS = [
   { name: 'Projects', to: '/projects' },
-  { name: 'Film', to: '/film' },
   { name: 'About', to: '/about' },
-];
+] as const;
+
+const EXTERNAL_NAV_ITEMS = [
+  { name: 'Film', href: '/film' },
+] as const;
 
 const EmailIcon: React.FC<{ size?: number; className?: string }> = ({ size = 18, className }) => (
   <svg
@@ -98,6 +101,17 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
                 >
                   {link.name}
                 </Link>
+              ))}
+              {EXTERNAL_NAV_ITEMS.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="header-nav-link group"
+                >
+                  {link.name}
+                </a>
               ))}
             </div>
           </nav>
@@ -196,6 +210,24 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
                   >
                     {link.name}
                   </Link>
+                </motion.div>
+              ))}
+              {EXTERNAL_NAV_ITEMS.map((link, i) => (
+                <motion.div
+                  key={link.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 + (NAV_ITEMS.length + i) * 0.1 }}
+                >
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="header-mobile-nav-link"
+                  >
+                    {link.name}
+                  </a>
                 </motion.div>
               ))}
               <motion.div

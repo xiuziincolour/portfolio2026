@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, useRef, lazy, Suspense } from 'react';
+import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import LandingIntro from './components/LandingIntro.jsx';
@@ -9,8 +9,6 @@ import Projects from './components/Projects';
 import AboutMe from './components/AboutMe';
 import { ProjectDetailPage } from './lib/routes';
 import './App.css';
-
-const VideoPage = lazy(() => import('./components/VideoPage'));
 
 const THEME_BG = { light: '#F5F5F5', dark: '#0b0b0c' } as const;
 const INTRO_PLAYED_KEY = 'xiuzi-intro-played';
@@ -227,15 +225,6 @@ const App: React.FC = () => {
                 <AboutMe onBack={() => navigate('/')} />
                 <Footer variant="default" />
               </>
-            }
-          />
-          <Route
-            path="/film"
-            element={
-              <Suspense fallback={<div className="app-loading-container"><div className="app-loading-spinner" /></div>}>
-                <VideoPage onBack={() => navigate('/')} />
-                <Footer variant="dark" />
-              </Suspense>
             }
           />
           <Route path="*" element={<Navigate to="/" replace />} />

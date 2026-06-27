@@ -1,12 +1,68 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Play, ArrowDown, X } from 'lucide-react';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { Play, ArrowDown, X } from 'lucide-react';
 import { MOTION_GRAPHICS, VIDEOS, PORTFOLIO_VIDEOS } from '../constants';
 import './VideoPage.css';
 
-interface VideoPageProps {
-  onBack: () => void;
+const SCROLL_EASE = [0.22, 1, 0.36, 1] as const;
+const SCROLL_VIEWPORT = { once: true, amount: 0.15, margin: '0px 0px -60px 0px' } as const;
+
+interface ScrollRevealProps {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+  y?: number;
+  x?: number;
+  as?: keyof typeof motion;
+  repeat?: boolean;
 }
+
+const ScrollReveal: React.FC<ScrollRevealProps> = ({
+  children,
+  className,
+  delay = 0,
+  y = 36,
+  x = 0,
+  as = 'div',
+  repeat = false,
+}) => {
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, {
+    once: !repeat,
+    amount: 0.15,
+    margin: '0px 0px -60px 0px',
+  });
+  const Component = motion[as] as typeof motion.div;
+  const hidden = { opacity: 0, y, x };
+  const visible = { opacity: 1, y: 0, x: 0 };
+
+  if (repeat) {
+    return (
+      <Component
+        ref={ref}
+        className={className}
+        initial={hidden}
+        animate={isInView ? visible : hidden}
+        transition={{ duration: 0.75, delay: isInView ? delay : 0, ease: SCROLL_EASE }}
+      >
+        {children}
+      </Component>
+    );
+  }
+
+  return (
+    <Component
+      ref={ref}
+      className={className}
+      initial={hidden}
+      whileInView={visible}
+      viewport={SCROLL_VIEWPORT}
+      transition={{ duration: 0.75, delay, ease: SCROLL_EASE }}
+    >
+      {children}
+    </Component>
+  );
+};
 
 interface VideoModalProps {
   videoUrl: string;
@@ -65,11 +121,11 @@ const VideoItem: React.FC<VideoItemProps> = ({ item, index, onVideoClick }) => {
   return (
     <motion.div
       ref={wrapperRef}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
       className="video-page-item"
+      initial={{ opacity: 0, y: 48, scale: 0.96 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={SCROLL_VIEWPORT}
+      transition={{ duration: 0.7, delay: index * 0.12, ease: SCROLL_EASE }}
       onClick={() => item.videoUrl && onVideoClick(item.videoUrl, item.title, item.subtitle, item.duration, item.bodytext)}
     >
       <div className="video-page-item-wrapper">
@@ -198,7 +254,7 @@ const VideoModal: React.FC<VideoModalProps> = ({ videoUrl, title, subtitle, dura
   );
 };
 
-const VideoPage: React.FC<VideoPageProps> = ({ onBack }) => {
+const VideoPage: React.FC = () => {
   const heroVideoRef = useRef<HTMLVideoElement>(null);
   const [selectedVideo, setSelectedVideo] = useState<{ 
     url: string; 
@@ -233,19 +289,6 @@ const VideoPage: React.FC<VideoPageProps> = ({ onBack }) => {
 
   return (
     <div className="video-page">
-      {/* Header with Back Button */}
-      <div className="video-page-header">
-        <div className="video-page-header-container">
-          <button 
-            onClick={onBack}
-            className="video-page-back-button"
-          >
-            <ArrowLeft size={16} className="video-page-back-icon" />
-            <span>Back</span>
-          </button>
-        </div>
-      </div>
-
       {/* Full Screen Hero Video */}
       <section className="video-page-hero">
         <div className="video-page-hero-video-wrapper">
@@ -263,7 +306,7 @@ const VideoPage: React.FC<VideoPageProps> = ({ onBack }) => {
           <div className="video-page-hero-gradient-bottom"></div>
         </div>
         <motion.a 
-          href="#motion-graphic-section" 
+          href="#video-page-statement" 
           className="video-page-scroll-link group"
           initial={{ opacity: 0, y: 20, x: '-50%' }}
           animate={{ opacity: 1, y: 0, x: '-50%' }}
@@ -277,19 +320,38 @@ const VideoPage: React.FC<VideoPageProps> = ({ onBack }) => {
         </motion.a>
       </section>
 
+      <section id="video-page-statement" className="video-page-statement">
+        <div className="video-page-container">
+          <div className="video-page-statement-text">
+            <ScrollReveal as="span" className="video-page-statement-line" delay={0} repeat>
+              Every frame tells a story.
+            </ScrollReveal>
+            <ScrollReveal as="span" className="video-page-statement-line" delay={0.14} repeat>
+              Every story leaves an impact.
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
       {/* Videography Section */}
       <section id="motion-graphic-section" className="video-page-section videography-section">
         <div className="video-page-container">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="video-page-section-header"
-          >
-            <h2 className="video-page-section-title">Director/Editor</h2>
-            <span className="video-page-section-badge">01 — Video</span>
-          </motion.div>
+          <div className="video-page-section-header">
+            <ScrollReveal as="h2" className="video-page-section-title" y={28}>
+              Director/Editor
+            </ScrollReveal>
+            <ScrollReveal as="span" className="video-page-section-badge" x={-16} y={0} delay={0.1}>
+              01 — Video
+            </ScrollReveal>
+            <motion.div
+              className="video-page-section-divider"
+              initial={{ scaleX: 0, opacity: 0 }}
+              whileInView={{ scaleX: 1, opacity: 1 }}
+              viewport={SCROLL_VIEWPORT}
+              transition={{ duration: 0.8, delay: 0.2, ease: SCROLL_EASE }}
+              aria-hidden="true"
+            />
+          </div>
 
           <div className="video-page-grid">
             {VIDEOS.map((item, index) => (
@@ -307,16 +369,22 @@ const VideoPage: React.FC<VideoPageProps> = ({ onBack }) => {
       {/* Motion Graphic Section */}
       <section className="video-page-section motion-graphic-section">
         <div className="video-page-container">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="video-page-section-header"
-          >
-            <h2 className="video-page-section-title">Motion Graphic</h2>
-            <span className="video-page-section-badge">02 — Motion</span>
-          </motion.div>
+          <div className="video-page-section-header">
+            <ScrollReveal as="h2" className="video-page-section-title" y={28}>
+              Motion Graphic
+            </ScrollReveal>
+            <ScrollReveal as="span" className="video-page-section-badge" x={-16} y={0} delay={0.1}>
+              02 — Motion
+            </ScrollReveal>
+            <motion.div
+              className="video-page-section-divider"
+              initial={{ scaleX: 0, opacity: 0 }}
+              whileInView={{ scaleX: 1, opacity: 1 }}
+              viewport={SCROLL_VIEWPORT}
+              transition={{ duration: 0.8, delay: 0.2, ease: SCROLL_EASE }}
+              aria-hidden="true"
+            />
+          </div>
 
           <div className="video-page-grid">
             {MOTION_GRAPHICS.map((item, index) => (
