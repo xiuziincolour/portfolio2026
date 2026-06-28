@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import VideoPage from '../components/VideoPage';
 import Footer from '../components/Footer';
 import '../index.css';
@@ -13,5 +14,6 @@ ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
     <VideoPage />
     <Footer variant="dark" />
+    <SpeedInsights route="/film" />
   </React.StrictMode>
 );
