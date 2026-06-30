@@ -53,6 +53,8 @@ export interface VideoItem {
   duration?: string;
   videoUrl?: string;
   bodytext?: string;
+  previewStart?: number;
+  previewEnd?: number;
 }
 
 export interface MotionGraphicItem {

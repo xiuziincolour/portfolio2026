@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { Play, ArrowDown, X } from 'lucide-react';
-import { MOTION_GRAPHICS, VIDEOS, PORTFOLIO_VIDEOS } from '../constants';
+import { MOTION_GRAPHICS, VIDEOS, DOCUMENTARY, PORTFOLIO_VIDEOS } from '../constants';
 import './VideoPage.css';
 
 const SCROLL_EASE = [0.22, 1, 0.36, 1] as const;
@@ -101,22 +101,55 @@ const VideoItem: React.FC<VideoItemProps> = ({ item, index, onVideoClick }) => {
     const video = videoRef.current;
     if (!video || !item.videoUrl || !isInView) return;
 
-    video.src = item.videoUrl;
-    video.currentTime = 0;
-    video.play().catch(() => {});
+    const previewStart = item.previewStart ?? 0;
+    const previewEnd = item.previewEnd;
+    const hasSegment = previewEnd != null && previewEnd > previewStart;
 
-    const interval = setInterval(() => {
-      if (videoRef.current) {
-        videoRef.current.currentTime = 0;
-        videoRef.current.play().catch(() => {});
+    const startPlayback = () => {
+      video.currentTime = previewStart;
+      video.play().catch(() => {});
+    };
+
+    const handleTimeUpdate = () => {
+      if (hasSegment && video.currentTime >= previewEnd - 0.05) {
+        video.currentTime = previewStart;
       }
-    }, 20000);
+    };
+
+    const handleLoadedMetadata = () => {
+      startPlayback();
+    };
+
+    video.src = item.videoUrl;
+    if (video.readyState >= 1) {
+      startPlayback();
+    } else {
+      video.addEventListener('loadedmetadata', handleLoadedMetadata);
+    }
+    video.addEventListener('timeupdate', handleTimeUpdate);
+
+    if (!hasSegment) {
+      const interval = setInterval(() => {
+        if (videoRef.current) {
+          videoRef.current.currentTime = 0;
+          videoRef.current.play().catch(() => {});
+        }
+      }, 20000);
+
+      return () => {
+        clearInterval(interval);
+        video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+        video.removeEventListener('timeupdate', handleTimeUpdate);
+        video.pause();
+      };
+    }
 
     return () => {
-      clearInterval(interval);
+      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      video.removeEventListener('timeupdate', handleTimeUpdate);
       video.pause();
     };
-  }, [item.videoUrl, isInView]);
+  }, [item.videoUrl, item.previewStart, item.previewEnd, isInView]);
 
   return (
     <motion.div
@@ -134,7 +167,7 @@ const VideoItem: React.FC<VideoItemProps> = ({ item, index, onVideoClick }) => {
             ref={videoRef}
             className="video-page-item-video"
             playsInline
-            loop
+            loop={item.previewEnd == null}
             muted
             preload="metadata"
           />
@@ -366,6 +399,39 @@ const VideoPage: React.FC = () => {
         </div>
       </section>
 
+      {/* Documentary Section */}
+      <section className="video-page-section documentary-section">
+        <div className="video-page-container">
+          <div className="video-page-section-header">
+            <ScrollReveal as="h2" className="video-page-section-title" y={28}>
+              Documentary
+            </ScrollReveal>
+            <ScrollReveal as="span" className="video-page-section-badge" x={-16} y={0} delay={0.1}>
+              02 — Documentary
+            </ScrollReveal>
+            <motion.div
+              className="video-page-section-divider"
+              initial={{ scaleX: 0, opacity: 0 }}
+              whileInView={{ scaleX: 1, opacity: 1 }}
+              viewport={SCROLL_VIEWPORT}
+              transition={{ duration: 0.8, delay: 0.2, ease: SCROLL_EASE }}
+              aria-hidden="true"
+            />
+          </div>
+
+          <div className="video-page-grid">
+            {DOCUMENTARY.map((item, index) => (
+              <VideoItem
+                key={item.id}
+                item={item}
+                index={index}
+                onVideoClick={handleVideoClick}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Motion Graphic Section */}
       <section className="video-page-section motion-graphic-section">
         <div className="video-page-container">
@@ -374,7 +440,7 @@ const VideoPage: React.FC = () => {
               Motion Graphic
             </ScrollReveal>
             <ScrollReveal as="span" className="video-page-section-badge" x={-16} y={0} delay={0.1}>
-              02 — Motion
+              03 — Motion
             </ScrollReveal>
             <motion.div
               className="video-page-section-divider"

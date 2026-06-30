@@ -391,7 +391,8 @@
 
 /* Section Background Variations */
 .motion-graphic-section,
-.videography-section {
+.videography-section,
+.documentary-section {
   background-color: transparent;
 }
 

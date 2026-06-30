@@ -14,6 +14,11 @@ export const PORTFOLIO_VIDEOS = {
   elenoreMovingGraphic: `${R2_DOMAIN}/Elenore-Moving%20Graphic%20Cover.mp4`,
   skytrain: `${R2_DOMAIN}/Skytrain.mp4`,
   xiuziAboutMyself: `${R2_DOMAIN}/Xiuzi-About%20Myself.mp4`,
+  documentaryHyperSlashRound01: `${R2_DOMAIN}/Documentary-HyperSlash/Documentary-HyperSlash-Round01.mp4`,
+  documentaryHyperSlashRound02: `${R2_DOMAIN}/Documentary-HyperSlash/Documentary-HyperSlash-Round02.mp4`,
+  documentaryHyperSlashRound03: `${R2_DOMAIN}/Documentary-HyperSlash/Documentary-HyperSlash-Round03.mp4`,
+  documentaryHyperSlashRound04: `${R2_DOMAIN}/Documentary-HyperSlash/Documentary-HyperSlash-Round04.mp4`,
+  documentaryHyperSlashRound05: `${R2_DOMAIN}/Documentary-HyperSlash/Documentary-HyperSlash-Round05.mp4`,
 };
 
 export const NAV_LINKS = [
@@ -173,5 +178,53 @@ export const VIDEOS: VideoItem[] = [
     duration: '3:00',
     videoUrl: PORTFOLIO_VIDEOS.paxWhite,
     bodytext: 'Music video for PAx White — Murphy\'s, blending narrative and visual rhythm.',
+  },
+];
+
+export const DOCUMENTARY: VideoItem[] = [
+  {
+    id: 'd1',
+    title: 'HyperSlash — Round 01',
+    subtitle: 'Documentary',
+    thumbnail: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070&auto=format&fit=crop',
+    videoUrl: PORTFOLIO_VIDEOS.documentaryHyperSlashRound01,
+    previewStart: 0,
+    previewEnd: 30,
+  },
+  {
+    id: 'd2',
+    title: 'HyperSlash — Round 02',
+    subtitle: 'Documentary',
+    thumbnail: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=2070&auto=format&fit=crop',
+    videoUrl: PORTFOLIO_VIDEOS.documentaryHyperSlashRound02,
+    previewStart: 30,
+    previewEnd: 60,
+  },
+  {
+    id: 'd3',
+    title: 'HyperSlash — Round 03',
+    subtitle: 'Documentary',
+    thumbnail: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=2025&auto=format&fit=crop',
+    videoUrl: PORTFOLIO_VIDEOS.documentaryHyperSlashRound03,
+    previewStart: 60,
+    previewEnd: 90,
+  },
+  {
+    id: 'd4',
+    title: 'HyperSlash — Round 04',
+    subtitle: 'Documentary',
+    thumbnail: 'https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=2070&auto=format&fit=crop',
+    videoUrl: PORTFOLIO_VIDEOS.documentaryHyperSlashRound04,
+    previewStart: 90,
+    previewEnd: 120,
+  },
+  {
+    id: 'd5',
+    title: 'HyperSlash — Round 05',
+    subtitle: 'Documentary',
+    thumbnail: 'https://images.unsplash.com/photo-1594909124615-be457578de576?q=80&w=2070&auto=format&fit=crop',
+    videoUrl: PORTFOLIO_VIDEOS.documentaryHyperSlashRound05,
+    previewStart: 120,
+    previewEnd: 150,
   },
 ];
