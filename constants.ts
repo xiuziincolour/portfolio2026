@@ -9,6 +9,7 @@ export const PORTFOLIO_VIDEOS = {
   tencentDoki: `${R2_DOMAIN}/Aaron%20Yan-Tencent%20x%20doki.MP4`,
   mrmissMV: `${R2_DOMAIN}/Mrmiss-MV.mp4`,
   paxWhite: `${R2_DOMAIN}/PAx%20White-murphys-MV.mp4`,
+  musicFestivalYoushan2026: `${R2_DOMAIN}/Music%20Festival-youshan2026.mp4`,
   aplusMovingGraphic: `${R2_DOMAIN}/aplus-Moving%20Graphic%20Cover.mp4`,
   dirtymoonMovingGraphic: `${R2_DOMAIN}/dirtymoon-Moving%20Graphic%20Cover.mp4`,
   elenoreMovingGraphic: `${R2_DOMAIN}/Elenore-Moving%20Graphic%20Cover.mp4`,
@@ -178,6 +179,14 @@ export const VIDEOS: VideoItem[] = [
     duration: '3:00',
     videoUrl: PORTFOLIO_VIDEOS.paxWhite,
     bodytext: 'Music video for PAx White — Murphy\'s, blending narrative and visual rhythm.',
+  },
+  {
+    id: 'v5',
+    title: 'Music Festival — Youshan 2026',
+    subtitle: 'Editor',
+    thumbnail: 'https://images.unsplash.com/photo-1459749411175-040a2ed09235?q=80&w=2070&auto=format&fit=crop',
+    videoUrl: PORTFOLIO_VIDEOS.musicFestivalYoushan2026,
+    bodytext: 'Editorial cut for Music Festival — Youshan 2026, capturing live energy and festival atmosphere.',
   },
 ];
 
