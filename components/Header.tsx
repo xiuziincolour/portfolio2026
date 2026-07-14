@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Check, ArrowRight, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Header.css';
@@ -11,7 +11,7 @@ interface HeaderProps {
 
 const NAV_ITEMS = [
   { name: 'Projects', to: '/projects' },
-  { name: 'About', to: '/about' },
+  { name: 'About', to: '/#about', scrollId: 'about' },
 ] as const;
 
 const EXTERNAL_NAV_ITEMS = [
@@ -48,8 +48,25 @@ const EmailIcon: React.FC<{ size?: number; className?: string }> = ({ size = 18,
 const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [cursorToast, setCursorToast] = useState<{ x: number; y: number; key: number } | null>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const EMAIL = 'xiuziguo@gmail.com';
+
+  const handleNavClick = (
+    e: React.MouseEvent,
+    link: (typeof NAV_ITEMS)[number]
+  ) => {
+    if (!('scrollId' in link) || !link.scrollId) return;
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    if (location.pathname === '/') {
+      document.getElementById(link.scrollId)?.scrollIntoView({ behavior: 'smooth' });
+      window.history.replaceState(null, '', `#${link.scrollId}`);
+      return;
+    }
+    navigate(`/#${link.scrollId}`);
+  };
 
   const copyToClipboard = async (text: string) => {
     if (navigator.clipboard?.writeText) {
@@ -98,6 +115,7 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
                   key={link.name}
                   to={link.to}
                   className="header-nav-link group"
+                  onClick={(e) => handleNavClick(e, link)}
                 >
                   {link.name}
                 </Link>
@@ -205,7 +223,10 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
                 >
                   <Link
                     to={link.to}
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={(e) => {
+                      handleNavClick(e, link);
+                      setMobileMenuOpen(false);
+                    }}
                     className="header-mobile-nav-link"
                   >
                     {link.name}

@@ -6,6 +6,12 @@
   padding: 2rem 1.5rem 4rem;
 }
 
+.about-me-page--embedded {
+  min-height: 0;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
+
 .about-me-container {
   max-width: 900px;
   margin: 0 auto;

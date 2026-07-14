@@ -1,5 +1,4 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
-import { ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 import './AboutMe.css';
 
@@ -18,14 +17,10 @@ const INITIAL_POSITIONS = [
 ];
 
 const PHOTO_ROTATIONS = [4, -5, 5, 3, -4, 6];
-
-interface AboutMeProps {
-  onBack: () => void;
-}
-
 const DRAG_THRESHOLD_PX = 5;
+const SCROLL_EASE = [0.22, 1, 0.36, 1] as const;
 
-const AboutMe: React.FC<AboutMeProps> = ({ onBack }) => {
+const AboutMe: React.FC = () => {
   const [positions, setPositions] = useState<{ left: number; top: number }[]>(() => INITIAL_POSITIONS);
   const [draggingId, setDraggingId] = useState<number | null>(null);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
@@ -33,6 +28,13 @@ const AboutMe: React.FC<AboutMeProps> = ({ onBack }) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const collageRef = useRef<HTMLElement>(null);
   const pendingDragRef = useRef<{ index: number; startX: number; startY: number } | null>(null);
+
+  const reveal = (delay = 0, y = 40) => ({
+    initial: { opacity: 0, y },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: false, margin: '-50px', amount: 0.2 },
+    transition: { delay, duration: 0.65, ease: SCROLL_EASE },
+  });
 
   const getRect = useCallback(() => collageRef.current?.getBoundingClientRect(), []);
 
@@ -100,18 +102,8 @@ const AboutMe: React.FC<AboutMeProps> = ({ onBack }) => {
   }, [lightboxPhoto, closeLightbox]);
 
   return (
-    <div className="about-me-page">
+    <div className="about-me-page about-me-page--embedded" id="about">
       <div className="about-me-container">
-        <button
-          onClick={onBack}
-          className="about-me-back-button"
-          aria-label="Back to home"
-        >
-          <ArrowLeft size={16} className="about-me-back-icon" />
-          <span>Back</span>
-        </button>
-
-        {/* Photo collage - draggable */}
         <section
           ref={collageRef}
           className="about-me-collage"
@@ -129,9 +121,14 @@ const AboutMe: React.FC<AboutMeProps> = ({ onBack }) => {
                 zIndex: activeIndex === index ? 20 : undefined,
               }}
               initial={{ opacity: 0, y: 28, rotate: PHOTO_ROTATIONS[index] }}
-              animate={{ opacity: 1, y: 0, rotate: PHOTO_ROTATIONS[index] }}
+              whileInView={{ opacity: 1, y: 0, rotate: PHOTO_ROTATIONS[index] }}
+              viewport={{ once: false, margin: '-50px', amount: 0.15 }}
+              transition={{
+                delay: index * 0.08,
+                duration: 0.6,
+                ease: SCROLL_EASE,
+              }}
               whileHover={{ rotate: PHOTO_ROTATIONS[index] + 3, scale: 1.03 }}
-              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
               onPointerDown={(e) => handlePointerDown(e, index)}
               onPointerMove={handlePointerMove}
               onPointerUp={handlePointerUp}
@@ -145,52 +142,29 @@ const AboutMe: React.FC<AboutMeProps> = ({ onBack }) => {
           ))}
         </section>
 
-        {/* Introduction */}
         <section className="about-me-intro">
-          <motion.p
-            className="about-me-intro-text"
-            initial={{ opacity: 0, y: 32 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.85, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          >
+          <motion.p className="about-me-intro-text" {...reveal(0.12, 32)}>
             <strong className="about-me-name">Xiuzi Guo</strong>
             {' '}
             is a Product & UI/UX Designer with a love for user-centered interfaces, and moving image{' '}
             <span className="about-me-intro-note">(and JRPGs)</span>.
           </motion.p>
-          <motion.div
-            className="about-me-intro-links"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
-          >
+          <motion.div className="about-me-intro-links" {...reveal(0.22, 16)}>
             <a href="/img/Xiuzi Guo_Resume.pdf" target="_blank" rel="noopener noreferrer" className="about-me-link">Resume</a>
             <a href="https://www.linkedin.com/in/xiuzi-guo" target="_blank" rel="noopener noreferrer" className="about-me-link">LinkedIn</a>
           </motion.div>
         </section>
 
-        {/* Professional experience */}
         <section className="about-me-bio">
-          <motion.p
-            className="about-me-bio-p"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.85, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          >
+          <motion.p className="about-me-bio-p" {...reveal(0.28, 24)}>
             Yes, the name starts with an X—but I promise it&rsquo;s easier to pronounce than Elon&rsquo;s kid (X Æ A 12)! Think &lsquo;<strong>Show-tzu</strong>&rsquo;.
           </motion.p>
-          <motion.p
-            className="about-me-bio-p"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.85, delay: 1.05, ease: [0.22, 1, 0.36, 1] }}
-          >
+          <motion.p className="about-me-bio-p" {...reveal(0.36, 24)}>
             I&rsquo;m a designer and developer dedicated to bringing digital products from concept to launch. With a background spanning product design, visual identity, and video production, I focus on clear storytelling and thoughtful craft. Whether I&rsquo;m wireframing an interface or editing a brand film, my goal is always the same: creating seamless user experiences through high-fidelity visuals.
           </motion.p>
         </section>
       </div>
 
-      {/* Lightbox: double-click to open, click backdrop or Escape to close */}
       {lightboxPhoto && (
         <div
           className="about-me-lightbox-backdrop"

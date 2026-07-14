@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState, useRef } from 'react';
-import { Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import LandingIntro from './components/LandingIntro.jsx';
 import WorkGrid from './components/WorkGrid';
@@ -35,9 +35,8 @@ const App: React.FC = () => {
   const [themeOverlay, setThemeOverlay] = useState<{ from: string; to: string } | null>(null);
   const [overlayColor, setOverlayColor] = useState<string>(THEME_BG.light);
   const location = useLocation();
-  const navigate = useNavigate();
 
-  // 路由变化时滚动：从 project 返回首页则滚到 #work，否则滚到顶部
+  // 路由变化时滚动：返回 #work / #about，或滚到顶部
   useEffect(() => {
     if (location.pathname === '/' && (location.state as { scrollTo?: string } | null)?.scrollTo === 'work') {
       const id = setTimeout(() => {
@@ -45,8 +44,15 @@ const App: React.FC = () => {
       }, 100);
       return () => clearTimeout(id);
     }
+    if (location.pathname === '/' && location.hash === '#about') {
+      const id = setTimeout(() => {
+        document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+      return () => clearTimeout(id);
+    }
+    if (location.hash) return;
     window.scrollTo(0, 0);
-  }, [location.pathname, location.state]);
+  }, [location.pathname, location.state, location.hash]);
 
   const handleIntroEnd = useCallback(() => {
     try {
@@ -202,6 +208,7 @@ const App: React.FC = () => {
                 <main>
                   <LandingIntro />
                   <WorkGrid theme={theme} />
+                  <AboutMe />
                   <Contact />
                 </main>
                 <Footer variant="default" />
@@ -218,15 +225,7 @@ const App: React.FC = () => {
               </>
             }
           />
-          <Route
-            path="/about"
-            element={
-              <>
-                <AboutMe onBack={() => navigate('/')} />
-                <Footer variant="default" />
-              </>
-            }
-          />
+          <Route path="/about" element={<Navigate to="/#about" replace />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
