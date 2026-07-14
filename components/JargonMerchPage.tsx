@@ -15,6 +15,19 @@ const SECTIONS = [
     ],
   },
   {
+    id: 'socialmedia',
+    title: 'Social Media',
+    paragraph: 'Social media visuals extend the Jargon brand across channels, reinforcing identity and voice for ongoing community engagement.',
+    images: [
+      { src: '/img/Jargon-merch/jargon-socialmedia-1.JPG', alt: 'Jargon Social Media 1' },
+      { src: '/img/Jargon-merch/jargon-socialmedia-2.jpg', alt: 'Jargon Social Media 2' },
+    ],
+    link: {
+      href: 'https://www.instagram.com/jargon.app/',
+      label: 'instagram.com/jargon.app',
+    },
+  },
+  {
     id: 'tshirt',
     title: 'T-shirt',
     paragraph: "T-shirts leverage the brand's palette and typography for both everyday wear and event merchandise. Unique Jargon avatars have been designed for the back of each team member's T-shirt, based on their individual appearance. These details serve to reinforce logo and type recognition.",
@@ -116,7 +129,7 @@ const JargonMerchPage: React.FC<JargonMerchPageProps> = ({ onBack }) => {
           {SECTIONS.map((section, sectionIndex) => (
             <motion.section
               key={section.id}
-              className="jargon-merch-section"
+              className={`jargon-merch-section${section.id === 'socialmedia' ? ' jargon-merch-section--social' : ''}`}
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.05 * (sectionIndex + 1) }}
@@ -142,6 +155,16 @@ const JargonMerchPage: React.FC<JargonMerchPageProps> = ({ onBack }) => {
                   </motion.div>
                 ))}
               </div>
+              {'link' in section && section.link && (
+                <a
+                  href={section.link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="jargon-merch-section-link"
+                >
+                  {section.link.label}
+                </a>
+              )}
 
               {/* Photobooth — only after T-shirt */}
               {section.id === 'tshirt' && (
