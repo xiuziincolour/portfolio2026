@@ -61,6 +61,8 @@ const WorkGrid: React.FC<WorkGridProps> = ({ theme = 'light', works, showMoreLin
         <div className="work-grid-items">
           {displayWorks.map((work, index) => {
             const path = hasProjectPage(work.id) ? getProjectPath(work.id) : null;
+            const externalUrl = work.externalUrl ?? null;
+            const isLinked = Boolean(path || externalUrl);
             const content = (
               <>
                 <div className="work-grid-card-image">
@@ -100,9 +102,9 @@ const WorkGrid: React.FC<WorkGridProps> = ({ theme = 'light', works, showMoreLin
                       />
                     )
                   )}
-                  {path && (
+                  {isLinked && (
                     <div className="work-grid-card-hover">
-                      <span>View Case Study</span>
+                      <span>{externalUrl ? 'View Design' : 'View Case Study'}</span>
                     </div>
                   )}
                 </div>
@@ -142,6 +144,15 @@ const WorkGrid: React.FC<WorkGridProps> = ({ theme = 'light', works, showMoreLin
                   <Link to={path} className="work-grid-card">
                     {content}
                   </Link>
+                ) : externalUrl ? (
+                  <a
+                    href={externalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="work-grid-card"
+                  >
+                    {content}
+                  </a>
                 ) : (
                   <div className="work-grid-card" style={{ cursor: 'default' }}>
                     {content}

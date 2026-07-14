@@ -24,6 +24,7 @@ export interface WorkItem {
   type: 'image' | 'solid-color'; // To determine rendering style
   hideOnHome?: boolean; // If true, show only on Projects page, not on home WorkGrid
   tags?: string[]; // Custom tags under the subtitle (e.g. Product design, UI/UX, Frontend)
+  externalUrl?: string; // Opens in a new tab instead of an internal project page
   bgColor?: string; // For solid color blocks (e.g., Airbnb Red, Seattle Green)
   textColor?: string; // Text color for the graphic blocks
   image?: string;

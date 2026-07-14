@@ -49,6 +49,16 @@ export const UNIFIED_WORKS: WorkItem[] = [
     tags: ['Product design', 'UI/UX', 'Frontend'],
   },
   {
+    id: 'w8',
+    title: 'Bravo Card Landing Page',
+    subtitle: 'Landing Page Design',
+    category: 'UI/UX',
+    type: 'image',
+    image: '/img/barvo-card/bravocard-landingpage-cover.png',
+    tags: ['UI/UX', 'Landing page'],
+    externalUrl: 'https://www.figma.com/design/fvi9Tr312EmWb7ZrxkHW5p/Bravo-Card-landingpage?node-id=5001-27751&t=2WVmAUfCevwSHG0h-1',
+  },
+  {
     id: 'w3',
     title: 'Jargon Merch',
     subtitle: 'Merchandise Design',
@@ -63,6 +73,7 @@ export const UNIFIED_WORKS: WorkItem[] = [
     category: 'Graphic Design',
     type: 'image',
     image: '/img/graphics-emag/xiuzi-emag-1.png',
+    hideOnHome: true,
   },
   {
     id: 'w5',
