@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useState, useRef } from 'react';
-import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigationType, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import LandingIntro from './components/LandingIntro.jsx';
 import ManifestoSection from './components/ManifestoSection';
+import CreativeMenu from './components/CreativeMenu';
 import WorkGrid from './components/WorkGrid';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -36,6 +37,7 @@ const App: React.FC = () => {
   const [themeOverlay, setThemeOverlay] = useState<{ from: string; to: string } | null>(null);
   const [overlayColor, setOverlayColor] = useState<string>(THEME_BG.light);
   const location = useLocation();
+  const navigationType = useNavigationType();
 
   // 路由变化时滚动：返回 #work / #about，或滚到顶部
   useEffect(() => {
@@ -45,15 +47,32 @@ const App: React.FC = () => {
       }, 100);
       return () => clearTimeout(id);
     }
-    if (location.pathname === '/' && location.hash === '#about') {
+    if (
+      (location.pathname === '/' || location.pathname === '/design') &&
+      location.hash === '#about'
+    ) {
       const id = setTimeout(() => {
         document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
       }, 100);
       return () => clearTimeout(id);
     }
     if (location.hash) return;
+    // Going back should keep the position the browser restores
+    if (navigationType === 'POP') return;
     window.scrollTo(0, 0);
-  }, [location.pathname, location.state, location.hash]);
+  }, [location.pathname, location.state, location.hash, navigationType]);
+
+  useEffect(() => {
+    const prev = document.title;
+    if (location.pathname === '/design') {
+      document.title = 'Xiuzi Creative Designer';
+    } else {
+      document.title = 'Xiuzi Product & UI/UX Designer';
+    }
+    return () => {
+      document.title = prev;
+    };
+  }, [location.pathname]);
 
   const handleIntroEnd = useCallback(() => {
     try {
@@ -168,7 +187,7 @@ const App: React.FC = () => {
         />
       )}
 
-      {location.pathname === '/' && showIntroOverlay && (
+      { (location.pathname === '/' || location.pathname === '/design') && showIntroOverlay && (
         <div className="app-loading-container" aria-hidden>
           {(introUseGif || introVideoError) ? (
             <img
@@ -217,6 +236,33 @@ const App: React.FC = () => {
               </>
             }
           />
+          <Route
+            path="/design"
+            element={
+              <>
+                <Header
+                  theme={theme}
+                  onToggleTheme={runThemeTransition}
+                />
+                <main>
+                  <LandingIntro
+                    scrollHref="/projects"
+                    scriptRight="/img/a-creative-designer.png"
+                    scriptRightAlt="A Creative Designer"
+                    cardLines={[
+                      "Hey! I'm Xiuzi, a Creative Designer.",
+                      'I turn ideas into shipped products through graphic design, motion graphic, and marketing, with AI as my copilot. 🤖🖖🏼',
+                    ]}
+                  />
+                  <ManifestoSection text="From concept to creative execution. Bold visuals, thoughtful storytelling, and cohesive design systems that bring brands and products to life." />
+                  <CreativeMenu />
+                  <AboutMe />
+                  <Contact />
+                </main>
+                <Footer variant="default" />
+              </>
+            }
+          />
           <Route path="/project/:id" element={<ProjectDetailPage />} />
           <Route
             path="/projects"
@@ -227,7 +273,7 @@ const App: React.FC = () => {
               </>
             }
           />
-          <Route path="/about" element={<Navigate to="/#about" replace />} />
+          <Route path="/about" element={<Navigate to="/design#about" replace />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>

@@ -7,7 +7,7 @@ import './LandingIntro.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const CARD_LINES = [
+const DEFAULT_CARD_LINES = [
   "Hey! I'm Xiuzi, a Product and UI/UX Designer.",
   'I turn ideas into shipped products through design, code, and marketing, with AI as my copilot. 🤖🖖🏼',
 ];
@@ -18,7 +18,12 @@ const fade = (delay) => ({
   transition: { duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] },
 });
 
-function LandingIntro() {
+function LandingIntro({
+  scrollHref = '#work',
+  scriptRight = '/img/adesigner.png',
+  scriptRightAlt = 'A Product and UI/UX Designer',
+  cardLines = DEFAULT_CARD_LINES,
+}) {
   const sectionRef = useRef(null);
   const stageRef = useRef(null);
   const scrollRef = useRef(null);
@@ -80,14 +85,14 @@ function LandingIntro() {
 
         <motion.img
           className="landing-intro-script landing-intro-script--right"
-          src="/img/adesigner.png"
-          alt="A Product and UI/UX Designer"
+          src={scriptRight}
+          alt={scriptRightAlt}
           aria-hidden="true"
           {...fade(0.42)}
         />
 
         <motion.div className="landing-intro-card" {...fade(0.25)}>
-          {CARD_LINES.map((line) => (
+          {cardLines.map((line) => (
             <p key={line} className="landing-intro-card-line">
               {line}
             </p>
@@ -97,7 +102,7 @@ function LandingIntro() {
 
       {/* Wrapper carries the scroll-driven fade so it can't clash with the entrance animation */}
       <div ref={scrollRef} className="landing-intro-scroll-wrap">
-        <motion.a href="#work" className="landing-intro-scroll" {...fade(0.55)}>
+        <motion.a href={scrollHref} className="landing-intro-scroll" {...fade(0.55)}>
           Scroll for more work
           <span className="landing-intro-scroll-icon" aria-hidden="true">
             <ArrowDown size={14} />

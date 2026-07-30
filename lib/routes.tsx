@@ -1,5 +1,6 @@
 import React from 'react';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
+import { useGoBack } from './useGoBack';
 import CaseStudy from '../components/CaseStudy';
 import JargonCaseStudy from '../components/JargonCaseStudy';
 import JargonMerchPage from '../components/JargonMerchPage';
@@ -40,7 +41,7 @@ const PROJECT_COMPONENTS: Record<string, React.ComponentType<{ onBack: () => voi
 
 export function ProjectDetailPage() {
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
+  const goBack = useGoBack('/', { scrollTo: 'work' });
 
   // Redirect legacy /project/w1 URLs to named slugs
   if (id && id in PROJECT_SLUGS) {
@@ -52,5 +53,5 @@ export function ProjectDetailPage() {
   }
 
   const Component = PROJECT_COMPONENTS[id];
-  return <Component onBack={() => navigate('/', { state: { scrollTo: 'work' } })} />;
+  return <Component onBack={goBack} />;
 }

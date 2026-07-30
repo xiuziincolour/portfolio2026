@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useGoBack } from '../lib/useGoBack';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import { UNIFIED_WORKS } from '../constants';
@@ -14,7 +14,7 @@ const isProductDesignWork = (work: WorkItem) =>
   work.tags?.some((tag) => tag.toLowerCase() === 'product design');
 
 const Projects: React.FC = () => {
-  const navigate = useNavigate();
+  const goBack = useGoBack('/');
   const [activeFilter, setActiveFilter] = useState<FilterType>('all');
 
   const filteredWorks = useMemo(() => {
@@ -29,7 +29,7 @@ const Projects: React.FC = () => {
       <motion.div className="projects-container">
         <button
           type="button"
-          onClick={() => navigate('/')}
+          onClick={goBack}
           className="projects-back-button"
           aria-label="Back to home"
         >

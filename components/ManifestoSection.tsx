@@ -5,13 +5,17 @@ import './ManifestoSection.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const MANIFESTO =
+const DEFAULT_MANIFESTO =
   'From concept to shipped product. Interfaces that are fast to build, easy to use, and grounded in real user behavior, driven by clean systems, tight collaboration with developers, and a bias toward shipping.';
 
-const ManifestoSection: React.FC = () => {
+type ManifestoSectionProps = {
+  text?: string;
+};
+
+const ManifestoSection: React.FC<ManifestoSectionProps> = ({ text = DEFAULT_MANIFESTO }) => {
   const sectionRef = useRef<HTMLElement>(null);
   const textRef = useRef<HTMLParagraphElement>(null);
-  const words = useMemo(() => MANIFESTO.split(' '), []);
+  const words = useMemo(() => text.split(' '), [text]);
   const charCount = useMemo(() => words.reduce((total, word) => total + word.length, 0), [words]);
 
   useEffect(() => {

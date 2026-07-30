@@ -19,7 +19,7 @@ type NavItem = {
 const NAV_ITEMS: NavItem[] = [
   { name: 'Projects', to: '/projects' },
   { name: 'Film', href: '/film' },
-  { name: 'About', to: '/#about', scrollId: 'about' },
+  { name: 'About', to: '/design#about', scrollId: 'about' },
 ];
 
 const SHRINK_AT = 80;
@@ -71,12 +71,12 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
     if (!link.scrollId) return;
     e.preventDefault();
     setMobileMenuOpen(false);
-    if (location.pathname === '/') {
+    if (location.pathname === '/' || location.pathname === '/design') {
       document.getElementById(link.scrollId)?.scrollIntoView({ behavior: 'smooth' });
       window.history.replaceState(null, '', `#${link.scrollId}`);
       return;
     }
-    navigate(`/#${link.scrollId}`);
+    navigate(`/design#${link.scrollId}`);
   };
 
   const copyToClipboard = async (text: string) => {

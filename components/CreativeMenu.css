@@ -1,0 +1,154 @@
+/* Creative menu: centered words with hover-revealed image marquees on both sides */
+
+.creative-menu {
+  position: relative;
+  z-index: 7;
+  background-color: var(--brand-bg);
+  padding: 3rem var(--spacing-6) 9rem;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .creative-menu {
+    padding: 3.5rem var(--spacing-12) 12rem;
+  }
+}
+
+.creative-menu-list {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 80rem;
+  will-change: transform;
+}
+
+/* Word in the middle, a marquee lane on each side. Row height never changes,
+   so hovering only ever moves rows by transform. */
+.creative-menu-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0;
+  margin: -0.75rem 0;
+  will-change: transform;
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.creative-menu-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.75rem, 4.2vw, 3.25rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-align: center;
+  text-decoration: none;
+  color: var(--brand-text);
+  opacity: 0.5;
+  transition: opacity 0.45s ease, color 0.45s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.creative-menu-row.is-active .creative-menu-label {
+  opacity: 1;
+  color: var(--brand-blue);
+}
+
+.creative-menu-marquee {
+  position: relative;
+  height: clamp(4rem, 7.5vw, 6.5rem);
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity;
+  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.creative-menu-row.is-active .creative-menu-marquee {
+  opacity: 1;
+}
+
+/* Solid-colour gradients fade the outer edges — cheaper than compositing a mask */
+.creative-menu-marquee::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3.5rem;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.creative-menu-marquee--left::after {
+  left: 0;
+  background: linear-gradient(to right, var(--brand-bg), transparent);
+}
+
+.creative-menu-marquee--right::after {
+  right: 0;
+  background: linear-gradient(to left, var(--brand-bg), transparent);
+}
+
+.creative-menu-track {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: 100%;
+  width: max-content;
+  will-change: transform;
+  animation: creative-menu-scroll 24s linear infinite;
+  animation-play-state: paused;
+}
+
+.creative-menu-row.is-active .creative-menu-track {
+  animation-play-state: running;
+}
+
+.creative-menu-thumb {
+  display: block;
+  flex: 0 0 auto;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 0.4rem;
+  overflow: hidden;
+  background-color: var(--gray-100);
+}
+
+.creative-menu-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Track holds two copies of the list, so -50% is a seamless loop */
+@keyframes creative-menu-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(calc(-50% - 0.375rem), 0, 0);
+  }
+}
+
+@media (max-width: 640px) {
+  .creative-menu-row {
+    gap: 0.75rem;
+  }
+
+  .creative-menu-marquee {
+    height: 3.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .creative-menu-row {
+    transition: none;
+  }
+
+  .creative-menu-row.is-active .creative-menu-track {
+    animation: none;
+  }
+}
