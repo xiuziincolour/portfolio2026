@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import LandingIntro from './components/LandingIntro.jsx';
+import ManifestoSection from './components/ManifestoSection';
 import WorkGrid from './components/WorkGrid';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -207,6 +208,7 @@ const App: React.FC = () => {
                 />
                 <main>
                   <LandingIntro />
+                  <ManifestoSection />
                   <WorkGrid theme={theme} />
                   <AboutMe />
                   <Contact />

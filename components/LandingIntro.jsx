@@ -255,16 +255,18 @@ function LandingIntro() {
         window.removeEventListener('keydown', handleKeyDown);
       };
 
-      const workSection = document.getElementById('work');
-      if (workSection) {
+      // Fade the fixed headline against whichever section follows the hero
+      const fadeTrigger =
+        document.querySelector('.manifesto-section') ?? document.getElementById('work');
+      if (fadeTrigger) {
         gsap.set(text, { autoAlpha: 1 });
         gsap.to(text, {
           autoAlpha: 0,
           ease: 'none',
           scrollTrigger: {
-            trigger: workSection,
-            start: 'top 68%',
-            end: 'top 44%',
+            trigger: fadeTrigger,
+            start: 'top 92%',
+            end: 'top 55%',
             scrub: 0.55,
           },
         });
