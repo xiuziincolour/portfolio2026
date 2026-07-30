@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const CARD_LINES = [
   "Hey! I'm Xiuzi, a Product and UI/UX Designer.",
-  'From wireframe to shipped product in design, code, and market, accelerated with AI.',
+  'I turn ideas into shipped products through design, code, and marketing, with AI as my copilot. 🤖🖖🏼',
 ];
 
 const fade = (delay) => ({
