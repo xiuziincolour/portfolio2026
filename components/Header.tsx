@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Check, ArrowRight, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -9,14 +9,20 @@ interface HeaderProps {
   onToggleTheme: () => void;
 }
 
-const NAV_ITEMS = [
-  { name: 'Projects', to: '/projects' },
-  { name: 'About', to: '/#about', scrollId: 'about' },
-] as const;
+type NavItem = {
+  name: string;
+  to?: string;
+  href?: string;
+  scrollId?: string;
+};
 
-const EXTERNAL_NAV_ITEMS = [
+const NAV_ITEMS: NavItem[] = [
+  { name: 'Projects', to: '/projects' },
   { name: 'Film', href: '/film' },
-] as const;
+  { name: 'About', to: '/#about', scrollId: 'about' },
+];
+
+const SHRINK_AT = 80;
 
 const EmailIcon: React.FC<{ size?: number; className?: string }> = ({ size = 18, className }) => (
   <svg
@@ -47,17 +53,22 @@ const EmailIcon: React.FC<{ size?: number; className?: string }> = ({ size = 18,
 
 const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [cursorToast, setCursorToast] = useState<{ x: number; y: number; key: number } | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
 
   const EMAIL = 'xiuziguo@gmail.com';
 
-  const handleNavClick = (
-    e: React.MouseEvent,
-    link: (typeof NAV_ITEMS)[number]
-  ) => {
-    if (!('scrollId' in link) || !link.scrollId) return;
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > SHRINK_AT);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const handleNavClick = (e: React.MouseEvent, link: NavItem) => {
+    if (!link.scrollId) return;
     e.preventDefault();
     setMobileMenuOpen(false);
     if (location.pathname === '/') {
@@ -96,55 +107,36 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
 
   return (
     <>
-      <header className="header-container">
+      <header className={`header-container ${scrolled ? 'is-scrolled' : 'is-top'}`}>
         <div className="header-nav-wrapper">
-          <Link to="/" className="header-logo-link" aria-label="Home">
-            <span className="header-logo-wrap">
-              <img
-                src="/img/xiuzi_logo.png"
-                alt="Xiuzi Logo"
-                className="header-logo-image"
-              />
-            </span>
-          </Link>
-
           <nav className="header-desktop-nav">
             <div className="header-nav-links">
-              {NAV_ITEMS.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.to}
-                  className="header-nav-link group"
-                  onClick={(e) => handleNavClick(e, link)}
-                >
-                  {link.name}
-                </Link>
-              ))}
-              {EXTERNAL_NAV_ITEMS.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="header-nav-link group"
-                >
-                  {link.name}
-                </a>
-              ))}
+              {NAV_ITEMS.map((link) =>
+                link.href ? (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="header-nav-link group"
+                  >
+                    {link.name}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.name}
+                    to={link.to!}
+                    className="header-nav-link group"
+                    onClick={(e) => handleNavClick(e, link)}
+                  >
+                    {link.name}
+                  </Link>
+                )
+              )}
             </div>
           </nav>
 
           <div className="header-actions">
-            <button
-              type="button"
-              className="header-cta-button"
-              onClick={handleEmailClick}
-              aria-label="Copy email address"
-              title="Copy email"
-            >
-              <EmailIcon size={18} className="header-cta-icon" />
-            </button>
-
             <button
               type="button"
               className={`header-theme-toggle ${theme === 'dark' ? 'is-dark' : 'is-light'}`}
@@ -159,6 +151,16 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
               <span className="header-theme-toggle-track" aria-hidden="true">
                 <span className="header-theme-toggle-thumb" />
               </span>
+            </button>
+
+            <button
+              type="button"
+              className="header-cta-button"
+              onClick={handleEmailClick}
+              aria-label="Copy email address"
+              title="Copy email"
+            >
+              <EmailIcon size={18} className="header-cta-icon" />
             </button>
 
             <button
@@ -198,13 +200,6 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
             className="header-mobile-menu"
           >
             <div className="header-mobile-menu-header">
-              <span className="header-logo-wrap">
-                <img
-                  src="/img/xiuzi_logo.png"
-                  alt="Xiuzi Logo"
-                  className="header-mobile-logo-image"
-                />
-              </span>
               <button
                 onClick={() => setMobileMenuOpen(false)}
                 className="header-mobile-menu-close"
@@ -221,34 +216,28 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 + i * 0.1 }}
                 >
-                  <Link
-                    to={link.to}
-                    onClick={(e) => {
-                      handleNavClick(e, link);
-                      setMobileMenuOpen(false);
-                    }}
-                    className="header-mobile-nav-link"
-                  >
-                    {link.name}
-                  </Link>
-                </motion.div>
-              ))}
-              {EXTERNAL_NAV_ITEMS.map((link, i) => (
-                <motion.div
-                  key={link.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 + (NAV_ITEMS.length + i) * 0.1 }}
-                >
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="header-mobile-nav-link"
-                  >
-                    {link.name}
-                  </a>
+                  {link.href ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="header-mobile-nav-link"
+                    >
+                      {link.name}
+                    </a>
+                  ) : (
+                    <Link
+                      to={link.to!}
+                      onClick={(e) => {
+                        handleNavClick(e, link);
+                        setMobileMenuOpen(false);
+                      }}
+                      className="header-mobile-nav-link"
+                    >
+                      {link.name}
+                    </Link>
+                  )}
                 </motion.div>
               ))}
               <motion.div

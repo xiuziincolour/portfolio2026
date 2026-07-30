@@ -12,38 +12,20 @@
 }
 
 .header-nav-wrapper {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 2rem;
   width: 100%;
   max-width: 80rem;
   padding: 1.25rem 3rem;
+  transition: padding 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.header-logo-link {
-  display: inline-flex;
-  align-items: center;
-  align-self: center;
-  flex-shrink: 0;
-}
-
-.header-logo-wrap {
-  display: inline-block;
-  height: 3.5rem; /* 56px — larger logo */
-  flex-shrink: 0;
-  line-height: 0;
-}
-
-.header-logo-link .header-logo-image,
-.header-logo-wrap .header-logo-image {
-  display: block;
-  height: 3.5rem !important;
-  max-height: 3.5rem !important;
-  width: auto !important;
-  max-width: none !important;
-  object-fit: contain !important;
-  object-position: left center;
-  vertical-align: middle;
+.header-container.is-scrolled .header-nav-wrapper {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .header-desktop-nav {
@@ -54,6 +36,8 @@
   .header-desktop-nav {
     display: flex;
     align-items: center;
+    flex: 1 1 auto;
+    min-width: 0;
   }
 }
 
@@ -61,36 +45,60 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  flex-shrink: 0;
 }
 
+/* Links share the available width evenly; they shrink once the page scrolls */
 .header-nav-links {
   display: flex;
-  align-items: center;
-  gap: 2rem;
-  margin-right: 2rem;
+  align-items: baseline;
+  justify-content: center;
+  width: 100%;
+  gap: 5rem;
+  transform: translateX(2rem);
 }
 
 .header-nav-link {
   position: relative;
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.75rem, 4vw, 48px);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
   color: var(--brand-text);
-  opacity: 0.82;
+  opacity: 0.9;
   white-space: nowrap;
-  transition: opacity 0.2s ease, color 0.2s ease;
+  transition: font-size 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s ease, color 0.2s ease, font-weight 0.2s ease;
   background: none;
   border: none;
   cursor: pointer;
-  font-family: inherit;
   padding: 0;
 }
 
-.header-nav-links.scrolled .header-nav-link {
-  font-size: 0.875rem; /* Same as unscrolled */
+.header-container.is-scrolled .header-nav-links {
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* Lift the actions out of the flow so the shrunk links center on the page */
+@media (min-width: 1024px) {
+  .header-container.is-scrolled .header-actions {
+    position: absolute;
+    top: 50%;
+    right: 3rem;
+    transform: translateY(-50%);
+  }
+}
+
+.header-container.is-scrolled .header-nav-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  opacity: 0.82;
 }
 
 .header-nav-link:hover {
-  color: var(--brand-text);
+  color: var(--brand-blue);
   opacity: 1;
 }
 
@@ -275,28 +283,13 @@
   }
 }
 
-/* Same top padding as main header so logo and close button align with hamburger */
+/* Same top padding as main header so the close button aligns with the hamburger */
 .header-mobile-menu-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   margin-bottom: 3rem;
   flex-shrink: 0;
-}
-
-.header-mobile-menu-header .header-logo-wrap {
-  height: 3.5rem;
-}
-
-.header-mobile-menu-header .header-logo-wrap .header-mobile-logo-image {
-  display: block;
-  height: 3.5rem !important;
-  max-height: 3.5rem !important;
-  width: auto !important;
-  max-width: none !important;
-  object-fit: contain !important;
-  object-position: left center;
-  vertical-align: middle;
 }
 
 /* Same size and shape as hamburger (2.75rem circle) */

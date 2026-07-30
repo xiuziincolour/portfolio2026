@@ -1,157 +1,128 @@
-/* Landing intro: one scroll gesture triggers smooth align animation */
+/* Landing hero: centered portrait with an overlapping speech-bubble card */
 
 .landing-intro {
   position: relative;
+  z-index: 1;
   background-color: var(--brand-bg);
-  height: 100vh;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  padding: 6rem var(--spacing-6) 2rem;
-  overflow: hidden;
+  padding: 9rem var(--spacing-6) 4rem;
   box-sizing: border-box;
-}
-
-/* Blue professional grid — opacity driven by ScrollTrigger */
-.landing-intro-grid-lines {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0;
-  background-image:
-    linear-gradient(to right, rgba(0, 47, 167, 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 47, 167, 0.08) 1px, transparent 1px);
-  background-size: 24px 8px;
-  background-position: 0 0;
 }
 
 @media (min-width: 768px) {
   .landing-intro {
-    padding: 7rem var(--spacing-12) 2rem;
+    padding: 11rem var(--spacing-12) 5rem;
   }
 }
 
-/* Extra scroll room after intro — text stays readable before projects rise */
-.landing-intro-spacer {
-  height: 55vh;
-  min-height: 55vh;
-  background-color: var(--brand-bg);
-  pointer-events: none;
-}
-
-@media (min-width: 768px) {
-  .landing-intro-spacer {
-    height: 65vh;
-    min-height: 65vh;
-  }
-}
-
-/* Fixed in viewport — does not scroll with the page */
-.landing-intro-text-layer {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6rem var(--spacing-6) 2rem;
-  z-index: 5;
-  pointer-events: none;
-  box-sizing: border-box;
-}
-
-@media (min-width: 768px) {
-  .landing-intro-text-layer {
-    padding: 7rem var(--spacing-12) 2rem;
-  }
-}
-
-.landing-intro-text {
+.landing-intro-stage {
+  position: relative;
   width: 100%;
-  max-width: 42rem;
-  will-change: opacity;
-}
-
-
-.landing-intro-headline {
-  font-family: 'JMH Typewriter Dry', 'Graphik LC Web', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: clamp(1.5rem, 4vw, 2.25rem);
-  font-weight: 700;
-  color: var(--brand-orange);
-  line-height: 1.3;
-  margin: 0 0 0.5rem 0;
-  display: block;
-  min-height: 8rem;
-  overflow: visible;
-}
-
-.landing-intro-char {
-  display: inline-block;
-  will-change: transform, opacity;
-  opacity: 0;
-}
-
-/* CTA: fixed to viewport bottom until animation ends (ScrollTrigger drives opacity) */
-.landing-intro-cta {
-  position: fixed;
-  bottom: 2rem;
-  left: 0;
-  right: 0;
+  max-width: 80rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  z-index: 10;
-  pointer-events: none;
-  will-change: opacity;
-  transform: none;
+  gap: 2rem;
 }
 
-.landing-intro-cta-text {
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  color: var(--gray-500);
-  text-transform: uppercase;
+.landing-intro-photo {
+  display: block;
+  width: 100%;
+  max-width: 28rem;
+  height: auto;
+  object-fit: contain;
 }
 
-.landing-intro-cta-arrow {
-  font-size: 1rem;
-  color: var(--gray-500);
-  line-height: 1;
+/* Handwritten overlays flanking the portrait — desktop only */
+.landing-intro-script {
+  display: none;
 }
 
-.landing-intro-body {
-  font-family: 'Montserrat', sans-serif;
-  font-size: var(--text-body);
-  line-height: 1.7;
-  color: var(--gray-500);
-  text-align: center;
+.landing-intro-card {
+  position: relative;
+  z-index: 3;
+  background-color: #fff;
+  border: 1.5px solid #1a1a1a;
+  border-radius: 1.75rem;
+  padding: 1.5rem 1.75rem;
+  box-sizing: border-box;
 }
 
-.landing-intro-body p {
+.landing-intro-card-line {
   margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #1a1a1a;
 }
 
+[data-theme='dark'] .landing-intro-card {
+  background-color: #16161a;
+  border-color: rgba(245, 245, 245, 0.55);
+}
+
+[data-theme='dark'] .landing-intro-card-line {
+  color: #f5f5f5;
+}
+
+.landing-intro-card-line + .landing-intro-card-line {
+  margin-top: 1.25rem;
+}
+
+/* Desktop: photo sits flush with the bottom of the section, card floats over it */
 @media (min-width: 768px) {
-  .landing-intro-headline {
-    margin-bottom: 0.75rem;
+  /* Fixed viewport height so the photo's bottom edge lands exactly on the section's */
+  .landing-intro {
+    align-items: flex-end;
+    height: 100vh;
+    padding-top: 7rem;
+    padding-bottom: 0;
+    overflow: hidden;
   }
-  .landing-intro-body {
-    font-size: var(--text-body);
-  }
-}
 
-/* Visually hidden but screen-reader accessible text */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+  .landing-intro-stage {
+    display: block;
+    text-align: center;
+  }
+
+  .landing-intro-photo {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: min(80vh, 46rem);
+    margin: 0 auto;
+  }
+
+  .landing-intro-script {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    height: auto;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .landing-intro-script--left {
+    left: 8.5%;
+    top: 20%;
+    width: 40%;
+  }
+
+  .landing-intro-script--right {
+    right: 4%;
+    top: 48%;
+    width: 42%;
+  }
+
+  .landing-intro-card {
+    position: absolute;
+    left: 10%;
+    bottom: 14%;
+    width: min(30rem, 42%);
+    text-align: left;
+  }
 }
