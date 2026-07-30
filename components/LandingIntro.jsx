@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { ArrowDown } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './LandingIntro.css';
@@ -20,13 +21,17 @@ const fade = (delay) => ({
 function LandingIntro() {
   const sectionRef = useRef(null);
   const stageRef = useRef(null);
+  const scrollRef = useRef(null);
 
   useEffect(() => {
     const section = sectionRef.current;
     const stage = stageRef.current;
+    const scrollCue = scrollRef.current;
     if (!section || !stage) return undefined;
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+
+    const fadeTargets = [stage, scrollCue].filter(Boolean);
 
     const ctx = gsap.context(() => {
       // Hold the hero in place; the next section scrolls up over it
@@ -40,7 +45,7 @@ function LandingIntro() {
         anticipatePin: 1,
       });
 
-      gsap.to(stage, {
+      gsap.to(fadeTargets, {
         autoAlpha: 0,
         ease: 'none',
         scrollTrigger: {
@@ -88,6 +93,16 @@ function LandingIntro() {
             </p>
           ))}
         </motion.div>
+      </div>
+
+      {/* Wrapper carries the scroll-driven fade so it can't clash with the entrance animation */}
+      <div ref={scrollRef} className="landing-intro-scroll-wrap">
+        <motion.a href="#work" className="landing-intro-scroll" {...fade(0.55)}>
+          Scroll for more work
+          <span className="landing-intro-scroll-icon" aria-hidden="true">
+            <ArrowDown size={14} />
+          </span>
+        </motion.a>
       </div>
     </section>
   );

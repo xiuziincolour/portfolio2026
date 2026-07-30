@@ -126,3 +126,49 @@
     text-align: left;
   }
 }
+
+.landing-intro-scroll-wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1.25rem;
+  z-index: 4;
+  display: flex;
+  justify-content: center;
+}
+
+.landing-intro-scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #fff;
+  opacity: 0.9;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.landing-intro-scroll:hover {
+  opacity: 1;
+  color: var(--brand-blue);
+}
+
+.landing-intro-scroll-icon {
+  display: inline-flex;
+  transition: transform 0.25s ease;
+}
+
+.landing-intro-scroll:hover .landing-intro-scroll-icon {
+  transform: translateY(2px);
+}
+
+@media (min-width: 768px) {
+  .landing-intro-scroll-wrap {
+    bottom: 1.5rem;
+  }
+}
