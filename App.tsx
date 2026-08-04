@@ -256,7 +256,7 @@ const App: React.FC = () => {
                   />
                   <ManifestoSection text="From concept to creative execution. Bold visuals, thoughtful storytelling, and cohesive design systems that bring brands and products to life." />
                   <CreativeMenu />
-                  <AboutMe />
+                  <AboutMe role="Creative Designer" />
                   <Contact />
                 </main>
                 <Footer variant="default" />

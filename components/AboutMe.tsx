@@ -20,7 +20,9 @@ const PHOTO_ROTATIONS = [4, -5, 5, 3, -4, 6];
 const DRAG_THRESHOLD_PX = 5;
 const SCROLL_EASE = [0.22, 1, 0.36, 1] as const;
 
-const AboutMe: React.FC = () => {
+const AboutMe: React.FC<{ role?: string }> = ({
+  role = 'Product & UI/UX Designer',
+}) => {
   const [positions, setPositions] = useState<{ left: number; top: number }[]>(() => INITIAL_POSITIONS);
   const [draggingId, setDraggingId] = useState<number | null>(null);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
@@ -146,7 +148,7 @@ const AboutMe: React.FC = () => {
           <motion.p className="about-me-intro-text" {...reveal(0.12, 32)}>
             <strong className="about-me-name">Xiuzi Guo</strong>
             {' '}
-            is a Product & UI/UX Designer with a love for user-centered interfaces, and moving image{' '}
+            is a {role} with a love for user-centered interfaces, and moving image{' '}
             <span className="about-me-intro-note">(and JRPGs)</span>.
           </motion.p>
           <motion.div className="about-me-intro-links" {...reveal(0.22, 16)}>
