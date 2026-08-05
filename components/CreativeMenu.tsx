@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './CreativeMenu.css';
@@ -12,12 +13,12 @@ type MenuItem = {
 };
 
 /** 480px JPEG thumbnails — the originals are multi-megabyte and stutter on hover */
-const thumbs = (prefix: string) =>
-  [1, 2, 3, 4, 5].map((n) => `/img/creative-menu/${prefix}-${n}.jpg`);
+const thumbs = (prefix: string, count = 5) =>
+  Array.from({ length: count }, (_, i) => `/img/creative-menu/${prefix}-${i + 1}.jpg`);
 
 const MENU_ITEMS: MenuItem[] = [
   { label: 'Design', href: '/projects', images: thumbs('design') },
-  { label: 'Social Media', images: thumbs('social') },
+  { label: 'Social Media', href: '/social-media', images: thumbs('social', 8) },
   { label: 'Motion Graphics', href: '/film', images: thumbs('motion') },
   { label: 'UI/UX Design', href: '/projects', images: thumbs('uiux') },
   { label: 'Film Production', href: '/film', images: thumbs('film') },
@@ -94,7 +95,8 @@ const CreativeMenu: React.FC = () => {
               : index < activeIndex
                 ? -ROW_SHIFT
                 : ROW_SHIFT;
-          const Tag = item.href ? 'a' : 'span';
+          const isExternal = item.href === '/film';
+          const LabelTag = !item.href ? 'span' : isExternal ? 'a' : Link;
 
           const marquee = (side: 'left' | 'right') => (
             <div className={`creative-menu-marquee creative-menu-marquee--${side}`} aria-hidden="true">
@@ -119,21 +121,22 @@ const CreativeMenu: React.FC = () => {
               {/* Marquees flank the word so images never sit on the letters */}
               {marquee('left')}
 
-              <Tag
+              <LabelTag
                 className="creative-menu-label"
                 onFocus={() => setActiveIndex(index)}
                 onBlur={() => setActiveIndex((current) => (current === index ? null : current))}
                 {...(item.href
-                  ? {
-                      href: item.href,
-                      ...(item.href === '/film'
-                        ? { target: '_blank', rel: 'noopener noreferrer' }
-                        : {}),
-                    }
+                  ? isExternal
+                    ? {
+                        href: item.href,
+                        target: '_blank',
+                        rel: 'noopener noreferrer',
+                      }
+                    : { to: item.href }
                   : {})}
               >
                 {item.label}
-              </Tag>
+              </LabelTag>
 
               {marquee('right')}
             </li>

@@ -9,6 +9,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Projects from './components/Projects';
 import AboutMe from './components/AboutMe';
+import SocialMediaPage from './components/SocialMediaPage';
 import { ProjectDetailPage } from './lib/routes';
 import './App.css';
 
@@ -263,6 +264,7 @@ const App: React.FC = () => {
               </>
             }
           />
+          <Route path="/social-media" element={<SocialMediaPage />} />
           <Route path="/project/:id" element={<ProjectDetailPage />} />
           <Route
             path="/projects"
