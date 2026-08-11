@@ -76,12 +76,12 @@ export const UNIFIED_WORKS: WorkItem[] = [
     hideOnHome: true,
   },
   {
-    id: 'w5',
-    title: 'Rock Poster',
+    id: 'w4',
+    title: 'Cans',
     subtitle: 'Graphic Design',
     category: 'Graphic Design',
     type: 'image',
-    image: '/img/posters/rockposter.png',
+    image: '/img/graphic-cans/Xiuzi_Cans-cover.png',
     hideOnHome: true,
   },
   {
@@ -94,12 +94,12 @@ export const UNIFIED_WORKS: WorkItem[] = [
     hideOnHome: true,
   },
   {
-    id: 'w4',
-    title: 'Cans',
+    id: 'w5',
+    title: 'Rock Poster',
     subtitle: 'Graphic Design',
     category: 'Graphic Design',
     type: 'image',
-    image: '/img/graphic-cans/Xiuzi_Cans-cover.png',
+    image: '/img/posters/rockposter.png',
     hideOnHome: true,
   }
 ];

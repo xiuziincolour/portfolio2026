@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, X } from 'lucide-react';
 import { UNIFIED_WORKS } from '../constants';
 import { hasProjectPage, getProjectPath } from '../lib/routes';
 import { useGoBack } from '../lib/useGoBack';
@@ -10,9 +10,11 @@ import './Projects.css';
 const JARGON_HOME_COVER_VIDEO = 'https://pub-b1a10ff6b2664d4c86d2cb6c5ad45fc8.r2.dev/Jargon-video.mp4';
 const JARGON_MERCH_COVER_VIDEO = 'https://pub-b1a10ff6b2664d4c86d2cb6c5ad45fc8.r2.dev/Jargon-merch-cover.mp4';
 const JARGON_MERCH_POSTER = '/img/Jargon-merch/Jargon-tshirt-1.png';
+const COMING_SOON_IDS = new Set(['w5']);
 
 const Projects: React.FC = () => {
   const goBack = useGoBack('/');
+  const [comingSoonOpen, setComingSoonOpen] = useState(false);
   const jargonVideoRef = useRef<HTMLVideoElement | null>(null);
   const jargonMerchVideoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -109,17 +111,38 @@ const Projects: React.FC = () => {
             const media = renderCover(work);
             if (!media) return null;
 
-            const isLinked = Boolean(path || work.externalUrl);
+            const isComingSoon = COMING_SOON_IDS.has(work.id);
+            const isLinked = Boolean(path || work.externalUrl || isComingSoon);
             const content = (
               <>
                 {media}
                 {isLinked && (
                   <div className="projects-cell-hover">
-                    <span>{work.externalUrl ? 'View Design' : 'View Case Study'}</span>
+                    <span>
+                      {isComingSoon
+                        ? 'Coming Soon'
+                        : work.externalUrl
+                          ? 'View Design'
+                          : 'View Case Study'}
+                    </span>
                   </div>
                 )}
               </>
             );
+
+            if (isComingSoon) {
+              return (
+                <button
+                  key={work.id}
+                  type="button"
+                  className="projects-cell"
+                  aria-label={`${work.title} — Coming soon`}
+                  onClick={() => setComingSoonOpen(true)}
+                >
+                  {content}
+                </button>
+              );
+            }
 
             if (work.externalUrl) {
               return (
@@ -152,6 +175,39 @@ const Projects: React.FC = () => {
           })}
         </div>
       </motion.div>
+
+      {comingSoonOpen && (
+        <div
+          className="projects-coming-soon"
+          onClick={() => setComingSoonOpen(false)}
+          onKeyDown={(e) => {
+            if (e.key === 'Escape') setComingSoonOpen(false);
+          }}
+          role="button"
+          tabIndex={0}
+          aria-label="Close coming soon"
+        >
+          <div
+            className="projects-coming-soon-card"
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="projects-coming-soon-title"
+          >
+            <button
+              type="button"
+              className="projects-coming-soon-close"
+              onClick={() => setComingSoonOpen(false)}
+              aria-label="Close"
+            >
+              <X size={18} />
+            </button>
+            <p id="projects-coming-soon-title" className="projects-coming-soon-text">
+              Coming soon
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
