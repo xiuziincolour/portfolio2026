@@ -1,93 +1,158 @@
-import React, { useMemo, useState } from 'react';
-import { useGoBack } from '../lib/useGoBack';
+import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import { UNIFIED_WORKS } from '../constants';
-import { WorkItem } from '../types';
-import WorkGrid from './WorkGrid';
+import { hasProjectPage, getProjectPath } from '../lib/routes';
+import { useGoBack } from '../lib/useGoBack';
 import './Projects.css';
 
-type FilterType = 'all' | 'uiux' | 'product' | 'graphic';
-
-const isProductDesignWork = (work: WorkItem) =>
-  work.category === 'Product' ||
-  work.tags?.some((tag) => tag.toLowerCase() === 'product design');
+const JARGON_HOME_COVER_VIDEO = 'https://pub-b1a10ff6b2664d4c86d2cb6c5ad45fc8.r2.dev/Jargon-video.mp4';
+const JARGON_MERCH_COVER_VIDEO = 'https://pub-b1a10ff6b2664d4c86d2cb6c5ad45fc8.r2.dev/Jargon-merch-cover.mp4';
+const JARGON_MERCH_POSTER = '/img/Jargon-merch/Jargon-tshirt-1.png';
 
 const Projects: React.FC = () => {
   const goBack = useGoBack('/');
-  const [activeFilter, setActiveFilter] = useState<FilterType>('all');
+  const jargonVideoRef = useRef<HTMLVideoElement | null>(null);
+  const jargonMerchVideoRef = useRef<HTMLVideoElement | null>(null);
 
-  const filteredWorks = useMemo(() => {
-    if (activeFilter === 'all') return UNIFIED_WORKS;
-    if (activeFilter === 'uiux') return UNIFIED_WORKS.filter((w) => w.category === 'UI/UX');
-    if (activeFilter === 'product') return UNIFIED_WORKS.filter(isProductDesignWork);
-    return UNIFIED_WORKS.filter((w) => w.category === 'Graphic Design');
-  }, [activeFilter]);
+  useEffect(() => {
+    const videos = [jargonVideoRef.current, jargonMerchVideoRef.current].filter(Boolean) as HTMLVideoElement[];
+    if (videos.length === 0) return undefined;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target as HTMLVideoElement;
+          if (entry.isIntersecting) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.25, rootMargin: '50px' }
+    );
+
+    videos.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  const renderCover = (work: (typeof UNIFIED_WORKS)[number]) => {
+    if (work.id === 'w2') {
+      return (
+        <video
+          ref={jargonVideoRef}
+          className="projects-cell-media"
+          src={JARGON_HOME_COVER_VIDEO}
+          poster={work.image}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-label={work.title}
+        />
+      );
+    }
+
+    if (work.id === 'w3') {
+      return (
+        <video
+          ref={jargonMerchVideoRef}
+          className="projects-cell-media"
+          src={JARGON_MERCH_COVER_VIDEO}
+          poster={JARGON_MERCH_POSTER}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-label={work.title}
+        />
+      );
+    }
+
+    if (!work.image) return null;
+
+    return (
+      <img
+        className="projects-cell-media"
+        src={work.image}
+        alt={work.title}
+        loading="lazy"
+        decoding="async"
+      />
+    );
+  };
 
   return (
-    <motion.div className="projects-page">
-      <motion.div className="projects-container">
-        <button
-          type="button"
-          onClick={goBack}
-          className="projects-back-button"
-          aria-label="Back to home"
-        >
+    <div className="projects-page">
+      <div className="projects-nav">
+        <button type="button" onClick={goBack} className="projects-back" aria-label="Back">
           <ArrowLeft size={16} className="projects-back-icon" />
           <span>Back</span>
         </button>
+      </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="projects-title-section"
-        >
-          <h1 className="projects-title">Projects</h1>
-          <p className="projects-subtitle">Explore my design work</p>
-        </motion.div>
+      <motion.div
+        className="projects-layout"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <h1 className="projects-title">Projects</h1>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="projects-filters"
-        >
-          <button
-            type="button"
-            onClick={() => setActiveFilter('all')}
-            className={`projects-filter-button ${activeFilter === 'all' ? 'active' : ''}`}
-          >
-            All
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveFilter('uiux')}
-            className={`projects-filter-button ${activeFilter === 'uiux' ? 'active' : ''}`}
-          >
-            UI/UX Design
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveFilter('product')}
-            className={`projects-filter-button ${activeFilter === 'product' ? 'active' : ''}`}
-          >
-            Product Design
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveFilter('graphic')}
-            className={`projects-filter-button ${activeFilter === 'graphic' ? 'active' : ''}`}
-          >
-            Graphic Design
-          </button>
-        </motion.div>
+        <div className="projects-grid">
+          {UNIFIED_WORKS.map((work) => {
+            const path = hasProjectPage(work.id) ? getProjectPath(work.id) : null;
+            const media = renderCover(work);
+            if (!media) return null;
 
-        <motion.div className="projects-work-grid-wrapper">
-          <WorkGrid works={filteredWorks} showMoreLink={false} />
-        </motion.div>
+            const isLinked = Boolean(path || work.externalUrl);
+            const content = (
+              <>
+                {media}
+                {isLinked && (
+                  <div className="projects-cell-hover">
+                    <span>{work.externalUrl ? 'View Design' : 'View Case Study'}</span>
+                  </div>
+                )}
+              </>
+            );
+
+            if (work.externalUrl) {
+              return (
+                <a
+                  key={work.id}
+                  href={work.externalUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="projects-cell"
+                  aria-label={work.title}
+                >
+                  {content}
+                </a>
+              );
+            }
+
+            if (path) {
+              return (
+                <Link key={work.id} to={path} className="projects-cell" aria-label={work.title}>
+                  {content}
+                </Link>
+              );
+            }
+
+            return (
+              <div key={work.id} className="projects-cell projects-cell--static" aria-label={work.title}>
+                {content}
+              </div>
+            );
+          })}
+        </div>
       </motion.div>
-    </motion.div>
+    </div>
   );
 };
 
