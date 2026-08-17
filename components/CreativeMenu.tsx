@@ -63,9 +63,9 @@ const CreativeMenu: React.FC = () => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         list,
-        { y: 60 },
+        { y: 16 },
         {
-          y: -60,
+          y: -16,
           ease: 'none',
           scrollTrigger: {
             trigger: section,

@@ -67,37 +67,41 @@ function LandingIntro({
 
   return (
     <section ref={sectionRef} className="landing-intro">
-      <div ref={stageRef} className="landing-intro-stage">
-        <motion.img
-          className="landing-intro-photo"
-          src="/img/landing.png"
-          alt="Xiuzi Guo"
-          {...fade(0.05)}
-        />
+      <div className="landing-intro-scale">
+        <div ref={stageRef} className="landing-intro-stage">
+          <div className="landing-intro-visual">
+            <motion.img
+              className="landing-intro-photo"
+              src="/img/landing.png"
+              alt="Xiuzi Guo"
+              {...fade(0.05)}
+            />
 
-        <motion.img
-          className="landing-intro-script landing-intro-script--left"
-          src="/img/imxiuzi-2.png"
-          alt="Hello I'm Xiuzi"
-          aria-hidden="true"
-          {...fade(0.3)}
-        />
+            <motion.img
+              className="landing-intro-script landing-intro-script--left"
+              src="/img/imxiuzi-2.png"
+              alt="Hello I'm Xiuzi"
+              aria-hidden="true"
+              {...fade(0.3)}
+            />
 
-        <motion.img
-          className="landing-intro-script landing-intro-script--right"
-          src={scriptRight}
-          alt={scriptRightAlt}
-          aria-hidden="true"
-          {...fade(0.42)}
-        />
+            <motion.img
+              className="landing-intro-script landing-intro-script--right"
+              src={scriptRight}
+              alt={scriptRightAlt}
+              aria-hidden="true"
+              {...fade(0.42)}
+            />
+          </div>
 
-        <motion.div className="landing-intro-card" {...fade(0.25)}>
-          {cardLines.map((line) => (
-            <p key={line} className="landing-intro-card-line">
-              {line}
-            </p>
-          ))}
-        </motion.div>
+          <motion.div className="landing-intro-card" {...fade(0.25)}>
+            {cardLines.map((line) => (
+              <p key={line} className="landing-intro-card-line">
+                {line}
+              </p>
+            ))}
+          </motion.div>
+        </div>
       </div>
 
       {/* Wrapper carries the scroll-driven fade so it can't clash with the entrance animation */}

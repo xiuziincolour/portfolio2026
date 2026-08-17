@@ -4,13 +4,15 @@
   position: relative;
   z-index: 7;
   background-color: var(--brand-bg);
-  padding: 3rem var(--spacing-6) 9rem;
+  margin-top: -32vh;
+  padding: 0 var(--spacing-6) 9rem;
   overflow: hidden;
 }
 
 @media (min-width: 768px) {
   .creative-menu {
-    padding: 3.5rem var(--spacing-12) 12rem;
+    margin-top: -36vh;
+    padding: 0 var(--spacing-12) 12rem;
   }
 }
 
