@@ -90,22 +90,21 @@ const Projects: React.FC = () => {
 
   return (
     <div className="projects-page">
-      <div className="projects-nav">
-        <button type="button" onClick={goBack} className="projects-back" aria-label="Back">
-          <ArrowLeft size={16} className="projects-back-icon" />
-          <span>Back</span>
-        </button>
-      </div>
+      <div className="projects-layout">
+        <div className="projects-sidebar">
+          <button type="button" onClick={goBack} className="projects-back" aria-label="Back">
+            <ArrowLeft size={16} className="projects-back-icon" />
+            <span>Back</span>
+          </button>
+          <h1 className="projects-title">Projects</h1>
+        </div>
 
-      <motion.div
-        className="projects-layout"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <h1 className="projects-title">Projects</h1>
-
-        <div className="projects-grid">
+        <motion.div
+          className="projects-grid"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        >
           {UNIFIED_WORKS.map((work) => {
             const path = hasProjectPage(work.id) ? getProjectPath(work.id) : null;
             const media = renderCover(work);
@@ -173,8 +172,8 @@ const Projects: React.FC = () => {
               </div>
             );
           })}
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
 
       {comingSoonOpen && (
         <div
